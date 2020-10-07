@@ -17,6 +17,46 @@ You will be utilizing all of the skills and concepts that you've learned up to t
 # Mentor
 Jacob
 
+
+## Project Requirements
+* Clean code - single responsibility principle
+* ES6 Modules bundled with webpack
+* No errors - linters should be clean
+* Jquery for any DOM manipulation (selectors, modifying css classes, events)
+* SASS and Bootstrap for styling
+* Completely planned out - before each section you should be making new cards before you code.  You should have wireframes and an ERD
+
+### Planning and Setup
+For planning and setup, your team will need to divide and conquer. All of these items will need to be completed and reviewed by noon on Saturday.
+
+- Create an ERD and add to Readme
+- Create Wireframes on Figma and add to Readme
+
+#### Setup:
+- Create a setup branch and setup webpack (make a ticket for this first)
+  - Issue Ticket Template
+  - Pull request Template
+  - Set up readme
+  
+- Create 2 branches: `Main` and `Development`
+  - Protect the `Main` branch from merging (DO NOT MERGE TO MAIN UNTIL APPROVAL FROM YOUR MENTOR IS OBTAINED)
+  - All development should be done on the `Development` branch
+  - When a milestone is completed, make a PR against the `Main` branch for your mentor to review.
+  - DO NOT move on to another milestone until everyone on your team is completed with the milestone AND you get approval from your mentor.
+  
+- Create a new firebase project and enable google authentication
+  - Share API keys with team (DO NOT PUSH TO GITHUB)
+  - One person run deploys
+___
+
+### Expectations
+- Break each section below into milestones
+- Deploy each milestone
+- Deployed URL on Readme
+- Create a PR against the `Main` branch with:
+  - The tickets completed that sprint
+  - Explanation of what was completed in the sprint
+
 ## Description
 ### Week 1:
 Welcome to FreeLancer the worlds go to organizer of Renaissance Fairs. Now that your company has proven its worth at staffing all sorts of different Renaissance events the owners have decided to come out of the dark ages and build one of those **FANCY** things on the interwebs.
