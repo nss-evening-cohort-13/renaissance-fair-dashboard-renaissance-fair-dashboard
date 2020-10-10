@@ -1,0 +1,9 @@
+{
+    "souvenirs": {
+    "souvenirId": "1",
+    "firebaseKey": "souvenirs1",
+    "name": "Evil elf costume",
+    "image": "https://user-images.githubusercontent.com/67588177/94206440-0c63d580-fe8b-11ea-8270-db1871533d77.jpg",
+    "price": "$100"
+    }
+}
