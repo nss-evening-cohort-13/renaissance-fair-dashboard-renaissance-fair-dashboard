@@ -1,0 +1,24 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import userData from './userData';
+import auth from '../../components/auth/auth';
+import navbar from '../../components/navbar/navbar';
+import viewHelper from '../viewHelper';
+
+const checkLoginStatus = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const currentUser = userData.setCurrentUser(user);
+      navbar.navbar(currentUser);
+      viewHelper.viewListener('souvenirs-link');
+      $('#google-auth').addClass('hide');
+      $('#welcome-guest').addClass('hide');
+    } else {
+      $('user-name').addClass('hide');
+      $('#navbar-logout-button').addClass('hide');
+      auth.loginButton();
+    }
+  });
+};
+
+export default { checkLoginStatus };
