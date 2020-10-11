@@ -12,7 +12,7 @@ const logoutEvent = () => {
   });
 };
 
-const navbar = () => {
+const navbar = (currentUser) => {
   $('#nav').html(
     `<nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">FreeLancer</a>
@@ -22,16 +22,16 @@ const navbar = () => {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       <li class="nav-item mx-3"  id="souvenirs-link">
-        <a class="nav-link" href="#">Souvenirs</a>
+        <a class="nav-link" href="#"><i class="fas fa-crown"></i> Souvenirs</a>
       </li>
       <li class="nav-item mx-3" id="staff-link">
-        <a class="nav-link" href="#">Staff</a>
+        <a class="nav-link" href="#"><i class="far fa-grin"></i> Staff</a>
       </li>
       <li class="nav-item mx-3" id="food-link">
-        <a class="nav-link" href="#">Food</a>
+        <a class="nav-link" href="#"><i class="fas fa-drumstick-bite"></i> Food</a>
       </li>
       <li class="nav-item mx-3" id="shows-link">
-        <a class="nav-link" href="#">Shows</a>
+        <a class="nav-link" href="#"><i class="fas fa-feather-alt"></i> Shows</a>
       </li>
     </ul>
         <ul class="navbar-nav ml-auto">
@@ -39,7 +39,7 @@ const navbar = () => {
             Welcome, guest!
           </li>
           <li class="user-info-nav" id="user-name">
-            
+            Hello, ${currentUser}!
           </li>
           <li class="nav-item">
             <button class="nav-link btn btn-info p-2" id="google-auth">Log In</button>

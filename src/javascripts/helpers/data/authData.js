@@ -9,12 +9,13 @@ const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const currentUser = userData.setCurrentUser(user);
-      navbar.navbar(currentUser);
+      navbar.navbar(currentUser.name);
       viewHelper.viewListener('souvenirs-link');
       $('#google-auth').addClass('hide');
       $('#welcome-guest').addClass('hide');
     } else {
-      $('user-name').addClass('hide');
+      navbar.navbar('guest');
+      $('#user-name').addClass('hide');
       $('#navbar-logout-button').addClass('hide');
       auth.loginButton();
     }

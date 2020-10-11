@@ -12,7 +12,6 @@ const viewListener = (view) => {
   viewHelper(view);
   $('body').on('click', 'li.nav-item', (e) => {
     viewHelper(e.currentTarget.id);
-    console.warn('click');
   });
 };
 
