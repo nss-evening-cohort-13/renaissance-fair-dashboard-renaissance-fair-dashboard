@@ -3,7 +3,7 @@ import apiKeys from '../../../../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getUser = () => new Promise((resolve, reject) => {
+const getAllUsers = () => new Promise((resolve, reject) => {
   axios
     .get(`${baseUrl}/users.json`)
     .then((response) => {
@@ -52,4 +52,4 @@ const setCurrentUser = (userObj) => {
   return user;
 };
 
-export default { setCurrentUser, getUser };
+export default { setCurrentUser, getAllUsers };
