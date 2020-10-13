@@ -6,15 +6,17 @@ import navbar from '../../components/navbar/navbar';
 import viewHelper from '../viewHelper';
 
 const checkLoginStatus = () => {
+  viewHelper.viewListener('souvenirs-link');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const currentUser = userData.setCurrentUser(user);
-      navbar.navbar(currentUser.name);
       viewHelper.viewListener('souvenirs-link');
+      navbar.navbar(currentUser.name);
       $('#google-auth').addClass('hide');
       $('#welcome-guest').addClass('hide');
     } else {
       navbar.navbar('guest');
+      $('.crud-btn').addClass('hide');
       $('#user-name').addClass('hide');
       $('#navbar-logout-button').addClass('hide');
       auth.loginButton();

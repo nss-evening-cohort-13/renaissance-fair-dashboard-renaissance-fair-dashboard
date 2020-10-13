@@ -1,5 +1,5 @@
 import staffData from '../../helpers/data/staffData';
-import card from '../cards/staffMaker';
+import card from '../cards/staffCard';
 
 const staffView = () => {
   staffData.getAllStaff().then((response) => {

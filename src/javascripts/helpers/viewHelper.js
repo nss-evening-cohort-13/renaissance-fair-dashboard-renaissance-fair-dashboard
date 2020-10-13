@@ -1,14 +1,15 @@
 import staffView from '../components/views/staffView';
+import souvenirsView from '../components/views/souvenirsView';
 
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
     case 'souvenirs-link':
-      return console.warn('souvenirs-link is good');
-    default:
-      return console.warn('nothing clicked');
+      return souvenirsView.souvenirsView();
     case 'staff-link':
       return staffView.staffView();
+    default:
+      return console.warn('nothing clicked');
   }
 };
 
