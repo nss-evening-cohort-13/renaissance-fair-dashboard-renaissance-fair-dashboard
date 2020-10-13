@@ -6,7 +6,7 @@ import navbar from '../../components/navbar/navbar';
 import viewHelper from '../viewHelper';
 
 const checkLoginStatus = () => {
-  viewHelper.viewListener('souvenirs-link');
+  // viewHelper.viewListener('souvenirs-link');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const currentUser = userData.setCurrentUser(user);
@@ -16,7 +16,7 @@ const checkLoginStatus = () => {
       $('#welcome-guest').addClass('hide');
     } else {
       navbar.navbar('guest');
-      $('.crud-btn').addClass('hide');
+      viewHelper.viewListener('souvenirs-link');
       $('#user-name').addClass('hide');
       $('#navbar-logout-button').addClass('hide');
       auth.loginButton();
