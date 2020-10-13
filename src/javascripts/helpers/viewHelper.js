@@ -1,8 +1,10 @@
+import souvenirsView from '../components/views/souvenirsView';
+
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
     case 'souvenirs-link':
-      return console.warn('souvenirs-link is good');
+      return souvenirsView.souvenirsView();
     default:
       return console.warn('nothing clicked');
   }
