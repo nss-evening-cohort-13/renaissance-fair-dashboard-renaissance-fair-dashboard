@@ -1,3 +1,5 @@
+import staffView from '../components/views/staffView';
+
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
@@ -5,6 +7,8 @@ const viewHelper = (id) => {
       return console.warn('souvenirs-link is good');
     default:
       return console.warn('nothing clicked');
+    case 'staff-link':
+      return staffView.staffView();
   }
 };
 
