@@ -1,3 +1,4 @@
+import staffView from '../components/views/staffView';
 import souvenirsView from '../components/views/souvenirsView';
 
 const viewHelper = (id) => {
@@ -5,6 +6,8 @@ const viewHelper = (id) => {
   switch (id) {
     case 'souvenirs-link':
       return souvenirsView.souvenirsView();
+    case 'staff-link':
+      return staffView.staffView();
     default:
       return console.warn('nothing clicked');
   }
