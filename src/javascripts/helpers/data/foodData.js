@@ -5,17 +5,19 @@ const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // STUDENTS: Refactor this to use new Promise syntax
 const getAllFood = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/food.json`)
+  axios
+    .get(`${baseUrl}/food.json`)
     .then((response) => {
       const theFood = response.data;
-      const food = [];
+      const foodArray = [];
       if (theFood) {
         Object.keys(theFood).forEach((foodId) => {
-          food.push(theFood[foodId]);
+          foodArray.push(theFood[foodId]);
         });
       }
-      resolve(food);
-    }).catch((error) => reject(error));
+      resolve(foodArray);
+    })
+    .catch((error) => reject(error));
 });
 
 export default {

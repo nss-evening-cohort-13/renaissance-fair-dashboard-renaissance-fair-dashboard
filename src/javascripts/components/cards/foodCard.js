@@ -20,10 +20,9 @@ const foodMaker = (foodObject) => {
     </div>
     <div class="card-body">
     <div class="image">
-      <img src="${foodObject.image}" alt="${foodObject.name}">
+      <img class="image" src="${foodObject.image}" alt="${foodObject.name}">
     </div>
     <p class="card-info">Price: ${foodObject.price}</p>
-    <a href='#' id="${foodObject.firebaseKey}"></a>
     <div class="button-body"></div>
 </div>`;
   addButtonsIfUserIsLoggedIn(foodObject);
