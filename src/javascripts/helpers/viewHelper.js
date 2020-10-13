@@ -10,10 +10,10 @@ const viewHelper = (id) => {
   }
 };
 
-const viewListener = (view, event) => {
+const viewListener = (view) => {
   viewHelper(view);
   $('body').on('click', 'li.nav-item', (e) => {
-    event.stopImmediatePropagation();
+    e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
   });
 };
