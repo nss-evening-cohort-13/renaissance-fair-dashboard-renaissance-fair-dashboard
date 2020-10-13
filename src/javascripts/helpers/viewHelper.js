@@ -1,8 +1,10 @@
+import foodView from '../components/views/foodView';
+
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
-    case 'souvenirs-link':
-      return console.warn('souvenirs-link is good');
+    case 'food-link':
+      return foodView.foodView();
     default:
       return console.warn('nothing clicked');
   }
