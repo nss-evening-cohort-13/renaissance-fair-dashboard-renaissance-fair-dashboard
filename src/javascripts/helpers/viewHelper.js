@@ -1,10 +1,11 @@
 import showsView from '../components/views/showsView';
+import souvenirsView from '../components/views/souvenirsView';
 
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
     case 'souvenirs-link':
-      return console.warn('souvenirs-link is good');
+      return souvenirsView.souvenirsView();
     case 'shows-link':
       return showsView.showsView();
     default:
@@ -15,6 +16,7 @@ const viewHelper = (id) => {
 const viewListener = (view) => {
   viewHelper(view);
   $('body').on('click', 'li.nav-item', (e) => {
+    e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
   });
 };
