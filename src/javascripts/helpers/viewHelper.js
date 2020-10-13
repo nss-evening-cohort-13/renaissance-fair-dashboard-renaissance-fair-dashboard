@@ -1,8 +1,12 @@
+import showsView from '../components/views/showsView';
+
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
     case 'souvenirs-link':
       return console.warn('souvenirs-link is good');
+    case 'shows-link':
+      return showsView.showsView();
     default:
       return console.warn('nothing clicked');
   }
