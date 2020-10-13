@@ -13,6 +13,7 @@ const viewHelper = (id) => {
 const viewListener = (view) => {
   viewHelper(view);
   $('body').on('click', 'li.nav-item', (e) => {
+    e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
   });
 };
