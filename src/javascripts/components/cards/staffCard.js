@@ -21,7 +21,7 @@ const staffMaker = (staffObject) => {
       <div>
         <img class="image" src="${staffObject.image}" alt="${staffObject.name}">
       </div>
-      <p class="card-info">Price: ${staffObject.role}</p> 
+      <p class="card-info">Role: ${staffObject.role}</p> 
     </div>
     <div class="button-body"></div>
 </div>`;
