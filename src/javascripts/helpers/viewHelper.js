@@ -1,10 +1,19 @@
 import foodView from '../components/views/foodView';
+import showsView from '../components/views/showsView';
+import staffView from '../components/views/staffView';
+import souvenirsView from '../components/views/souvenirsView';
 
 const viewHelper = (id) => {
   $('#app').html('');
   switch (id) {
     case 'food-link':
       return foodView.foodView();
+    case 'souvenirs-link':
+      return souvenirsView.souvenirsView();
+    case 'shows-link':
+      return showsView.showsView();
+    case 'staff-link':
+      return staffView.staffView();
     default:
       return console.warn('nothing clicked');
   }
