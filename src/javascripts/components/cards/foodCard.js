@@ -1,3 +1,18 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const addButtonsIfUserIsLoggedIn = (foodObject) => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      $('.button-body').html(
+        `<a href='#' id="${foodObject.firebaseKey}"
+          class="update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
+          <a href="#" id="${foodObject.firebaseKey}" class="btn btn-danger delete-show">Delete show</a>`
+      );
+    }
+  });
+};
+
 const foodMaker = (foodObject) => {
   const domString = `<div class="card m-2" style="width: 18rem;" id="${foodObject.firebaseKey}">
   <div class="card-body">
@@ -8,11 +23,10 @@ const foodMaker = (foodObject) => {
       <img src="${foodObject.image}" alt="${foodObject.name}">
     </div>
     <p class="card-info">Price: ${foodObject.price}</p>
-    <a href='#' id="${foodObject.firebaseKey}"
-    class="update-food btn btn-info update-btn"><i class="far fa-edit"></i> Update food</a>
-    <a href="#" id="${foodObject.firebaseKey}" class="btn btn-danger delete-food delete-btn">Delete food</a>
-  </div>
+    <a href='#' id="${foodObject.firebaseKey}"></a>
+    <div class="button-body"></div>
 </div>`;
+  addButtonsIfUserIsLoggedIn(foodObject);
   return domString;
 };
 
