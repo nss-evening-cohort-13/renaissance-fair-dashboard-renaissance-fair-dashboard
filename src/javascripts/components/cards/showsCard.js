@@ -9,7 +9,7 @@ const showMaker = (showObject) => {
     <div class="image">
       <img src="${showObject.image}" alt="${showObject.name}">
     </div>
-    <p class="card-info">Price: ${showObject.time}</p>
+    <p class="card-info">Time: ${showObject.time}</p>
     <a href='#' id="${showObject.firebaseKey}"
     class="update-show btn btn-info update-btn"><i class="far fa-edit"></i> Update Show</a>
     <a href="#" id="${showObject.firebaseKey}" class="btn btn-danger delete-show delete-btn">Delete Show</a>
