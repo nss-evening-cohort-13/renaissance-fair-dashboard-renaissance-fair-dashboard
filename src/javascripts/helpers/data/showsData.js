@@ -19,4 +19,6 @@ const getShows = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getShows };
+const deleteShow = (firebaseKey) => axios.delete(`${baseUrl}/shows/${firebaseKey}.json`);
+
+export default { getShows, deleteShow };
