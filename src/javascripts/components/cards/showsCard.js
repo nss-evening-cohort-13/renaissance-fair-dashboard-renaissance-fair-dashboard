@@ -5,7 +5,7 @@ import showData from '../../helpers/data/showsData';
 const addButtonsIfUserIsLoggedIn = (showObject) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      $('.button-body').html(
+      $(`.button-body-${showObject.firebaseKey}`).html(
         `<a href='#' id="${showObject.firebaseKey}"
         class="update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
         <a href="#" id="${showObject.firebaseKey}" class="btn btn-danger delete-show">Delete show</a>`
@@ -31,7 +31,7 @@ const showMaker = (showObject) => {
       </div>
       <p class="card-info">Time: ${showObject.time}</p> 
     </div>
-    <div class="button-body"></div>
+    <div class="button-body-${showObject.firebaseKey}"></div>
 </div>`;
   addButtonsIfUserIsLoggedIn(showObject);
   return domString;
