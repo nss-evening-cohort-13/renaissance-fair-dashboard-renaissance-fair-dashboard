@@ -2,6 +2,7 @@ import foodView from '../components/views/foodView';
 import showsView from '../components/views/showsView';
 import staffView from '../components/views/staffView';
 import souvenirsView from '../components/views/souvenirsView';
+import addShowsView from '../components/views/addShowsView';
 
 const viewHelper = (id) => {
   $('#app').html('');
@@ -14,6 +15,8 @@ const viewHelper = (id) => {
       return showsView.showsView();
     case 'staff-link':
       return staffView.staffView();
+    case 'add-show-link':
+      return addShowsView.addShowsView();
     default:
       return console.warn('nothing clicked');
   }
@@ -24,6 +27,9 @@ const viewListener = (view) => {
   $('body').on('click', 'li.nav-item', (e) => {
     e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
+  });
+  $('body').on('click', '.add-show', (e) => {
+    viewHelper('add-show-link', e.currentTarget.id);
   });
 };
 
