@@ -20,6 +20,9 @@ const getAllFood = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteFood = (firebaseKey) => axios.delete(`${baseUrl}/food/${firebaseKey}.json`);
+
 export default {
-  getAllFood
+  getAllFood,
+  deleteFood
 };
