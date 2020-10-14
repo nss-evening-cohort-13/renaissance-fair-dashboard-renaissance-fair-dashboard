@@ -20,4 +20,6 @@ const getAllSouvenirs = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getAllSouvenirs };
+const deleteSouvenir = (firebaseKey) => axios.delete(`${baseUrl}/souvenirs/${firebaseKey}.json`);
+
+export default { getAllSouvenirs, deleteSouvenir };
