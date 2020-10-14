@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import souvenirsData from '../../helpers/data/souvenirsData';
 
 const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -9,6 +10,12 @@ const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
         class="update-souvenir btn btn-info"><i class="far fa-edit"></i> Update Souvenir</a>
         <a href="#" id="${souvenirObject.firebaseKey}" class="btn btn-danger delete-souvenir">Delete Souvenir</a>`
       );
+      $('body').on('click', '.delete-souvenir', (e) => {
+        e.stopImmediatePropagation();
+        const firebaseKey = e.currentTarget.id;
+        $(`.card#${firebaseKey}`).remove();
+        souvenirsData.deleteSouvenir(firebaseKey);
+      });
     }
   });
 };
