@@ -16,6 +16,9 @@ const getAllStaff = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const deleteStaff = (firebaseKey) => axios.delete(`${baseUrl}/staff/${firebaseKey}.json`);
+
 export default {
   getAllStaff,
+  deleteStaff,
 };
