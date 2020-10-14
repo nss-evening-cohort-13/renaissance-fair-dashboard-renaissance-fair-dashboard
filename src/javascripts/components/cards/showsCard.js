@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import showData from '../../helpers/data/showsData';
 
 const addButtonsIfUserIsLoggedIn = (showObject) => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -9,6 +10,12 @@ const addButtonsIfUserIsLoggedIn = (showObject) => {
         class="update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
         <a href="#" id="${showObject.firebaseKey}" class="btn btn-danger delete-show">Delete show</a>`
       );
+      $('body').on('click', '.delete-show', (e) => {
+        e.stopImmediatePropagation();
+        const firebaseKey = e.currentTarget.id;
+        $(`.card#${firebaseKey}`).remove();
+        showData.deleteShow(firebaseKey);
+      });
     }
   });
 };
