@@ -8,7 +8,7 @@ const foodView = () => {
         $('#app').append(card.foodMaker(item));
       });
     } else {
-      $('#app').append('<h2>NO FOOD/h2>');
+      $('#app').append('<h2>NO FOOD</h2>');
     }
   });
 };
