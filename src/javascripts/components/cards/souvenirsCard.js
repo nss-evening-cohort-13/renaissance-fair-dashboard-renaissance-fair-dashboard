@@ -5,6 +5,9 @@ import souvenirsData from '../../helpers/data/souvenirsData';
 const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      $('#app').append(
+        '<button type="button" class="btn btn-primary add-souvenir">Add A Souvenir</button>'
+      );
       $(`.button-body-${souvenirObject.firebaseKey}`).html(
         `<a href='#' id="${souvenirObject.firebaseKey}"
         class="update-souvenir btn btn-info"><i class="far fa-edit"></i> Update Souvenir</a>
