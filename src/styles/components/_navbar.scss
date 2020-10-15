@@ -1,0 +1,21 @@
+@import '../variables/index.scss';
+
+.navbar-brand, .nav-link {
+  font-family: 'UnifrakturMaguntia', cursive;
+}
+
+.navbar-brand {
+  font-size: 40px;
+}
+
+.bg-light {
+  background-color: #46725D !important;
+}
+
+#nav {
+  background-color: #46725D;
+}
+
+.navbar-logout-button {
+  color: #42465B;
+}
