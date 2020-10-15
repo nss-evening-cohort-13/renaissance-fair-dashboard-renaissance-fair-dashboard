@@ -6,17 +6,15 @@ import addSouvenirsView from '../components/views/addSouvenirsView';
 
 const viewHelper = (id) => {
   $('#app').html('');
+  $('#add-button').html('');
   switch (id) {
     case 'food-link':
-      $('#add-button-souvenirs').html('');
       return foodView.foodView();
     case 'souvenirs-link':
       return souvenirsView.souvenirsView();
     case 'shows-link':
-      $('#add-button-souvenirs').html('');
       return showsView.showsView();
     case 'staff-link':
-      $('#add-button-souvenirs').html('');
       return staffView.staffView();
     case 'add-souvenir-link':
       return addSouvenirsView.addSouvenirsView();
