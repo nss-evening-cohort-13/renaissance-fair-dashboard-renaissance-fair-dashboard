@@ -10,7 +10,6 @@ const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
         class="update-souvenir btn btn-info"><i class="far fa-edit"></i> Update Souvenir</a>
         <a href="#" id="${souvenirObject.firebaseKey}" class="btn btn-danger delete-souvenir">Delete Souvenir</a>`
       );
-      $('#add-button-shows').html('');
       $('body').on('click', '.delete-souvenir', (e) => {
         e.stopImmediatePropagation();
         const firebaseKey = e.currentTarget.id;
