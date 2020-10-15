@@ -22,9 +22,6 @@ const addButtonsIfUserIsLoggedIn = (showObject) => {
         $(`.card#${firebaseKey}`).remove();
         showData.deleteShow(firebaseKey);
       });
-    //   $('body').on('click', '.add-show', (e) => {
-    //     e.stopImmediatePropagation();
-    //   });
     }
   });
 };
