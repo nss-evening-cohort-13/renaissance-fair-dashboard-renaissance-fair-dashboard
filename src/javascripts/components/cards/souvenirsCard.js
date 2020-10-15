@@ -5,8 +5,11 @@ import souvenirsData from '../../helpers/data/souvenirsData';
 const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      $('#app').append(
-        '<button type="button" class="btn btn-primary add-souvenir">Add A Souvenir</button>'
+      $('#add-button-souvenirs').html(
+        `<div id="add-souvenir">
+           <a href='#'
+           class="add-souvenir btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Souvenir</a>
+        </div>`
       );
       $(`.button-body-${souvenirObject.firebaseKey}`).html(
         `<a href='#' id="${souvenirObject.firebaseKey}"
@@ -32,7 +35,7 @@ const souvenirMaker = (souvenirObject) => {
                           <div>
                             <img class="image" src="${souvenirObject.image}" alt="${souvenirObject.name}">
                           </div>
-                          <p class="card-info">Price: ${souvenirObject.price}</p> 
+                          <p class="card-info">Price: $${souvenirObject.price}</p> 
                         </div>
                         <div class="button-body-${souvenirObject.firebaseKey}"></div>
                     </div>`;
