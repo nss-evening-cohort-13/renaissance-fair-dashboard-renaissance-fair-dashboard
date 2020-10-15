@@ -10,6 +10,12 @@ const addButtonsIfUserIsLoggedIn = (showObject) => {
         class="update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
         <a href="#" id="${showObject.firebaseKey}" class="btn btn-danger delete-show">Delete show</a>`
       );
+      $('#add-button').html(
+        `<div id="add-show">
+           <a href='#'
+           class="add-show btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Show</a>
+        </div>`
+      );
       $('body').on('click', '.delete-show', (e) => {
         e.stopImmediatePropagation();
         const firebaseKey = e.currentTarget.id;
