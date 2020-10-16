@@ -16,7 +16,7 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
            class="add-staff btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Staff</a>
         </div>`
       );
-      $('body').on('click', '.delete-staff', (e) => {
+      $('body').on('click', '.delete-staff-btn', (e) => {
         e.stopImmediatePropagation();
         const firebaseKey = e.currentTarget.id;
         $(`.card#${firebaseKey}`).remove();
