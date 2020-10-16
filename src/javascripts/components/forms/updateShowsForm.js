@@ -1,7 +1,6 @@
 import showData from '../../helpers/data/showsData';
 
 const updateShowForm = (showObject) => {
-  console.warn(showObject);
   $('#update-show-form').html(`
       <h2>Update your show!</h2>
       <div id="success-message"></div>
