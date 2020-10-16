@@ -13,7 +13,7 @@ const addButtonsIfUserIsLoggedIn = (foodObject) => {
       $('#add-button').html(
         `<div id="add-food">
            <a href='#'
-           class="add-food btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Fhow</a>
+           class="add-food btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Food</a>
         </div>`
       );
       $('body').on('click', '.delete-food', (e) => {
