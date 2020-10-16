@@ -21,4 +21,11 @@ const getShows = () => new Promise((resolve, reject) => {
 
 const deleteShow = (firebaseKey) => axios.delete(`${baseUrl}/shows/${firebaseKey}.json`);
 
-export default { getShows, deleteShow };
+const addShow = (data) => axios
+  .post(`${baseUrl}/shows/.json`, data)
+  .then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/shows/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
+
+export default { getShows, deleteShow, addShow };

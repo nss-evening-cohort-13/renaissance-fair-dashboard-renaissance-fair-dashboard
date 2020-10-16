@@ -2,6 +2,8 @@ import foodView from '../components/views/foodView';
 import showsView from '../components/views/showsView';
 import staffView from '../components/views/staffView';
 import souvenirsView from '../components/views/souvenirsView';
+import addSouvenirsView from '../components/views/addSouvenirsView';
+import addShowsView from '../components/views/addShowsView';
 import addStaffView from '../components/views/addStaffView';
 
 const viewHelper = (id) => {
@@ -18,6 +20,10 @@ const viewHelper = (id) => {
       return staffView.staffView();
     case 'add-staff-link':
       return addStaffView.addStaffView();
+    case 'add-souvenir-link':
+      return addSouvenirsView.addSouvenirsView();
+    case 'add-show-link':
+      return addShowsView.addShowsView();
     default:
       return console.warn('nothing clicked');
   }
@@ -28,6 +34,12 @@ const viewListener = (view) => {
   $('body').on('click', 'li.nav-item', (e) => {
     e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
+  });
+  $('body').on('click', '.add-souvenir', (e) => {
+    viewHelper('add-souvenir-link', e.currentTarget.id);
+  });
+  $('body').on('click', '.add-show', (e) => {
+    viewHelper('add-show-link', e.currentTarget.id);
   });
   $('body').on('click', '.add-staff', (e) => {
     viewHelper('add-staff-link', e.currentTarget.id);

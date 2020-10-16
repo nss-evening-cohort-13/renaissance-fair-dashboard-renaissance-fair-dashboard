@@ -40,7 +40,7 @@ const staffForm = () => {
         .addStaff(data)
         .then(() => {
           $('#success-message').html(
-            '<div class="alert alert-success" role="alert">Your Show Was Added!</div>'
+            '<div class="alert alert-success" role="alert">Your Staff Was Added!</div>'
           );
         })
         .catch((error) => console.warn(error));

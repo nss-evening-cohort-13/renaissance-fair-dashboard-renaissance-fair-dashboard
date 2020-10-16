@@ -13,11 +13,17 @@ body {
   text-align: inherit;
 }
 
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .hide {
   display: none;
 }
 
 .image {
   height: 200px;
-  width: 200px;
+  width: 250px;
 }

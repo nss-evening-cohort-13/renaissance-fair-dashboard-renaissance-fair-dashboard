@@ -8,7 +8,7 @@ const souvenirsView = () => {
         $('#app').append(card.souvenirMaker(souvenir));
       });
     } else {
-      $('#app').append('<h2>NO SOUVENIR</h2>');
+      $('#app').append('<h2>NO SOUVENIRS</h2>');
     }
   });
 };
