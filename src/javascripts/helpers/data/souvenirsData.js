@@ -22,4 +22,12 @@ const getAllSouvenirs = () => new Promise((resolve, reject) => {
 
 const deleteSouvenir = (firebaseKey) => axios.delete(`${baseUrl}/souvenirs/${firebaseKey}.json`);
 
-export default { getAllSouvenirs, deleteSouvenir };
+const addSouvenir = (data) => axios
+  .post(`${baseUrl}/souvenirs.json`, data)
+  .then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/souvenirs/${response.data.name}.json`, update);
+  })
+  .catch((error) => console.warn(error));
+
+export default { getAllSouvenirs, deleteSouvenir, addSouvenir };
