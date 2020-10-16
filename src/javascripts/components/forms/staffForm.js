@@ -47,9 +47,9 @@ const staffForm = () => {
       setTimeout(() => {
         $('#sucess-message').html('');
       }, 100);
-      $('#name').val();
-      $('#role').val();
-      $('#image').val();
+      $('#name').val('');
+      $('#role').val('');
+      $('#image').val('');
     }
   });
 };

@@ -46,9 +46,9 @@ const foodForm = () => {
             $('#sucess-message').html('');
           }, 100);
         }).catch((error) => console.warn(error));
-      $('#name').val();
-      $('#price').val();
-      $('#image').val();
+      $('#name').val('');
+      $('#price').val('');
+      $('#image').val('');
     }
   });
 };
