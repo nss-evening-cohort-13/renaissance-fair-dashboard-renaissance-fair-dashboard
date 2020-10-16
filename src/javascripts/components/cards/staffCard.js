@@ -8,7 +8,7 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
       $(`.button-body-${staffObject.firebaseKey}`).html(
         `<a href='#' id="${staffObject.firebaseKey}"
         class="update-staff btn btn-info"><i class="far fa-edit"></i> Fix my errors</a>
-        <a href="#" id="${staffObject.firebaseKey}" class="btn btn-danger delete-staff">Delete Crappy Staff</a>`
+        <a href="#" id="${staffObject.firebaseKey}" class="btn btn-danger delete-staff-btn">Delete Crappy Staff</a>`
       );
     }
   });
@@ -26,7 +26,7 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
   });
 };
 const staffMaker = (staffObject) => {
-  const domString = `<div class="card m-2" style="width: 18rem;" id="${staffObject.firebaseKey}">
+  const domString = `<div class="card-container card m-2" style="width: 18rem;" id="${staffObject.firebaseKey}">
   <div class="card-body">
     <h5 class="card-title">${staffObject.name}</h5>
     </div>
