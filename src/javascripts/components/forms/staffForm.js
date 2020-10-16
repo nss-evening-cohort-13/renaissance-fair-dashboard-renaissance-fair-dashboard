@@ -1,32 +1,32 @@
-import foodData from '../../helpers/data/foodData';
+import staffData from '../../helpers/data/staffData';
 
-const foodForm = () => {
-  $('#food-form').html(
-    `<h2>Add A food</h2>
+const staffForm = () => {
+  $('#staff-form').html(
+    `<h2>Add A Staff Member</h2>
           <div id="success-message"></div>
           <form>
             <div id="error-message"></div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Example: Hog tossing">
+              <input type="text" class="form-control" id="name" placeholder="Example: Jim Bean">
             </div>
             <div class="form-group">
-              <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" placeholder="Example: $1">
+              <label for="role">Role</label>
+              <input type="text" class="form-control" id="role" placeholder="Example: Manager">
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-food-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add food</button>
+            <button id="add-staff-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add Staff</button>
           </form>
           `
   );
-  $('#add-food-btn').on('click', (e) => {
+  $('#add-staff-btn').on('click', (e) => {
     e.preventDefault();
     const data = {
       name: $('#name').val() || false,
-      price: $('#price').val() || false,
+      role: $('#role').val() || false,
       image: $('#image').val() || false,
     };
 
@@ -36,21 +36,22 @@ const foodForm = () => {
       );
     } else {
       $('#error-message').html('');
-      foodData
-        .addFood(data)
+      staffData
+        .addStaff(data)
         .then(() => {
           $('#success-message').html(
-            '<div class="alert alert-success" role="alert">Your Food Was Added!</div>'
+            '<div class="alert alert-success" role="alert">Your Staff Was Added!</div>'
           );
-          setTimeout(() => {
-            $('#sucess-message').html('');
-          }, 100);
-        }).catch((error) => console.warn(error));
+        })
+        .catch((error) => console.warn(error));
+      setTimeout(() => {
+        $('#sucess-message').html('');
+      }, 100);
       $('#name').val('');
-      $('#price').val('');
+      $('#role').val('');
       $('#image').val('');
     }
   });
 };
 
-export default { foodForm };
+export default { staffForm };
