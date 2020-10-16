@@ -12,6 +12,12 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
       );
     }
   });
+  $('#add-button').html(
+    `<div id="add-staff">
+       <a href='#'
+       class="add-staff btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Staff</a>
+    </div>`
+  );
   $('body').on('click', '.delete-staff', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
