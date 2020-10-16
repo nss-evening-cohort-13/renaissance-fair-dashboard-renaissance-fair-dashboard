@@ -45,9 +45,6 @@ const updateSouvenirsForm = (souvenirObject) => {
           $('#success-message').html('');
         }, 2000);
       }).catch((error) => console.warn(error));
-      $('#price').val('');
-      $('#image').val('');
-      $('#name').val('');
     }
   });
 };

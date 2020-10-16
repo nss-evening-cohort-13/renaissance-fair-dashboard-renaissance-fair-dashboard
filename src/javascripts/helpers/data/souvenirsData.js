@@ -35,7 +35,6 @@ const updateSouvenir = (firebaseKey, souvenirObject) => axios.patch(`${baseUrl}/
 const getSingleSouvenir = (souvenirFirebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/souvenirs/${souvenirFirebaseKey}.json`).then((response) => {
     const thisSouvenir = response.data;
-    console.warn(thisSouvenir);
     resolve(thisSouvenir);
   }).catch((error) => reject(error));
 });

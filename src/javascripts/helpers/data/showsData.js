@@ -28,4 +28,15 @@ const addShow = (data) => axios
     axios.patch(`${baseUrl}/shows/${response.data.name}.json`, update);
   }).catch((error) => console.warn(error));
 
-export default { getShows, deleteShow, addShow };
+const getSingleShow = (showsFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/shows/${showsFirebaseKey}.json`).then((response) => {
+    const thisShow = response.data;
+    resolve(thisShow);
+  }).catch((error) => reject(error));
+});
+
+const updateShow = (firebaseKey, showObject) => axios.patch(`${baseUrl}/shows/${firebaseKey}.json`, showObject);
+
+export default {
+  getShows, deleteShow, addShow, updateShow, getSingleShow
+};
