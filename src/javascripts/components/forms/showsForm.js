@@ -47,9 +47,9 @@ const showsForm = () => {
       setTimeout(() => {
         $('#sucess-message').html('');
       }, 100);
-      $('#name').val();
-      $('#time').val();
-      $('#image').val();
+      $('#name').val('');
+      $('#time').val('');
+      $('#image').val('');
     }
   });
 };
