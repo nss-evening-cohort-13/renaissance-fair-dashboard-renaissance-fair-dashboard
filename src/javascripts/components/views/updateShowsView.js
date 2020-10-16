@@ -7,7 +7,6 @@ const updateShowView = (firebaseKey) => {
   );
   showData.getSingleShow(firebaseKey).then((response) => {
     form.updateShowForm(response);
-    console.warn(response);
   });
 };
 
