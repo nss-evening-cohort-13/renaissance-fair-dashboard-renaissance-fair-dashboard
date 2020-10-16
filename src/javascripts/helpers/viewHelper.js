@@ -2,6 +2,7 @@ import foodView from '../components/views/foodView';
 import showsView from '../components/views/showsView';
 import staffView from '../components/views/staffView';
 import souvenirsView from '../components/views/souvenirsView';
+import addFoodView from '../components/views/addFoodView';
 import addSouvenirsView from '../components/views/addSouvenirsView';
 import addShowsView from '../components/views/addShowsView';
 import addStaffView from '../components/views/addStaffView';
@@ -20,6 +21,8 @@ const viewHelper = (id) => {
       return staffView.staffView();
     case 'add-staff-link':
       return addStaffView.addStaffView();
+    case 'add-food-link':
+      return addFoodView.addFoodView();
     case 'add-souvenir-link':
       return addSouvenirsView.addSouvenirsView();
     case 'add-show-link':
@@ -34,6 +37,9 @@ const viewListener = (view) => {
   $('body').on('click', 'li.nav-item', (e) => {
     e.stopImmediatePropagation();
     viewHelper(e.currentTarget.id);
+  });
+  $('body').on('click', '.add-food', (e) => {
+    viewHelper('add-food-link', e.currentTarget.id);
   });
   $('body').on('click', '.add-souvenir', (e) => {
     viewHelper('add-souvenir-link', e.currentTarget.id);

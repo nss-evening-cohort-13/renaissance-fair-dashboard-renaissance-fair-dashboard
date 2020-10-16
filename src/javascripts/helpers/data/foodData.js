@@ -22,7 +22,15 @@ const getAllFood = () => new Promise((resolve, reject) => {
 
 const deleteFood = (firebaseKey) => axios.delete(`${baseUrl}/food/${firebaseKey}.json`);
 
+const addFood = (data) => axios
+  .post(`${baseUrl}/food/.json`, data)
+  .then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/food/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
+
 export default {
   getAllFood,
-  deleteFood
+  deleteFood,
+  addFood
 };
