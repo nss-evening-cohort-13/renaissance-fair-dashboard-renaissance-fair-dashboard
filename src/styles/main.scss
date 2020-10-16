@@ -1,9 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=UnifrakturMaguntia&display=swap');
+@import './variables/';
+@import './components/';
+
+
+
 body {
-  background-color: antiquewhite;
-  color: brown;
+  background-color: $freelancer-tan;
+  color: $freelancer-gold;
   text-align: center;
 }
 
@@ -11,6 +17,13 @@ body {
   display: flex;
   justify-content: space-between;
   text-align: inherit;
+  background-color: #46725D;
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .hide {
@@ -19,5 +32,5 @@ body {
 
 .image {
   height: 200px;
-  width: 200px;
+  width: 250px;
 }

@@ -8,19 +8,25 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
       $(`.button-body-${staffObject.firebaseKey}`).html(
         `<a href='#' id="${staffObject.firebaseKey}"
         class="update-staff btn btn-info"><i class="far fa-edit"></i> Fix my errors</a>
-        <a href="#" id="${staffObject.firebaseKey}" class="btn btn-danger delete-staff">Delete Crappy Staff</a>`
+        <a href="#" id="${staffObject.firebaseKey}" class="btn btn-danger delete-staff-btn">Delete Crappy Staff</a>`
       );
+      $('#add-button').html(
+        `<div id="add-staff">
+           <a href='#'
+           class="add-staff btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Staff</a>
+        </div>`
+      );
+      $('body').on('click', '.delete-staff-btn', (e) => {
+        e.stopImmediatePropagation();
+        const firebaseKey = e.currentTarget.id;
+        $(`.card#${firebaseKey}`).remove();
+        staffData.deleteStaff(firebaseKey);
+      });
     }
-  });
-  $('body').on('click', '.delete-staff', (e) => {
-    e.stopImmediatePropagation();
-    const firebaseKey = e.currentTarget.id;
-    $(`.card#${firebaseKey}`).remove();
-    staffData.deleteStaff(firebaseKey);
   });
 };
 const staffMaker = (staffObject) => {
-  const domString = `<div class="card m-2" style="width: 18rem;" id="${staffObject.firebaseKey}">
+  const domString = `<div class="card-container card m-2" style="width: 18rem;" id="${staffObject.firebaseKey}">
   <div class="card-body">
     <h5 class="card-title">${staffObject.name}</h5>
     </div>

@@ -18,7 +18,15 @@ const getAllStaff = () => new Promise((resolve, reject) => {
 
 const deleteStaff = (firebaseKey) => axios.delete(`${baseUrl}/staff/${firebaseKey}.json`);
 
+const addStaff = (data) => axios
+  .post(`${baseUrl}/staff/.json`, data)
+  .then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/staff/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
+
 export default {
   getAllStaff,
   deleteStaff,
+  addStaff,
 };

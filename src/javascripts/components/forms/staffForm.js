@@ -1,32 +1,32 @@
-import showsData from '../../helpers/data/showsData';
+import staffData from '../../helpers/data/staffData';
 
-const showsForm = () => {
-  $('#shows-form').html(
-    `<h2>Add A Show</h2>
+const staffForm = () => {
+  $('#staff-form').html(
+    `<h2>Add A Staff Member</h2>
           <div id="success-message"></div>
           <form>
             <div id="error-message"></div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Example: Hog tossing">
+              <input type="text" class="form-control" id="name" placeholder="Example: Jim Bean">
             </div>
             <div class="form-group">
-              <label for="time">Time</label>
-              <input type="text" class="form-control" id="time" placeholder="Example: 1pm">
+              <label for="role">Role</label>
+              <input type="text" class="form-control" id="role" placeholder="Example: Manager">
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-show-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add Show</button>
+            <button id="add-staff-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add Staff</button>
           </form>
           `
   );
-  $('#add-show-btn').on('click', (e) => {
+  $('#add-staff-btn').on('click', (e) => {
     e.preventDefault();
     const data = {
       name: $('#name').val() || false,
-      time: $('#time').val() || false,
+      role: $('#role').val() || false,
       image: $('#image').val() || false,
     };
 
@@ -36,11 +36,11 @@ const showsForm = () => {
       );
     } else {
       $('#error-message').html('');
-      showsData
-        .addShow(data)
+      staffData
+        .addStaff(data)
         .then(() => {
           $('#success-message').html(
-            '<div class="alert alert-success" role="alert">Your Show Was Added!</div>'
+            '<div class="alert alert-success" role="alert">Your Staff Was Added!</div>'
           );
         })
         .catch((error) => console.warn(error));
@@ -48,10 +48,10 @@ const showsForm = () => {
         $('#sucess-message').html('');
       }, 100);
       $('#name').val('');
-      $('#time').val('');
+      $('#role').val('');
       $('#image').val('');
     }
   });
 };
 
-export default { showsForm };
+export default { staffForm };
