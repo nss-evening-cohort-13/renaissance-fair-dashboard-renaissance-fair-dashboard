@@ -13,6 +13,12 @@ body {
   text-align: inherit;
 }
 
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .hide {
   display: none;
 }
