@@ -2,13 +2,14 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Rye&family=UnifrakturMaguntia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet');
 @import './variables/';
 @import './components/';
 
 
 
 body {
-  background-color: $freelancer-tan;
+  background-image: url(https://lh3.googleusercontent.com/proxy/-PqcKgazVbUSPoRqaF_cusEZp7gCmx6wmYDnOOKNfc--DvqflychhcRmzGKNd8NZIPDr24iR_8dmVF_flnFC5YfiIYHNd3kTIiNKxUfPVPegARI);
   color: $freelancer-gold;
   text-align: center;
 }

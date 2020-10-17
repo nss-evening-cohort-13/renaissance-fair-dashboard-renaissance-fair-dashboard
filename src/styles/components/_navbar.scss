@@ -1,11 +1,17 @@
 @import '../variables/index.scss';
 
-.navbar-brand, .nav-link {
+.navbar-brand {
   font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 2em;
+}
+
+.nav-link, .user-info-nav {
+  font-family: 'Piedra', cursive;
+  font-size: 1.25em;
 }
 
 .navbar-brand {
-  font-size: 40px;
+  font-size: 3em;
 }
 
 .bg-light {
