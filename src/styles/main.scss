@@ -8,7 +8,10 @@
 
 
 body {
-  background-color: $freelancer-tan;
+  background-image: url(https://www.bellacor.com/media.bellacor.com/images/1500/2093PV2902.jpg);
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
   color: $freelancer-gold;
   text-align: center;
 }
