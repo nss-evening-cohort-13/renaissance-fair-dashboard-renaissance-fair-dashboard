@@ -26,7 +26,7 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
   });
 };
 const staffMaker = (staffObject) => {
-  const domString = `<div class="card-container card m-2" style="width: 18rem;" id="${staffObject.firebaseKey}">
+  const domString = `<div class="card-container entire-card card m-2" style="width: 20rem;" id="${staffObject.firebaseKey}">
   <div class="card-body">
     <h5 class="card-title">${staffObject.name}</h5>
     </div>
@@ -36,7 +36,7 @@ const staffMaker = (staffObject) => {
       </div>
       <p class="card-info">Role: ${staffObject.role}</p> 
     </div>
-    <div class="button-body-${staffObject.firebaseKey}"></div>
+    <div class="button-body button-body-${staffObject.firebaseKey}"></div>
 </div>`;
   addButtonsIfUserIsLoggedIn(staffObject);
   return domString;
