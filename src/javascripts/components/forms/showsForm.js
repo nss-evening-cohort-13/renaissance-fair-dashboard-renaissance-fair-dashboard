@@ -2,7 +2,7 @@ import showsData from '../../helpers/data/showsData';
 
 const showsForm = () => {
   $('#shows-form').html(
-    `<h2>Add A Show</h2>
+    `<h2>Add a Show</h2>
           <div id="success-message"></div>
           <form>
             <div id="error-message"></div>
@@ -18,7 +18,7 @@ const showsForm = () => {
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-show-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add Show</button>
+            <button id="add-show-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add Show</button>
           </form>
           `
   );
