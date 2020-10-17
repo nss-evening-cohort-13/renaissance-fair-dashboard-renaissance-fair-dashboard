@@ -15,7 +15,8 @@ $border-radius-size: 5px;
   z-index: 5;
 }
 .card-title, .card-info {
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'Bungee', cursive;
+  font-size: 1.5em;
 }
 .image-body {
   background-color: $freelancer-blue;
@@ -35,18 +36,22 @@ $border-radius-size: 5px;
 }
  .update-btn {
   background-color: $freelancer-green;
+  color: $freelancer-gold;
 }
  .update-btn {
    &:hover {
     background-color: $freelancer-green;
+    color: $freelancer-gold;
    }
  }
  .delete-btn {
   background-color: $freelancer-orange;
+  color: $freelancer-gold;
 }
  .delete-btn {
    &:hover {
     background-color: $freelancer-orange;
+    color: $freelancer-gold;
    }
  }
  .card .btn {
