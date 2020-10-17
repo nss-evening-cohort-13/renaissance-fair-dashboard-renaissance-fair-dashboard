@@ -1,13 +1,4 @@
-#app {
-  display: flex;
-  // background-color: white;
-  align-self: center;
-  width: 80%;
-}
-
-.product-card {
-  border: 1px black solid;
-  border-radius: 5%;
+.card {
   &:hover {
      transform: scale(1.05);
      }
