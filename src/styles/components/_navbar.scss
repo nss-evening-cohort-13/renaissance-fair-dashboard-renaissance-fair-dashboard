@@ -3,10 +3,11 @@
 .navbar-brand {
   font-family: 'UnifrakturMaguntia', cursive;
   font-size: 2em;
+  
 }
 
 .nav-link, .user-info-nav {
-  font-family: 'Piedra', cursive;
+  font-family: 'Bungee', cursive;
   font-size: 1.25em;
 }
 
@@ -16,6 +17,18 @@
 
 .bg-light {
   background-color: #46725D !important;
+  background: repeating-linear-gradient(
+    to right,
+    #46725D,
+    #46725D 10px,
+    #3d5e4e 10px,
+    #3d5e4e 20px
+  );
+}
+
+.user-info-nav{
+  margin-right: 15px;
+  margin-top: 8px;
 }
 
 #nav {
