@@ -20,6 +20,15 @@ const getAllFood = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleFoodItem = (foodFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/food/${foodFirebaseKey}.json`).then((response) => {
+    const thisFoodItem = response.data;
+    resolve(thisFoodItem);
+  }).catch((error) => reject(error));
+});
+
+const updateFood = (firebaseKey, foodObject) => axios.patch(`${baseUrl}/food/${firebaseKey}.json`, foodObject);
+
 const deleteFood = (firebaseKey) => axios.delete(`${baseUrl}/food/${firebaseKey}.json`);
 
 const addFood = (data) => axios
@@ -32,5 +41,7 @@ const addFood = (data) => axios
 export default {
   getAllFood,
   deleteFood,
-  addFood
+  addFood,
+  getSingleFoodItem,
+  updateFood
 };

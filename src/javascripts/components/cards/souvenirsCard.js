@@ -27,7 +27,7 @@ const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
 };
 
 const souvenirMaker = (souvenirObject) => {
-  const domString = `<div class="card m-2" style="width: 21rem;" id="${souvenirObject.firebaseKey}">
+  const domString = `<div class="card m-2" style="width: 20rem;" id="${souvenirObject.firebaseKey}">
                       <div class="card-body">
                         <h5 class="card-title">${souvenirObject.name}</h5>
                         </div>

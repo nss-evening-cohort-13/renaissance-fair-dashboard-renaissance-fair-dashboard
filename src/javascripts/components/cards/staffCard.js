@@ -7,7 +7,7 @@ const addButtonsIfUserIsLoggedIn = (staffObject) => {
     if (user) {
       $(`.button-body-${staffObject.firebaseKey}`).html(
         `<a href='#' id="${staffObject.firebaseKey}"
-        class=" update-btn update-staff btn btn-info"><i class="far fa-edit"></i> Fix my errors</a>
+        class=" update-btn update-staff btn btn-info"><i class="far fa-edit"></i> Update Staff</a>
         <a href="#" id="${staffObject.firebaseKey}" class=" delete-btn btn btn-danger delete-staff-btn">Delete Crappy Staff</a>`
       );
       $('#add-button').html(
