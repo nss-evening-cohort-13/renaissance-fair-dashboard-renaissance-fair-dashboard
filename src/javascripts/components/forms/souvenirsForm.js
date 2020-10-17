@@ -18,7 +18,7 @@ const souvenirForm = () => {
       <label for="image">Image URL</label>
       <input type="text" class="form-control" id="image" placeholder="Example: https://...">
     </div>
-    <button id="add-souvenir-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Souvenir</button>
+    <button id="add-souvenir-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add Souvenir</button>
   </form>
   `);
 

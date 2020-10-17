@@ -18,7 +18,7 @@ const staffForm = () => {
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-staff-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Staff</button>
+            <button id="add-staff-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add Staff</button>
           </form>
           `
   );
