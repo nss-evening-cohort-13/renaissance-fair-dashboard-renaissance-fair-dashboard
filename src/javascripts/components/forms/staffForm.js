@@ -2,7 +2,7 @@ import staffData from '../../helpers/data/staffData';
 
 const staffForm = () => {
   $('#staff-form').html(
-    `<h2>Add A Staff Member</h2>
+    `<h2>Add a Staff Member</h2>
           <div id="success-message"></div>
           <form>
             <div id="error-message"></div>
@@ -18,7 +18,7 @@ const staffForm = () => {
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-staff-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add Staff</button>
+            <button id="add-staff-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Staff</button>
           </form>
           `
   );

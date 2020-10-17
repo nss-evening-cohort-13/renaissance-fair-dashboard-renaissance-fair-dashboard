@@ -2,7 +2,7 @@ import staffData from '../../helpers/data/staffData';
 
 const updateStaffForm = (staffObject) => {
   $('#update-staff-form').html(`
-  <h2>Update your staff!</h2>
+  <h2>Update Your Staff!</h2>
   <div id="success-message"></div>
   <form>
     <div id="error-message"></div>

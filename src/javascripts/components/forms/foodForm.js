@@ -2,7 +2,7 @@ import foodData from '../../helpers/data/foodData';
 
 const foodForm = () => {
   $('#food-form').html(
-    `<h2>Add A food</h2>
+    `<h2>Add a Food Item</h2>
           <div id="success-message"></div>
           <form>
             <div id="error-message"></div>
@@ -18,7 +18,7 @@ const foodForm = () => {
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-food-btn" type="submit" class="btn btn-info"><i class="far fa-calendar-plus"></i> Add food</button>
+            <button id="add-food-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add food</button>
           </form>
           `
   );

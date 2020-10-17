@@ -2,7 +2,7 @@ import souvenirsData from '../../helpers/data/souvenirsData';
 
 const updateSouvenirsForm = (souvenirObject) => {
   $('#update-souvenir-form').html(`
-      <h2>Update A Souvenir</h2>
+      <h2>Update a Souvenir</h2>
       <div id="success-message"></div>
       <form>
         <div id="error-message"></div>
