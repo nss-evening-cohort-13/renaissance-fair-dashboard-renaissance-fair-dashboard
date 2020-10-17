@@ -18,7 +18,7 @@ const updateFoodForm = (foodObject) => {
             <label for="image">image</label>./3
             <input type="text" class="form-control" id="image" value="${foodObject.image}" placeholder="Add image URL here">
           </div>
-          <button id="update-food-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Update Food Item</button>
+          <button id="update-food-btn" type="submit" class="update-btn btn-info"><i class="fas fa-plus-circle"></i> Update Food Item</button>
         </form>
     `);
   $('#update-food-btn').on('click', (e) => {

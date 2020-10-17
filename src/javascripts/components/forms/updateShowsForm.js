@@ -18,7 +18,7 @@ const updateShowForm = (showObject) => {
           <label for="image">Image</label>
           <input type="text" class="form-control" id="image" value="${showObject.image}" placeholder="https://">
         </div>
-        <button id="update-show-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Update Show</button>
+        <button id="update-show-btn" type="submit" class="update-btn btn btn-info"><i class="fas fa-plus-circle"></i> Update Show</button>
       </form>
   `);
   $('#update-show-btn').on('click', (e) => {

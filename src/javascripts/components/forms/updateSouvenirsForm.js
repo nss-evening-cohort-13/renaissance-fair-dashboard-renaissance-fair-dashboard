@@ -18,7 +18,7 @@ const updateSouvenirsForm = (souvenirObject) => {
           <label for="image">Image URL</label>
           <input type="text" class="form-control" id="image" value="${souvenirObject.image}" placeholder="Example: https://...">
         </div>
-        <button id="update-souvenir-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Update Souvenir</button>
+        <button id="update-souvenir-btn" type="submit" class="update-btn btn btn-info"><i class="fas fa-plus-circle"></i> Update Souvenir</button>
       </form>
   `);
 

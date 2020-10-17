@@ -18,7 +18,7 @@ const showsForm = () => {
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
             </div>
-            <button id="add-show-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Show</button>
+            <button id="add-show-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add Show</button>
           </form>
           `
   );

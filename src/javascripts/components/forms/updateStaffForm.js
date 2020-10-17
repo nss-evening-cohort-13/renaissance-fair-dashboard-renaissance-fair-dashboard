@@ -18,7 +18,7 @@ const updateStaffForm = (staffObject) => {
       <label for="image">Image</label>
       <input type="text" class="form-control" id="image" value="${staffObject.image}" placeholder="https://">
     </div>
-    <button id="update-staff-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Update Staff</button>
+    <button id="update-staff-btn" type="submit" class="update-btn btn btn-info"><i class="fas fa-plus-circle"></i> Update Staff</button>
   </form>
   `);
   $('#update-staff-btn').on('click', (e) => {
