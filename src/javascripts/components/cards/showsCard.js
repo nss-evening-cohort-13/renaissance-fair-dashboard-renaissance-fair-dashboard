@@ -7,8 +7,8 @@ const addButtonsIfUserIsLoggedIn = (showObject) => {
     if (user) {
       $(`.button-body-${showObject.firebaseKey}`).html(
         `<a href='#' id="${showObject.firebaseKey}"
-        class="update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
-        <a href="#" id="${showObject.firebaseKey}" class="btn btn-danger delete-show">Delete show</a>`
+        class="update-btn update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
+        <a href="#" id="${showObject.firebaseKey}" class="delete-btn btn btn-danger delete-show">Delete show</a>`
       );
       $('#add-button').html(
         `<div id="add-show">
