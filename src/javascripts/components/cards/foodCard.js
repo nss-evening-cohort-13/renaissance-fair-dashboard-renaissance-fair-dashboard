@@ -7,8 +7,8 @@ const addButtonsIfUserIsLoggedIn = (foodObject) => {
     if (user) {
       $(`.button-body-${foodObject.firebaseKey}`).html(
         `<a href='#' id="${foodObject.firebaseKey}"
-        class="update-food btn btn-info"><i class="far fa-edit"></i> Update food</a>
-        <a href="#" id="${foodObject.firebaseKey}" class="btn btn-danger delete-food">Delete food</a>`
+        class="update-btn update-food btn btn-info"><i class="far fa-edit"></i> Update food</a>
+        <a href="#" id="${foodObject.firebaseKey}" class="delete-btn btn btn-danger delete-food">Delete food</a>`
       );
       $('#add-button').html(
         `<div id="add-food">
