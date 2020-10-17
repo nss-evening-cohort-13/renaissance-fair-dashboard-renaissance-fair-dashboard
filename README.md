@@ -1,5 +1,9 @@
 # Renaissance Fair Dashboard
 
+![Authorized view](./READMEimages/screenshot1.png)
+
+![Authorized view](./READMEimages/screenshot2.png)
+
 ## ERD
 
 https://app.lucidchart.com/invitations/accept/61661407-ead2-482d-a0df-77b47ac389f2
