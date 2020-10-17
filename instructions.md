@@ -172,3 +172,38 @@ As a user, I would like to be able to see a column chart on the specific event p
 As a user, I would like to see a graph on the Events dashboard that shows costs across ALL events.
 
 As a developer, I would like to use AmCharts to make all charts - use the free version.
+
+## Week 2
+### Description:
+The owners of FreeLancer were very pleased with the results of V1 of their website but didn't have enough money to continue paying the same developers so they hired you.  Now that they are able to perform full CRUD on Food, Souvenirs, Shows, and Staff they would like to be able to bring all the modules together and create events that get Food, Souvenirs, Shows, and Staff assigned to them.  They would also like to be able to do some financial reporting and graphing to easily visualize how much revenue they are bringing in both per event and for all events.  This application will mainly be used by the companies event planners.
+### Week 2 Requirements
+* Authenticated user is the Event planner
+* Event Module
+* Financial Reporting
+* Graphing
+### Week 2 User Stories
+#### Events
+As a user, I should be able to add Renaissance Fair Events.
+As a user, I should be able to add Staff to an Event I have created.
+As a user, I should be able to add Food to an Event I have created.
+As a user, I should be able to add Shows to an Event I have created.
+As a user, I should be able to delete Souvenirs from an Event I have created.
+As a user, I should be able to delete Staff from an Event I have created.
+As a user, I should be able to delete Food from an Event I have created.
+As a user, I should be able to delete Shows from an Event I have created.
+As a user, I should be able to delete Souvenirs from an Event I have created.
+As a user, I should be able to see(READ) entire Event with all the Staff, food, Shows, and Souvenirs.
+#### Authentication
+As a user, when I am logged in I should have access to an events dashboard.
+As a user, when I am logged out I should NOT have access to an events dashboard.
+As a user, when I am on the Events page I should only be able to modify or delete events I have created
+#### Financial Reporting
+As a user, I should be able to see a detail page for a specific event.
+As a user, I should be able to see financial reporting broken up per module (Food, Shows, Souvenirs, Staff) for a specific event.
+As a user, I should be able to see financial totals broken up per module (Food, Shows, Souvenirs, Staff) for a specific event.
+As a user, I should be able to see the total cost of a specific event.
+As a user, I should be able to filter a list of all costs for all modules by module name or by price range
+#### Graphing
+As a user, I would like to be able to see a column chart on the specific event page that displays the cost for each module (ie module on the x axis cost on the y axis).
+As a user, I would like to see a graph on the Events dashboard that shows costs across ALL events.
+As a developer, I would like to use AmCharts to make all charts - use the free version.
