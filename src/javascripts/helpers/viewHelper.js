@@ -6,6 +6,7 @@ import addFoodView from '../components/views/addFoodView';
 import addSouvenirsView from '../components/views/addSouvenirsView';
 import addShowsView from '../components/views/addShowsView';
 import addStaffView from '../components/views/addStaffView';
+import updateSouvenirsView from '../components/views/updateSouvenirsView';
 import updateShowsView from '../components/views/updateShowsView';
 import updateStaffView from '../components/views/updateStaffView';
 
@@ -29,6 +30,8 @@ const viewHelper = (id, arg) => {
       return addSouvenirsView.addSouvenirsView();
     case 'add-show-link':
       return addShowsView.addShowsView();
+    case 'update-souvenir-link':
+      return updateSouvenirsView.updateSouvenirsView(arg);
     case 'update-show-link':
       return updateShowsView.updateShowView(arg);
     case 'update-staff-link':
@@ -55,6 +58,10 @@ const viewListener = (view) => {
   });
   $('body').on('click', '.add-staff', (e) => {
     viewHelper('add-staff-link', e.currentTarget.id);
+  });
+  $('body').on('click', '.update-souvenir', (e) => {
+    const souvenirFirebaseKey = e.currentTarget.id;
+    viewHelper('update-souvenir-link', souvenirFirebaseKey);
   });
   $('body').on('click', '.update-show', (e) => {
     viewHelper('update-show-link', e.currentTarget.id);
