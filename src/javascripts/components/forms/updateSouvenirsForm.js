@@ -12,7 +12,7 @@ const updateSouvenirsForm = (souvenirObject) => {
         </div>
         <div class="form-group">
           <label for="price">Price</label>
-          <input type="text" class="form-control" value="${souvenirObject.price}" id="price" placeholder="Example: 60">
+          <input type="text" class="form-control" value="${souvenirObject.price}" id="price" placeholder="Example: 50">
         </div>
         <div class="form-group">
           <label for="image">Image URL</label>

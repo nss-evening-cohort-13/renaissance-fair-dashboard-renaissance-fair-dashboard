@@ -8,6 +8,8 @@ import addShowsView from '../components/views/addShowsView';
 import addStaffView from '../components/views/addStaffView';
 import updateSouvenirsView from '../components/views/updateSouvenirsView';
 import updateShowsView from '../components/views/updateShowsView';
+import updateStaffView from '../components/views/updateStaffView';
+import updateFoodView from '../components/views/updateFoodView';
 
 const viewHelper = (id, arg) => {
   $('#app').html('');
@@ -33,6 +35,10 @@ const viewHelper = (id, arg) => {
       return updateSouvenirsView.updateSouvenirsView(arg);
     case 'update-show-link':
       return updateShowsView.updateShowView(arg);
+    case 'update-staff-link':
+      return updateStaffView.updateStaffView(arg);
+    case 'update-food-link':
+      return updateFoodView.updateFoodView(arg);
     default:
       return console.warn('nothing clicked');
   }
@@ -62,6 +68,12 @@ const viewListener = (view) => {
   });
   $('body').on('click', '.update-show', (e) => {
     viewHelper('update-show-link', e.currentTarget.id);
+  });
+  $('body').on('click', '.update-staff', (e) => {
+    viewHelper('update-staff-link', e.currentTarget.id);
+  });
+  $('body').on('click', '.update-food', (e) => {
+    viewHelper('update-food-link', e.currentTarget.id);
   });
 };
 
