@@ -25,8 +25,19 @@ const addStaff = (data) => axios
     axios.patch(`${baseUrl}/staff/${response.data.name}.json`, update);
   }).catch((error) => console.warn(error));
 
+const getSingleStaff = (staffFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/staff/${staffFirebaseKey}.json`).then((response) => {
+    const thisStaff = response.data;
+    resolve(thisStaff);
+  }).catch((error) => reject(error));
+});
+
+const updateStaff = (firebaseKey, staffObject) => axios.patch(`${baseUrl}/staff/${firebaseKey}.json`, staffObject);
+
 export default {
   getAllStaff,
   deleteStaff,
   addStaff,
+  updateStaff,
+  getSingleStaff
 };
