@@ -129,29 +129,46 @@ The owners of FreeLancer were very pleased with the results of V1 of their websi
 
 #### Events
 As a user, I should be able to add Renaissance Fair Events.
+
 As a user, I should be able to add Staff to an Event I have created.
+
 As a user, I should be able to add Food to an Event I have created.
+
 As a user, I should be able to add Shows to an Event I have created.
+
 As a user, I should be able to delete Souvenirs from an Event I have created.
+
 As a user, I should be able to delete Staff from an Event I have created.
+
 As a user, I should be able to delete Food from an Event I have created.
+
 As a user, I should be able to delete Shows from an Event I have created.
+
 As a user, I should be able to delete Souvenirs from an Event I have created.
+
 As a user, I should be able to see(READ) entire Event with all the Staff, food, Shows, and Souvenirs.
 
 #### Authentication
 As a user, when I am logged in I should have access to an events dashboard.
+
 As a user, when I am logged out I should NOT have access to an events dashboard.
+
 As a user, when I am on the Events page I should only be able to modify or delete events I have created
 
 #### Financial Reporting
 As a user, I should be able to see a detail page for a specific event.
+
 As a user, I should be able to see financial reporting broken up per module (Food, Shows, Souvenirs, Staff) for a specific event.
+
 As a user, I should be able to see financial totals broken up per module (Food, Shows, Souvenirs, Staff) for a specific event.
+
 As a user, I should be able to see the total cost of a specific event.
+
 As a user, I should be able to filter a list of all costs for all modules by module name or by price range
 
 #### Graphing
 As a user, I would like to be able to see a column chart on the specific event page that displays the cost for each module (ie module on the x axis cost on the y axis).
+
 As a user, I would like to see a graph on the Events dashboard that shows costs across ALL events.
+
 As a developer, I would like to use AmCharts to make all charts - use the free version.
