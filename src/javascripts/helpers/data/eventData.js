@@ -7,9 +7,17 @@ const getAllEvents = () => new Promise((resolve, reject) => {
   axios
     .get(`${baseUrl}/events.json`)
     .then((response) => {
-      const events = response.data;
-      const allEvents = [];
-    });
+      const allEvents = response.data;
+      const events = [];
+      if (allEvents) {
+        Object.keys(allEvents).forEach((eventId) => {
+          events.push(allEvents[eventId]);
+        });
+      }
+      resolve(events);
+      console.warn('events', events);
+    })
+    .catch((error) => reject(error));
 });
 
 export default { getAllEvents };
