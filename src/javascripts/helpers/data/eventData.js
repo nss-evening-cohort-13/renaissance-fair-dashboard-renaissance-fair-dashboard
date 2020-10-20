@@ -24,4 +24,6 @@ const addEvent = (data) => axios.post(`${baseUrl}/events.json`, data).then((resp
   axios.patch(`${baseUrl}/events/${response.data.name}.json`, update);
 }).catch((error) => console.warn(error));
 
-export default { addEvent, getAllEvents };
+const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
+
+export default { addEvent, deleteEvent, getAllEvents };
