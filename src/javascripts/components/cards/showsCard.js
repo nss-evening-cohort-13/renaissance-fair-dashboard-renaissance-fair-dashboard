@@ -5,6 +5,7 @@ import showData from '../../helpers/data/showsData';
 const addButtonsIfUserIsLoggedIn = (showObject) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      console.warn(user);
       $(`.button-body-${showObject.firebaseKey}`).html(
         `<a href='#' id="${showObject.firebaseKey}"
         class="update-btn update-show btn btn-info"><i class="far fa-edit"></i> Update Show</a>
