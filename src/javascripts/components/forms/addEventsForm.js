@@ -39,10 +39,10 @@ const addEventForm = () => {
         </select>
       </div>
       <div class="form-group">
-       <label for="souvenirSelection">Select Souvenirs</label>
-       <select multiple class="form-control" id="souvenirSelection">
-       </select>
-     </div>
+        <label for="souvenirSelection">Select Souvenirs</label>
+        <select multiple class="form-control" id="souvenirSelection">
+        </select>
+      </div>
 
       <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
     </div>
