@@ -2,6 +2,7 @@ import eventData from '../../helpers/data/eventData';
 import card from '../cards/eventCard';
 
 const eventsView = () => {
+  $('#app').html('');
   $('#add-button').html(
     `<div id="add-event">
        <a href='#'
