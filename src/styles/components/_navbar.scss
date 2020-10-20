@@ -1,15 +1,44 @@
 @import '../variables/index.scss';
 
-.navbar-brand, .nav-link {
+.navbar-brand {
   font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 2em;
+  
+}
+
+.nav-link, .user-info-nav {
+  font-family: 'Bungee', cursive;
+  font-size: 1.25em;
 }
 
 .navbar-brand {
-  font-size: 40px;
+  font-size: 3em;
 }
 
 .bg-light {
   background-color: #46725D !important;
+  background: repeating-linear-gradient(
+    to right,
+    #46725D,
+    #46725D 10px,
+    #3d5e4e 10px,
+    #3d5e4e 20px
+  );
+}
+
+#google-auth {
+  margin-right: 20px;
+  margin-bottom: 8px;
+}
+
+#navbar-logout-button {
+  margin-right: 20px;
+  margin-bottom: 8px;
+}
+
+.user-info-nav{
+  margin-right: 15px;
+  margin-top: 10px;
 }
 
 #nav {

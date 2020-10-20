@@ -1,0 +1,59 @@
+@import '../variables/index.scss';
+
+$border-radius-size: 5px;
+
+
+    .card {
+  background-color: $freelancer-blue;
+  width: 100%;
+  display: inline-block;
+  margin: auto;
+  border-radius: $border-radius-size ;
+  position: relative;
+  text-align: center;
+  box-shadow: -1px 15px 30px -12px black;
+  z-index: 5;
+}
+.card-title, .card-info {
+  font-family: 'Bungee', cursive;
+  font-size: 1.5em;
+}
+.image-body {
+  background-color: $freelancer-blue;
+}
+.image {
+  object-fit: cover;
+}
+.card-title{
+  font-size: 25;
+}
+.image {
+  position: relative;
+  height: 100%;
+  margin-bottom: 35px;
+  border-top-left-radius: $border-radius-size;
+  border-top-right-radius: $border-radius-size;
+}
+ .update-btn {
+  background-color: $freelancer-green;
+  color: $freelancer-gold;
+}
+ .update-btn {
+   &:hover {
+    background-color: $freelancer-green;
+    color: $freelancer-gold;
+   }
+ }
+ .delete-btn {
+  background-color: $freelancer-orange;
+  color: $freelancer-gold;
+}
+ .delete-btn {
+   &:hover {
+    background-color: $freelancer-orange;
+    color: $freelancer-gold;
+   }
+ }
+ .card .btn {
+   margin-bottom: 20px;
+ }

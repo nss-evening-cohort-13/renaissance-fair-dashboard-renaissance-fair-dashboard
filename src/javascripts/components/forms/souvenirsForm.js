@@ -2,7 +2,7 @@ import souvenirData from '../../helpers/data/souvenirsData';
 
 const souvenirForm = () => {
   $('#souvenir-form').html(`
-  <h2>Add A Souvenir</h2>
+  <h2>Add a Souvenir</h2>
   <div id="success-message"></div>
   <form>
     <div id="error-message"></div>
@@ -18,7 +18,7 @@ const souvenirForm = () => {
       <label for="image">Image URL</label>
       <input type="text" class="form-control" id="image" placeholder="Example: https://...">
     </div>
-    <button id="add-souvenir-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Souvenir</button>
+    <button id="add-souvenir-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add Souvenir</button>
   </form>
   `);
 

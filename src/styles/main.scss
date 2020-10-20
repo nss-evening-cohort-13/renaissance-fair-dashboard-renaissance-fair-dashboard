@@ -2,13 +2,18 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Rye&family=UnifrakturMaguntia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,300;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 @import './variables/';
 @import './components/';
 
 
 
 body {
-  background-color: $freelancer-tan;
+  background-image: url(https://user-images.githubusercontent.com/65687019/96346281-745ba500-1060-11eb-9c30-3be05b719749.png);
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
   color: $freelancer-gold;
   text-align: center;
 }

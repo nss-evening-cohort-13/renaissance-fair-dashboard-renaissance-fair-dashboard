@@ -13,8 +13,8 @@ const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
       );
       $(`.button-body-${souvenirObject.firebaseKey}`).html(
         `<a href='#' id="${souvenirObject.firebaseKey}"
-        class="update-souvenir btn btn-info"><i class="far fa-edit"></i> Update Souvenir</a>
-        <a href="#" id="${souvenirObject.firebaseKey}" class="btn btn-danger delete-souvenir">Delete Souvenir</a>`
+        class=" update-btn update-souvenir btn btn-info"><i class="far fa-edit"></i> Update Souvenir</a>
+        <a href="#" id="${souvenirObject.firebaseKey}" class="delete-btn btn btn-danger delete-souvenir">Delete Souvenir</a>`
       );
       $('body').on('click', '.delete-souvenir', (e) => {
         e.stopImmediatePropagation();
@@ -27,7 +27,7 @@ const addButtonsIfUserIsLoggedIn = (souvenirObject) => {
 };
 
 const souvenirMaker = (souvenirObject) => {
-  const domString = `<div class="card m-2" style="width: 18rem;" id="${souvenirObject.firebaseKey}">
+  const domString = `<div class="card m-2" style="width: 20rem;" id="${souvenirObject.firebaseKey}">
                       <div class="card-body">
                         <h5 class="card-title">${souvenirObject.name}</h5>
                         </div>
