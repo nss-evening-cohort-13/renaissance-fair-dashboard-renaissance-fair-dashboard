@@ -5,8 +5,6 @@ import foodData from '../../helpers/data/foodData';
 import eventData from '../../helpers/data/eventData';
 import eventView from '../views/eventsView';
 
-require('jquery-datetimepicker');
-
 const addEventForm = () => {
   $('#events-form').html(`<div id="add-event-form">
     <h2 class="form-title">Add Event</h2>
