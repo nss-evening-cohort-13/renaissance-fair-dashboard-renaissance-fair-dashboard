@@ -19,4 +19,9 @@ const getAllEvents = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getAllEvents };
+const addEvent = (data) => axios.post(`${baseUrl}/events.json`, data).then((response) => {
+  const update = { firebaseKey: response.data.name };
+  axios.patch(`${baseUrl}/events/${response.data.name}.json`, update);
+}).catch((error) => console.warn(error));
+
+export default { addEvent, getAllEvents };
