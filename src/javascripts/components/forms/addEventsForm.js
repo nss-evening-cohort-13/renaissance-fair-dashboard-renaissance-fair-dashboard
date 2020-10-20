@@ -3,6 +3,7 @@ import souvenirData from '../../helpers/data/souvenirsData';
 import showsData from '../../helpers/data/showsData';
 import foodData from '../../helpers/data/foodData';
 import eventData from '../../helpers/data/eventData';
+import eventView from '../views/eventsView';
 
 require('jquery-datetimepicker');
 
@@ -100,14 +101,21 @@ const addEventForm = () => {
       );
     } else {
       $('#error-message').html('');
-      eventData.addEvent(eventObject).then(() => {
-        $('#success-message').html(
-          '<div class="alert" role="alert">Your Event Was Added!</div>'
-        );
-        setTimeout(() => {
-          $('#success-message').html('');
-        }, 3000);
-      });
+      eventData
+        .addEvent(eventObject)
+        .then(() => {
+          $('#success-message').html(
+            '<div class="alert" role="alert">Your Event Was Added!</div>'
+          );
+          setTimeout(() => {
+            $('#success-message').html('');
+          }, 3000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            eventView.eventsView();
+          }, 3000);
+        });
     }
   });
 };
