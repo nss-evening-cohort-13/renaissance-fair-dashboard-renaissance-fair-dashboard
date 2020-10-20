@@ -1,11 +1,13 @@
 import eventData from '../../helpers/data/eventData';
+import eventFood from '../../helpers/data/event_food';
 
 const eventDetailsView = (eventFirebaseKey) => {
   eventData.getSingleEvent(eventFirebaseKey).then((response) => {
     console.warn(response);
     if (response) {
       $('#app').html(`<div id="event-details-view">
-                        <h2>Event Details</h2>
+                        <h2>${response.name} Details</h2>
+                        <p>${response.date}</p>
                         <div id="eventFood" class="event-category-details">
                           <h4 class="event-category-title">Food</h4>
                         </div>
@@ -22,7 +24,10 @@ const eventDetailsView = (eventFirebaseKey) => {
                       </div>
       `);
       response.food.forEach((item) => {
-        $('#eventFood').append(`<div>${item}</div>`);
+        eventFood.getEventFood(item)
+          .then((foodObject) => {
+            $('#eventFood').append(`<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`);
+          });
       });
       response.show.forEach((item) => {
         $('#eventShows').append(`<div>${item}</div>`);
