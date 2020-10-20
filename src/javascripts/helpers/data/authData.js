@@ -19,6 +19,7 @@ const checkLoginStatus = () => {
       viewHelper.viewListener('souvenirs-link');
       $('#user-name').addClass('hide');
       $('#navbar-logout-button').addClass('hide');
+      $('#events-link').addClass('hide');
       auth.loginButton();
     }
   });

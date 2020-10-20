@@ -2,6 +2,7 @@ import foodView from '../components/views/foodView';
 import showsView from '../components/views/showsView';
 import staffView from '../components/views/staffView';
 import souvenirsView from '../components/views/souvenirsView';
+import eventsView from '../components/views/eventsView';
 import addFoodView from '../components/views/addFoodView';
 import addSouvenirsView from '../components/views/addSouvenirsView';
 import addShowsView from '../components/views/addShowsView';
@@ -23,6 +24,8 @@ const viewHelper = (id, arg) => {
       return showsView.showsView();
     case 'staff-link':
       return staffView.staffView();
+    case 'events-link':
+      return eventsView.eventsView();
     case 'add-staff-link':
       return addStaffView.addStaffView();
     case 'add-food-link':

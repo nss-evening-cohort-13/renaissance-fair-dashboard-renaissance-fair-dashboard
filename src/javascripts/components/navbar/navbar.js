@@ -33,6 +33,9 @@ const navbar = (currentUser) => {
       <li class="nav-item mx-3" id="shows-link">
         <a class="nav-link" href="#" style="color: #E7A336;" ><i class="fas fa-feather-alt"></i> Shows</a>
       </li>
+      <li class="nav-item mx-3" id="events-link">
+        <a class="nav-link" href="#" style="color: #E7A336;" ><i class="fas fa-calendar-alt"></i> Events</a>
+      </li>
     </ul>
         <ul class="navbar-nav ml-auto">
           <li class="user-info-nav" id="welcome-guest">
