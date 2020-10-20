@@ -3,6 +3,6 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const deleteMenuItem = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
+const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
 
-export default { deleteMenuItem };
+export default { deleteEvent };
