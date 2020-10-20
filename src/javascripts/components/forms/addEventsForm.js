@@ -4,8 +4,10 @@ import showsData from '../../helpers/data/showsData';
 import foodData from '../../helpers/data/foodData';
 import eventData from '../../helpers/data/eventData';
 
+require('jquery-datetimepicker');
+
 const addEventForm = () => {
-  $('#app').html(`<div id="add-event-form">
+  $('#events-form').html(`<div id="add-event-form">
     <h2 class="form-title">Add Event</h2>
     <div id="success-message"></div>
     <div id="error-message"></div>
@@ -16,7 +18,7 @@ const addEventForm = () => {
       </div>
       <div class="form-group">
         <label for="eventName">Event Date</label>
-        <input type="text" class="form-control" id="eventDate" placeholder="Event Date">
+        <input type="text" class="form-control" id="eventDate" placeholder="mm/dd/yyyy">
       </div>
       <div class="form-group">
         <label for="eventName">Event Image</label>
@@ -43,9 +45,10 @@ const addEventForm = () => {
        </select>
      </div>
 
-      <button id="submitEventBtn" type="button" class="btn btn-outline"></i>Add Event</button>
+      <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
     </div>
   <div>`);
+
   foodData.getAllFood().then((response) => {
     $('#foodSelection').html('');
     response.forEach((food) => {
