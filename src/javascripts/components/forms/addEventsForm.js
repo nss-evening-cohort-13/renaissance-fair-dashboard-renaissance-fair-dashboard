@@ -102,49 +102,46 @@ const addEventForm = () => {
       );
     } else {
       $('#error-message').html('');
-      eventData
-        .addEvent(eventObject)
-        .then((response2) => {
-          eventFoodArray.forEach((item) => {
-            const foodObject = {
-              foodUid: item,
-              eventUid: response2,
-            };
-            foodOfEvent.addFoodOfEvents(foodObject);
-            eventShowArray.forEach((item2) => {
-              const showObject = {
-                showUid: item2,
-                eventUid: response2,
-              };
-              showOfEvent.addShowsOfEvents(showObject);
-            });
-            eventSouvenirArray.forEach((item3) => {
-              const souvenirObject = {
-                souvenirUid: item3,
-                eventUid: response2,
-              };
-              souvenirOfEvent.addSouvenirsOfEvents(souvenirObject);
-            });
-            eventStaffArray.forEach((item4) => {
-              const staffObject = {
-                staffUid: item4,
-                eventUid: response2,
-              };
-              staffOfEvent.addStaffOfEvents(staffObject);
-            });
-          });
-          $('#success-message2').html(
-            '<div class="alert-success" role="alert">Your Event Was Added! BOOM</div>'
-          );
-          setTimeout(() => {
-            $('#success-message').html('');
-          }, 3000);
-        })
-        .then(() => {
-          setTimeout(() => {
-            eventView.eventsView();
-          }, 3000);
+      eventData.addEvent(eventObject).then((response2) => {
+        eventFoodArray.forEach((item) => {
+          const foodObject = {
+            foodUid: item,
+            eventUid: response2,
+          };
+          foodOfEvent.addFoodOfEvents(foodObject);
         });
+        eventShowArray.forEach((item2) => {
+          const showObject = {
+            showUid: item2,
+            eventUid: response2,
+          };
+          showOfEvent.addShowsOfEvents(showObject);
+        });
+        eventSouvenirArray.forEach((item3) => {
+          const souvenirObject = {
+            souvenirUid: item3,
+            eventUid: response2,
+          };
+          souvenirOfEvent.addSouvenirsOfEvents(souvenirObject);
+        });
+        eventStaffArray.forEach((item4) => {
+          const staffObject = {
+            staffUid: item4,
+            eventUid: response2,
+          };
+          staffOfEvent.addStaffOfEvents(staffObject);
+        });
+      });
+      $('#success-message2').html(
+        '<div class="alert-success" role="alert">Your Event Was Added! BOOM</div>'
+      );
+      setTimeout(() => {
+        $('#success-message').html('');
+      }, 3000).then(() => {
+        setTimeout(() => {
+          eventView.eventsView();
+        }, 3000);
+      });
     }
   });
 };
