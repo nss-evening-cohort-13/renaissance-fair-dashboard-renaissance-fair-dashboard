@@ -12,7 +12,7 @@ const souvenirForm = () => {
     </div>
     <div class="form-group">
       <label for="price">Price</label>
-      <input type="text" class="form-control" id="price" placeholder="Example: $100">
+      <input type="number" class="form-control" min="1" id="price" placeholder="100">
     </div>
     <div class="form-group">
       <label for="image">Image URL</label>

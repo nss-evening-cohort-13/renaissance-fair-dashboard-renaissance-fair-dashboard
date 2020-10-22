@@ -1,4 +1,5 @@
 import foodData from '../../helpers/data/foodData';
+import foodview from '../views/foodView';
 
 const foodForm = () => {
   $('#food-form').html(
@@ -8,11 +9,11 @@ const foodForm = () => {
             <div id="error-message"></div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Example: Hog tossing">
+              <input type="text" class="form-control" id="name" placeholder="Example: Turkey Leg">
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" placeholder="Example: $1" required>
+              <input type="number" min="1" class="form-control" id="price" placeholder="10" required>
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
@@ -54,7 +55,13 @@ const foodForm = () => {
           );
           setTimeout(() => {
             $('#sucess-message').html('');
-          }, 100);
+          }, 3000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            foodview.foodView();
+          }, 3000);
         })
         .catch((error) => console.warn(error));
       $('#name').val('');
