@@ -8,8 +8,8 @@ const getEventFood = (foodFirebaseKey) => new Promise((resolve, reject) => {
     .then((response) => {
       const food = Object.values(response.data);
       const thisFood = food[0];
-      console.warn(thisFood);
-      resolve(thisFood);
+      const foodObject = { name: thisFood.name, price: thisFood.price };
+      resolve(foodObject);
     }).catch((error) => reject(error));
 });
 

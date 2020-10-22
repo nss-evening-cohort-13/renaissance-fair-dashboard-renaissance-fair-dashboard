@@ -12,7 +12,8 @@ const foodForm = () => {
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" placeholder="Example: $1">
+              <input type="number" min="0" class="form-control" id="price" placeholder="Example: 1">
+              <div class="valid-tooltip">Looks good!</div>
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
