@@ -13,4 +13,8 @@ const getEventFood = (foodFirebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default { getEventFood };
+const addFoodOfEvents = (dataObject) => {
+  axios.post(`${baseUrl}/foodOfEvent.json`, dataObject);
+};
+
+export default { addFoodOfEvents, getEventFood };

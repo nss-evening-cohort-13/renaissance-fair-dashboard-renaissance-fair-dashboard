@@ -13,4 +13,8 @@ const getEventSouvenir = (souvenirFirebaseKey) => new Promise((resolve, reject) 
     }).catch((error) => reject(error));
 });
 
-export default { getEventSouvenir };
+const addSouvenirsOfEvents = (dataObject) => {
+  axios.post(`${baseUrl}/souvenirsOfEvent.json`, dataObject);
+};
+
+export default { getEventSouvenir, addSouvenirsOfEvents };

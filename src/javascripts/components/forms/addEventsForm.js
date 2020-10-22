@@ -4,11 +4,15 @@ import showsData from '../../helpers/data/showsData';
 import foodData from '../../helpers/data/foodData';
 import eventData from '../../helpers/data/eventData';
 import eventView from '../views/eventsView';
+import foodOfEvent from '../../helpers/data/event_food';
+import showOfEvent from '../../helpers/data/event_shows';
+import souvenirOfEvent from '../../helpers/data/event_souvenirs';
+import staffOfEvent from '../../helpers/data/event_staff';
 
 const addEventForm = () => {
   $('#events-form').html(`<div id="add-event-form">
     <h2 class="form-title">Add Event</h2>
-    <div id="success-message"></div>
+    <div id="success-message2"></div>
     <div id="error-message"></div>
     <div id="input-group-event">
       <div class="form-group">
@@ -39,10 +43,10 @@ const addEventForm = () => {
         </select>
       </div>
       <div class="form-group">
-       <label for="souvenirSelection">Select Souvenirs</label>
-       <select multiple class="form-control" id="souvenirSelection">
-       </select>
-     </div>
+        <label for="souvenirSelection">Select Souvenirs</label>
+        <select multiple class="form-control" id="souvenirSelection">
+        </select>
+      </div>
 
       <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
     </div>
@@ -82,32 +86,56 @@ const addEventForm = () => {
   });
   $('#submitEventBtn').on('click', (e) => {
     e.preventDefault();
+    const eventFoodArray = $('#foodSelection').val();
+    const eventShowArray = $('#showSelection').val();
+    const eventSouvenirArray = $('#souvenirSelection').val();
+    const eventStaffArray = $('#staffSelection').val();
+
     const eventObject = {
       name: $('#eventName').val() || false,
       date: $('#eventDate').val() || false,
       image: $('#eventImage').val() || false,
-      food: $('#foodSelection').val() || false,
-      staff: $('#staffSelection').val() || false,
-      show: $('#showSelection').val() || false,
-      souvenir: $('#souvenirSelection').val() || false,
     };
-    if (
-      Object.values(eventObject).includes(false) || eventObject.food.length === 0 || eventObject.staff.length === 0 || eventObject.show.length === 0 || eventObject.souvenir.length === 0
-    ) {
+    if (Object.values(eventObject).includes(false)) {
       $('#error-message').html(
         '<div class="alert" role="alert">Please complete all fields</div>'
       );
     } else {
+      $('#success-message2').html(
+        '<div class="alert-success" role="alert">Your Event Was Added! BOOM</div>'
+      );
       $('#error-message').html('');
       eventData
         .addEvent(eventObject)
-        .then(() => {
-          $('#success-message').html(
-            '<div class="alert" role="alert">Your Event Was Added!</div>'
-          );
-          setTimeout(() => {
-            $('#success-message').html('');
-          }, 3000);
+        .then((response2) => {
+          eventFoodArray.forEach((item) => {
+            const foodObject = {
+              foodUid: item,
+              eventUid: response2,
+            };
+            foodOfEvent.addFoodOfEvents(foodObject);
+          });
+          eventShowArray.forEach((item2) => {
+            const showObject = {
+              showUid: item2,
+              eventUid: response2,
+            };
+            showOfEvent.addShowsOfEvents(showObject);
+          });
+          eventSouvenirArray.forEach((item3) => {
+            const souvenirObject = {
+              souvenirUid: item3,
+              eventUid: response2,
+            };
+            souvenirOfEvent.addSouvenirsOfEvents(souvenirObject);
+          });
+          eventStaffArray.forEach((item4) => {
+            const staffObject = {
+              staffUid: item4,
+              eventUid: response2,
+            };
+            staffOfEvent.addStaffOfEvents(staffObject);
+          });
         })
         .then(() => {
           setTimeout(() => {

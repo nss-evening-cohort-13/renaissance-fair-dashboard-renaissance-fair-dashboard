@@ -12,12 +12,12 @@ const foodForm = () => {
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="number" min="0" class="form-control" id="price" placeholder="Example: 1">
-              <div class="valid-tooltip">Looks good!</div>
+              <input type="text" class="form-control" id="price" placeholder="Example: $1" required>
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
+
             </div>
             <button id="add-food-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add food</button>
           </form>
@@ -30,10 +30,19 @@ const foodForm = () => {
       price: $('#price').val() || false,
       image: $('#image').val() || false,
     };
-
+    const isNormalInteger = (str) => {
+      const n = Math.floor(Number(str));
+      return n !== Infinity && String(n) === str && n >= 0;
+    };
+    if (isNormalInteger(data.price) === false) {
+      $('#error-message').html(
+        '<div class="alert alert-danger" role="alert">Please enter a numeric value for the price</div>'
+      );
+      data.price = false;
+    }
     if (Object.values(data).includes(false)) {
       $('#error-message').html(
-        '<div class="alert alert-danger" role="alert">Please complete all fields</div>'
+        '<div class="alert alert-danger" role="alert">Please complete all fields using</div>'
       );
     } else {
       $('#error-message').html('');
@@ -46,7 +55,8 @@ const foodForm = () => {
           setTimeout(() => {
             $('#sucess-message').html('');
           }, 100);
-        }).catch((error) => console.warn(error));
+        })
+        .catch((error) => console.warn(error));
       $('#name').val('');
       $('#price').val('');
       $('#image').val('');

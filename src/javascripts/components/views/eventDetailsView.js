@@ -1,7 +1,7 @@
 import eventData from '../../helpers/data/eventData';
 import eventFood from '../../helpers/data/event_food';
-import eventShow from '../../helpers/data/event_show';
-import eventSouvenir from '../../helpers/data/event_souvenir';
+import eventShow from '../../helpers/data/event_shows';
+import eventSouvenir from '../../helpers/data/event_souvenirs';
 import eventStaff from '../../helpers/data/event_staff';
 
 const eventDetailsView = (eventFirebaseKey) => {

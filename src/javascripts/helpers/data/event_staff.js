@@ -13,4 +13,8 @@ const getEventStaff = (staffFirebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default { getEventStaff };
+const addStaffOfEvents = (dataObject) => {
+  axios.post(`${baseUrl}/staffOfEvent.json`, dataObject);
+};
+
+export default { addStaffOfEvents, getEventStaff };

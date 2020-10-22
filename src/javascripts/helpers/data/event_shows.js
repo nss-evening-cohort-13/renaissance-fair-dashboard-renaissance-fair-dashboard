@@ -3,6 +3,10 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
+const addShowsOfEvents = (dataObject) => {
+  axios.post(`${baseUrl}/showsOfEvent.json`, dataObject);
+};
+
 const getEventShow = (showFirebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/shows/.json?orderBy="firebaseKey"&equalTo="${showFirebaseKey}"`)
     .then((response) => {
@@ -13,4 +17,4 @@ const getEventShow = (showFirebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default { getEventShow };
+export default { addShowsOfEvents, getEventShow };
