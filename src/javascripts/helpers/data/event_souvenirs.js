@@ -1,5 +1,4 @@
 import axios from 'axios';
-import souvenirData from './souvenirsData';
 import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
@@ -14,18 +13,7 @@ const getEventSouvenirs = (eventFirebaseKey) => new Promise((resolve, reject) =>
           matchingObjectsArray.push(theMatchingObjects[firebaseKey]);
         });
       }
-      souvenirData.getAllSouvenirs().then((souvenirResponse) => {
-        const souvenirObjectsArray = [];
-        matchingObjectsArray.forEach((object) => {
-          const souvenirObject = souvenirResponse.find((souvenir) => souvenir.firebaseKey === object.souvenirUid);
-          const newSouvenirObject = {
-            name: souvenirObject.name,
-            price: souvenirObject.price
-          };
-          souvenirObjectsArray.push(newSouvenirObject);
-        });
-        resolve(souvenirObjectsArray);
-      });
+      resolve(matchingObjectsArray);
     })
     .catch((error) => reject(error));
 });

@@ -60,7 +60,7 @@ const addEventForm = () => {
       );
     });
   });
-  showsData.getShows().then((response) => {
+  showsData.getAllShows().then((response) => {
     $('#showSelection').html('');
     response.forEach((show) => {
       $('#showSelection').append(

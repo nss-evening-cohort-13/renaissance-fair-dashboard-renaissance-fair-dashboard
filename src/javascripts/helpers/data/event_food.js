@@ -1,5 +1,4 @@
 import axios from 'axios';
-import foodData from './foodData';
 import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
@@ -14,18 +13,7 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
           matchingObjectsArray.push(theMatchingObjects[firebaseKey]);
         });
       }
-      foodData.getAllFood().then((foodResponse) => {
-        const foodObjectsArray = [];
-        matchingObjectsArray.forEach((object) => {
-          const foodObject = foodResponse.find((food) => food.firebaseKey === object.foodUid);
-          const newFoodObject = {
-            name: foodObject.name,
-            price: foodObject.price
-          };
-          foodObjectsArray.push(newFoodObject);
-        });
-        resolve(foodObjectsArray);
-      });
+      resolve(matchingObjectsArray);
     })
     .catch((error) => reject(error));
 });
