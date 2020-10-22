@@ -19,6 +19,15 @@ const getAllEvents = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleEvent = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/events.json?orderBy="firebaseKey"&equalTo="${eventFirebaseKey}"`)
+    .then((response) => {
+      const event = Object.values(response.data);
+      const thisEvent = event[0];
+      resolve(thisEvent);
+    }).catch((error) => reject(error));
+});
+
 const addEvent = (data) => new Promise((resolve, reject) => {
   console.warn('data', data);
   axios.post(`${baseUrl}/events.json`, data)
@@ -34,4 +43,9 @@ const addEvent = (data) => new Promise((resolve, reject) => {
 
 const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
 
-export default { addEvent, deleteEvent, getAllEvents };
+export default {
+  addEvent,
+  getAllEvents,
+  getSingleEvent,
+  deleteEvent
+};

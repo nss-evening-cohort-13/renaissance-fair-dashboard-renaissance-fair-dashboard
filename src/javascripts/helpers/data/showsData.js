@@ -3,20 +3,17 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getShows = () => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseUrl}/shows.json`)
-    .then((response) => {
-      const theShows = response.data;
-      const showsArray = [];
-      if (theShows) {
-        Object.keys(theShows).forEach((showId) => {
-          showsArray.push(theShows[showId]);
-        });
-      }
-      resolve(showsArray);
-    })
-    .catch((error) => reject(error));
+const getAllShows = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/shows.json`).then((response) => {
+    const theShows = response.data;
+    const showsArray = [];
+    if (theShows) {
+      Object.keys(theShows).forEach((showId) => {
+        showsArray.push(theShows[showId]);
+      });
+    }
+    resolve(showsArray);
+  }).catch((error) => reject(error));
 });
 
 const deleteShow = (firebaseKey) => axios.delete(`${baseUrl}/shows/${firebaseKey}.json`);
@@ -38,5 +35,5 @@ const getSingleShow = (showsFirebaseKey) => new Promise((resolve, reject) => {
 const updateShow = (firebaseKey, showObject) => axios.patch(`${baseUrl}/shows/${firebaseKey}.json`, showObject);
 
 export default {
-  getShows, deleteShow, addShow, updateShow, getSingleShow
+  getAllShows, deleteShow, addShow, updateShow, getSingleShow
 };
