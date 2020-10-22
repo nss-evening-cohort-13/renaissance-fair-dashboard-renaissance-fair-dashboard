@@ -6,7 +6,7 @@ import eventData from '../../helpers/data/eventData';
 import eventView from '../views/eventsView';
 import foodOfEvent from '../../helpers/data/event_food';
 import showOfEvent from '../../helpers/data/event_shows';
-import souvenirOfEvent from '../../helpers/data/event_souvenir';
+import souvenirOfEvent from '../../helpers/data/event_souvenirs';
 import staffOfEvent from '../../helpers/data/event_staff';
 
 const addEventForm = () => {
@@ -60,7 +60,7 @@ const addEventForm = () => {
       );
     });
   });
-  showsData.getShows().then((response) => {
+  showsData.getAllShows().then((response) => {
     $('#showSelection').html('');
     response.forEach((show) => {
       $('#showSelection').append(

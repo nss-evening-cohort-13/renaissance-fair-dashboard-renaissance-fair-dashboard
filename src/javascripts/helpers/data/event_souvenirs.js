@@ -3,8 +3,8 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/foodOfEvent/.json?orderBy="eventUid"&equalTo="${eventFirebaseKey}"`)
+const getEventSouvenirs = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/souvenirsOfEvent/.json?orderBy="eventUid"&equalTo="${eventFirebaseKey}"`)
     .then((eventResponse) => {
       const theMatchingObjects = eventResponse.data;
       const matchingObjectsArray = [];
@@ -18,8 +18,8 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const addFoodOfEvents = (dataObject) => {
-  axios.post(`${baseUrl}/foodOfEvent.json`, dataObject);
+const addSouvenirsOfEvents = (dataObject) => {
+  axios.post(`${baseUrl}/souvenirsOfEvent.json`, dataObject);
 };
 
-export default { addFoodOfEvents, getEventFood };
+export default { getEventSouvenirs, addSouvenirsOfEvents };
