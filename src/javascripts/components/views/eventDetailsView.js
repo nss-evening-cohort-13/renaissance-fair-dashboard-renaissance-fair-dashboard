@@ -1,7 +1,7 @@
 import eventData from '../../helpers/data/eventData';
 import eventFood from '../../helpers/data/event_food';
-import eventShow from '../../helpers/data/event_shows';
-import eventSouvenir from '../../helpers/data/event_souvenirs';
+import eventShows from '../../helpers/data/event_shows';
+import eventSouvenirs from '../../helpers/data/event_souvenirs';
 import eventStaff from '../../helpers/data/event_staff';
 
 const eventDetailsView = (eventFirebaseKey) => {
@@ -33,35 +33,42 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="eventChart"></div>
                       </div>
       `);
-      response.food.forEach((item) => {
-        eventFood.getEventFood(item)
-          .then((foodObject) => {
-            $('#foodLineItems').append(`<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`);
+      eventFood.getEventFood(eventFirebaseKey)
+        .then((foodArray) => {
+          let foodTotal = 0;
+          foodArray.forEach((food) => {
+            $('#foodLineItems').append(`<div class="line-item"><div>${food.name}</div><div>${food.price}</div></div>`);
+            foodTotal += food.price;
           });
-      });
-      // console.warn(foodCosts);
-      $('#foodTotalCost').html('$$$');
-      response.show.forEach((item) => {
-        eventShow.getEventShow(item)
-          .then((showObject) => {
-            $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
+          $('#foodTotalCost').html(`${foodTotal}`);
+        });
+      eventShows.getEventShows(eventFirebaseKey)
+        .then((showsArray) => {
+          let showsTotal = 0;
+          showsArray.forEach((show) => {
+            $('#showLineItems').append(`<div class="line-item"><div>${show.name}</div><div>${show.price}</div></div>`);
+            showsTotal += show.price;
           });
-      });
-      $('#showTotalCost').html('$$$');
-      response.souvenir.forEach((item) => {
-        eventSouvenir.getEventSouvenir(item)
-          .then((souvenirObject) => {
-            $('#souvenirLineItems').append(`<div class="line-item"><div>${souvenirObject.name}</div><div>${souvenirObject.price}</div></div>`);
+          $('#showTotalCost').html(`${showsTotal}`);
+        });
+      eventSouvenirs.getEventSouvenirs(eventFirebaseKey)
+        .then((souvenirsArray) => {
+          let souvenirsTotal = 0;
+          souvenirsArray.forEach((souvenir) => {
+            $('#souvenirLineItems').append(`<div class="line-item"><div>${souvenir.name}</div><div>${souvenir.price}</div></div>`);
+            souvenirsTotal += souvenir.price;
           });
-      });
-      $('#souvenirTotalCost').html('$$$');
-      response.staff.forEach((item) => {
-        eventStaff.getEventStaff(item)
-          .then((staffMemberObject) => {
-            $('#staffLineItems').append(`<div class="line-item"><div>${staffMemberObject.name}</div><div>${staffMemberObject.price}</div></div>`);
+          $('#souvenirTotalCost').html(`${souvenirsTotal}`);
+        });
+      eventStaff.getEventStaff(eventFirebaseKey)
+        .then((staffArray) => {
+          let staffTotal = 0;
+          staffArray.forEach((staffMember) => {
+            $('#staffLineItems').append(`<div class="line-item"><div>${staffMember.name}</div><div>${staffMember.price}</div></div>`);
+            staffTotal += staffMember.price;
           });
-      });
-      $('#staffTotalCost').html('$$$');
+          $('#staffTotalCost').html(`${staffTotal}`);
+        });
     } else {
       $('#app').html('<h2>NO EVENT DETAILS</h2>');
     }

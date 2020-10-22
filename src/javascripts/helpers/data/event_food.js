@@ -1,16 +1,33 @@
 import axios from 'axios';
+import foodData from './foodData';
 import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getEventFood = (foodFirebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/food/.json?orderBy="firebaseKey"&equalTo="${foodFirebaseKey}"`)
-    .then((response) => {
-      const food = Object.values(response.data);
-      const thisFood = food[0];
-      const foodObject = { name: thisFood.name, price: thisFood.price };
-      resolve(foodObject);
-    }).catch((error) => reject(error));
+const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/foodOfEvent/.json?orderBy="eventUid"&equalTo="${eventFirebaseKey}"`)
+    .then((eventResponse) => {
+      const theMatchingObjects = eventResponse.data;
+      const matchingObjectsArray = [];
+      if (theMatchingObjects) {
+        Object.keys(theMatchingObjects).forEach((firebaseKey) => {
+          matchingObjectsArray.push(theMatchingObjects[firebaseKey]);
+        });
+      }
+      foodData.getAllFood().then((foodResponse) => {
+        const foodObjectsArray = [];
+        matchingObjectsArray.forEach((object) => {
+          const foodObject = foodResponse.find((food) => food.firebaseKey === object.foodUid);
+          const newFoodObject = {
+            name: foodObject.name,
+            price: foodObject.price
+          };
+          foodObjectsArray.push(newFoodObject);
+        });
+        resolve(foodObjectsArray);
+      });
+    })
+    .catch((error) => reject(error));
 });
 
 const addFoodOfEvents = (dataObject) => {

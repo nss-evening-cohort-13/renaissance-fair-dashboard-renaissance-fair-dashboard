@@ -34,30 +34,34 @@ $border-radius-size: 5px;
   border-top-left-radius: $border-radius-size;
   border-top-right-radius: $border-radius-size;
 }
- .update-btn {
+
+.update-btn {
   background-color: $freelancer-green;
   color: $freelancer-gold;
 }
- .update-btn {
-   &:hover {
+
+.update-btn {
+  &:hover {
     background-color: $freelancer-green;
     color: $freelancer-gold;
-   }
- }
- .delete-btn {
+  }
+}
+
+.delete-btn {
   background-color: $freelancer-orange;
   color: $freelancer-gold;
 }
- .delete-btn {
-   &:hover {
+
+.delete-btn {
+  &:hover {
     background-color: $freelancer-orange;
     color: $freelancer-gold;
-   }
- }
- .card .btn {
-   margin-bottom: 20px;
- }
+  }
+}
+.card .btn {
+  margin-bottom: 20px;
+}
 
- .event-details:hover {
-   cursor: pointer;
- }
+.event-details:hover {
+  cursor: pointer;
+}

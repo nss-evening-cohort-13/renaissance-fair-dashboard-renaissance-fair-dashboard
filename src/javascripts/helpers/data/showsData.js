@@ -3,7 +3,7 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getShows = () => new Promise((resolve, reject) => {
+const getAllShows = () => new Promise((resolve, reject) => {
   axios
     .get(`${baseUrl}/shows.json`)
     .then((response) => {
@@ -38,5 +38,5 @@ const getSingleShow = (showsFirebaseKey) => new Promise((resolve, reject) => {
 const updateShow = (firebaseKey, showObject) => axios.patch(`${baseUrl}/shows/${firebaseKey}.json`, showObject);
 
 export default {
-  getShows, deleteShow, addShow, updateShow, getSingleShow
+  getAllShows, deleteShow, addShow, updateShow, getSingleShow
 };
