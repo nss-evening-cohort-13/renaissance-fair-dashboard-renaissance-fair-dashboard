@@ -18,6 +18,10 @@ const getEventShows = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteShowsOfEvent = (firebaseKey) => {
+  axios.delete(`${baseUrl}/showsOfEvent/${firebaseKey}.json`);
+};
+
 const addShowsOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/showsOfEvent.json`, dataObject).then((response) => {
     const update = { firebaseKey: response.data.name };
@@ -25,4 +29,4 @@ const addShowsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addShowsOfEvents, getEventShows };
+export default { addShowsOfEvents, getEventShows, deleteShowsOfEvent };

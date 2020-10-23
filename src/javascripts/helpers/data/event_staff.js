@@ -18,6 +18,10 @@ const getEventStaff = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteStaffOfEvent = (firebaseKey) => {
+  axios.delete(`${baseUrl}/staffOfEvent/${firebaseKey}.json`);
+};
+
 const addStaffOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/staffOfEvent.json`, dataObject).then((response) => {
     const update = { firebaseKey: response.data.name };
@@ -25,4 +29,4 @@ const addStaffOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addStaffOfEvents, getEventStaff };
+export default { addStaffOfEvents, getEventStaff, deleteStaffOfEvent };
