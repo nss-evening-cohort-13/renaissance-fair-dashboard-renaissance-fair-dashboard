@@ -18,6 +18,10 @@ const getEventSouvenirs = (eventFirebaseKey) => new Promise((resolve, reject) =>
     .catch((error) => reject(error));
 });
 
+const deleteSouvenirsOfEvent = (firebaseKey) => {
+  axios.delete(`${baseUrl}/souvenirsOfEvent/${firebaseKey}.json`);
+};
+
 const addSouvenirsOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/souvenirsOfEvent.json`, dataObject).then((response) => {
     const update = { firebaseKey: response.data.name };
@@ -25,4 +29,4 @@ const addSouvenirsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { getEventSouvenirs, addSouvenirsOfEvents };
+export default { getEventSouvenirs, addSouvenirsOfEvents, deleteSouvenirsOfEvent };
