@@ -28,6 +28,7 @@ const showsForm = () => {
       name: $('#name').val() || false,
       time: $('#time').val() || false,
       image: $('#image').val() || false,
+      price: 100
     };
 
     if (Object.values(data).includes(false)) {

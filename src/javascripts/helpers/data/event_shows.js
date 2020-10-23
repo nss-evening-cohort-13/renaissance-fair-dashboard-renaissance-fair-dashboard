@@ -19,7 +19,10 @@ const getEventShows = (eventFirebaseKey) => new Promise((resolve, reject) => {
 });
 
 const addShowsOfEvents = (dataObject) => {
-  axios.post(`${baseUrl}/showsOfEvent.json`, dataObject);
+  axios.post(`${baseUrl}/showsOfEvent.json`, dataObject).then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/showsOfEvent/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
 };
 
 export default { addShowsOfEvents, getEventShows };

@@ -19,7 +19,10 @@ const getEventStaff = (eventFirebaseKey) => new Promise((resolve, reject) => {
 });
 
 const addStaffOfEvents = (dataObject) => {
-  axios.post(`${baseUrl}/staffOfEvent.json`, dataObject);
+  axios.post(`${baseUrl}/staffOfEvent.json`, dataObject).then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/staffOfEvent/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
 };
 
 export default { addStaffOfEvents, getEventStaff };

@@ -28,6 +28,7 @@ const staffForm = () => {
       name: $('#name').val() || false,
       role: $('#role').val() || false,
       image: $('#image').val() || false,
+      price: 50
     };
 
     if (Object.values(data).includes(false)) {

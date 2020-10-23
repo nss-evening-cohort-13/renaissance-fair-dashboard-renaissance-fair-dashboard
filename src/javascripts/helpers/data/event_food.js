@@ -13,13 +13,17 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
           matchingObjectsArray.push(theMatchingObjects[firebaseKey]);
         });
       }
+      console.warn(matchingObjectsArray);
       resolve(matchingObjectsArray);
     })
     .catch((error) => reject(error));
 });
 
 const addFoodOfEvents = (dataObject) => {
-  axios.post(`${baseUrl}/foodOfEvent.json`, dataObject);
+  axios.post(`${baseUrl}/foodOfEvent.json`, dataObject).then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/foodOfEvent/${response.data.name}.json`, update);
+  }).catch((error) => console.warn(error));
 };
 
 export default { addFoodOfEvents, getEventFood };
