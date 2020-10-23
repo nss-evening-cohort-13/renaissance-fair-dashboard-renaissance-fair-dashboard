@@ -1,4 +1,8 @@
 import eventData from '../../helpers/data/eventData';
+import eventFood from '../../helpers/data/event_food';
+import eventShows from '../../helpers/data/event_shows';
+import eventSouvenirs from '../../helpers/data/event_souvenirs';
+import eventStaff from '../../helpers/data/event_staff';
 
 const buildEventCard = (eventObject) => {
   const domString = `<div class="card event-card m-2 event-details" id="${eventObject.firebaseKey}" style="width: 18rem;" id="${eventObject.firebaseKey}">
@@ -18,6 +22,26 @@ const buildEventCard = (eventObject) => {
     const firebaseKey = e.currentTarget.id;
     $(`.event-card#${firebaseKey}`).remove();
     eventData.deleteEvent(firebaseKey);
+    eventFood.getEventFood(firebaseKey).then((response) => {
+      response.forEach((item) => {
+        eventFood.deleteFoodOfEvent(item.firebaseKey);
+      });
+    });
+    eventShows.getEventShows(firebaseKey).then((response) => {
+      response.forEach((item) => {
+        eventShows.deleteShowsOfEvent(item.firebaseKey);
+      });
+    });
+    eventSouvenirs.getEventSouvenirs(firebaseKey).then((response) => {
+      response.forEach((item) => {
+        eventSouvenirs.deleteSouvenirsOfEvent(item.firebaseKey);
+      });
+    });
+    eventStaff.getEventStaff(firebaseKey).then((response) => {
+      response.forEach((item) => {
+        eventStaff.deleteStaffOfEvent(item.firebaseKey);
+      });
+    });
   });
 
   return domString;

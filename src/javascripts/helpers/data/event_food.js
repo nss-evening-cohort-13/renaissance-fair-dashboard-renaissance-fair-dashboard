@@ -13,11 +13,14 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
           matchingObjectsArray.push(theMatchingObjects[firebaseKey]);
         });
       }
-      console.warn(matchingObjectsArray);
       resolve(matchingObjectsArray);
     })
     .catch((error) => reject(error));
 });
+
+const deleteFoodOfEvent = (firebaseKey) => {
+  axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`);
+};
 
 const addFoodOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/foodOfEvent.json`, dataObject).then((response) => {
@@ -26,4 +29,4 @@ const addFoodOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addFoodOfEvents, getEventFood };
+export default { addFoodOfEvents, getEventFood, deleteFoodOfEvent };

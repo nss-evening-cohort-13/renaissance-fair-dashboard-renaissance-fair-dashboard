@@ -29,10 +29,8 @@ const getSingleEvent = (eventFirebaseKey) => new Promise((resolve, reject) => {
 });
 
 const addEvent = (data) => new Promise((resolve, reject) => {
-  console.warn('data', data);
   axios.post(`${baseUrl}/events.json`, data)
     .then((response) => {
-      console.warn('response', response);
       const update = { firebaseKey: response.data.name };
       axios.patch(`${baseUrl}/events/${response.data.name}.json`, update)
         .then((response2) => {
