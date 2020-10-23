@@ -1,6 +1,8 @@
 import staffData from '../../helpers/data/staffData';
 import staffView from '../views/staffView';
 
+const staffPriceRandomizer = () => Math.floor(Math.random() * 150) + 50;
+
 const staffForm = () => {
   $('#staff-form').html(
     `<h2>Add a Staff Member</h2>
@@ -29,7 +31,7 @@ const staffForm = () => {
       name: $('#name').val() || false,
       role: $('#role').val() || false,
       image: $('#image').val() || false,
-      price: 50,
+      price: staffPriceRandomizer(),
     };
 
     if (Object.values(data).includes(false)) {

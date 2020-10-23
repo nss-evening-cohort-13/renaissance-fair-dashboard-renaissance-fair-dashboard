@@ -51,11 +51,10 @@ const eventDetailsView = (eventFirebaseKey) => {
       eventShows.getEventShows(eventFirebaseKey)
         .then((showsArray) => {
           let showsTotal = 0;
-          const showPrice = 100;
           showsArray.forEach((show) => {
             showData.getSingleShow(show.showUid).then((showObject) => {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showPrice}</div></div>`);
-              showsTotal += 100;
+              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
+              showsTotal += parseInt(showObject.price, 10);
               $('#showTotalCost').html(`${showsTotal}`);
             });
           });
@@ -74,11 +73,10 @@ const eventDetailsView = (eventFirebaseKey) => {
       eventStaff.getEventStaff(eventFirebaseKey)
         .then((staffArray) => {
           let staffTotal = 0;
-          const staffPrice = 50;
           staffArray.forEach((staff) => {
             staffData.getSingleStaff(staff.staffUid).then((staffObject) => {
-              $('#staffLineItems').append(`<div class="line-item"><div>${staffObject.name}</div><div>${staffPrice}</div></div>`);
-              staffTotal += 50;
+              $('#staffLineItems').append(`<div class="line-item"><div>${staffObject.name}</div><div>${staffObject.price}</div></div>`);
+              staffTotal += parseInt(staffObject.price, 10);
               $('#staffTotalCost').html(`${staffTotal}`);
             });
           });

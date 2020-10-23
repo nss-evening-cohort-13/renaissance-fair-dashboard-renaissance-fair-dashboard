@@ -1,6 +1,8 @@
 import showsData from '../../helpers/data/showsData';
 import showsView from '../views/showsView';
 
+const showPriceRandomizer = () => Math.floor(Math.random() * 950) + 100;
+
 const showsForm = () => {
   $('#shows-form').html(
     `<h2>Add a Show</h2>
@@ -29,7 +31,7 @@ const showsForm = () => {
       name: $('#name').val() || false,
       time: $('#time').val() || false,
       image: $('#image').val() || false,
-      price: 100,
+      price: showPriceRandomizer(),
     };
 
     if (Object.values(data).includes(false)) {

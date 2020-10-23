@@ -27,25 +27,27 @@ const addEventForm = () => {
         <label for="eventName">Event Image</label>
         <input type="text" class="form-control" id="eventImage" placeholder="https://">
       </div>
-      <div class="form-group">
+      <div class="selector-group">
+      <div class="form-group eventSelector">
         <label for="foodSelection">Select Food</label>
         <select multiple class="form-control" id="foodSelection">
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group eventSelector">
         <label for="showSelection">Select Shows</label>
         <select multiple class="form-control" id="showSelection">
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group eventSelector">
         <label for="staffSelection">Select Staff</label>
         <select multiple class="form-control" id="staffSelection">
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group eventSelector">
         <label for="souvenirSelection">Select Souvenirs</label>
         <select multiple class="form-control" id="souvenirSelection">
         </select>
+      </div>
       </div>
 
       <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
