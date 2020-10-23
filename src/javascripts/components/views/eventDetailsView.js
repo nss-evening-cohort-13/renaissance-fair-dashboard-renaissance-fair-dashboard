@@ -43,7 +43,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           foodArray.forEach((food) => {
             foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
               $('#foodLineItems').append(`<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`);
-              foodTotal += 100;
+              foodTotal += parseInt(foodObject.price, 10);
               $('#foodTotalCost').html(`${foodTotal}`);
             });
           });
@@ -66,7 +66,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           souvenirsArray.forEach((souvenir) => {
             souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
               $('#souvenirLineItems').append(`<div class="line-item"><div>${souvenirsObject.name}</div><div>${souvenirsObject.price}</div></div>`);
-              souvenirsTotal += 100;
+              souvenirsTotal += parseInt(souvenirsObject.price, 10);
               $('#souvenirTotalCost').html(`${souvenirsTotal}`);
             });
           });
