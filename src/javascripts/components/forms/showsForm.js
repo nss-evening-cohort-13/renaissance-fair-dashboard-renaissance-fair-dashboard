@@ -1,4 +1,5 @@
 import showsData from '../../helpers/data/showsData';
+import showsView from '../views/showsView';
 
 const showsForm = () => {
   $('#shows-form').html(
@@ -28,7 +29,7 @@ const showsForm = () => {
       name: $('#name').val() || false,
       time: $('#time').val() || false,
       image: $('#image').val() || false,
-      price: 100
+      price: 100,
     };
 
     if (Object.values(data).includes(false)) {
@@ -43,6 +44,12 @@ const showsForm = () => {
           $('#success-message').html(
             '<div class="alert alert-success" role="alert">Your Show Was Added!</div>'
           );
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            showsView.showsView();
+          }, 3000);
         })
         .catch((error) => console.warn(error));
       setTimeout(() => {

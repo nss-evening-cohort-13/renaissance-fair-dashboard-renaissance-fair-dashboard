@@ -1,4 +1,5 @@
 import staffData from '../../helpers/data/staffData';
+import staffView from '../views/staffView';
 
 const staffForm = () => {
   $('#staff-form').html(
@@ -28,7 +29,7 @@ const staffForm = () => {
       name: $('#name').val() || false,
       role: $('#role').val() || false,
       image: $('#image').val() || false,
-      price: 50
+      price: 50,
     };
 
     if (Object.values(data).includes(false)) {
@@ -43,6 +44,12 @@ const staffForm = () => {
           $('#success-message').html(
             '<div class="alert alert-success" role="alert">Your Staff Was Added!</div>'
           );
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            staffView.staffView();
+          }, 3000);
         })
         .catch((error) => console.warn(error));
       setTimeout(() => {
