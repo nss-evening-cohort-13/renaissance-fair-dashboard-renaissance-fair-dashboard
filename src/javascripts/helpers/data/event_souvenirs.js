@@ -21,7 +21,7 @@ const getEventSouvenirs = (eventFirebaseKey) => new Promise((resolve, reject) =>
 const addSouvenirsOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/souvenirsOfEvent.json`, dataObject).then((response) => {
     const update = { firebaseKey: response.data.name };
-    axios.patch(`${baseUrl}/souvenirOfEvent/${response.data.name}.json`, update);
+    axios.patch(`${baseUrl}/souvenirsOfEvent/${response.data.name}.json`, update);
   }).catch((error) => console.warn(error));
 };
 
