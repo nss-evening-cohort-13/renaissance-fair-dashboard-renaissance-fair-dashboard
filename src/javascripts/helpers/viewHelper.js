@@ -13,6 +13,7 @@ import updateStaffView from '../components/views/updateStaffView';
 import updateFoodView from '../components/views/updateFoodView';
 import addEventsView from '../components/views/addEventsView';
 import eventDetailsView from '../components/views/eventDetailsView';
+import updateEventView from '../components/views/updateEventView';
 
 const viewHelper = (id, arg) => {
   $('#app').html('');
@@ -48,6 +49,8 @@ const viewHelper = (id, arg) => {
       return addEventsView.addEventsView();
     case 'event-details-link':
       return eventDetailsView.eventDetailsView(arg);
+    case 'update-event-link':
+      return updateEventView.updateEventView(arg);
     default:
       return console.warn('nothing clicked');
   }
@@ -86,6 +89,9 @@ const viewListener = (view) => {
   });
   $('body').on('click', '.add-event', () => {
     viewHelper('add-event-link');
+  });
+  $('body').on('click', '.update-event', (e) => {
+    viewHelper('update-event-link', e.currentTarget.id);
   });
   $('body').on('click', '.event-details', (e) => {
     viewHelper('event-details-link', e.currentTarget.id);

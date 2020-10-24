@@ -65,3 +65,10 @@ $border-radius-size: 5px;
 .event-details:hover {
   cursor: pointer;
 }
+
+.icon-btn {
+  color: $freelancer-gold;
+  &:hover {
+    color: $freelancer-tan;
+  }
+}
