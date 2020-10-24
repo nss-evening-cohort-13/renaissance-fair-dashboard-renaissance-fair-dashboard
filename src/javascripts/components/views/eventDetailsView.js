@@ -39,7 +39,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="eventChart"></div>
                       </div>
       `);
-      filterDropdown.filterDropdown();
+      filterDropdown.filterDropdown(eventFirebaseKey);
       eventFood.getEventFood(eventFirebaseKey)
         .then((foodArray) => {
           let foodTotal = 0;

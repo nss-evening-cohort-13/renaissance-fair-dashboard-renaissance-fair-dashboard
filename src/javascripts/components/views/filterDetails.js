@@ -1,4 +1,7 @@
-const filterDropdown = () => {
+// import eventFood from '../../helpers/data/event_food';
+// import foodData from '../../helpers/data/foodData';
+
+const filterDropdown = (eventFirebaseKey) => {
   $('#dropdownContainer').html(`
         <div class="dropdown" id="filter-dropdown">
             <h2>Filter Event Details</h2>
@@ -20,9 +23,27 @@ const filterDropdown = () => {
         </div>`);
 
   $('body').on('click', '#filter-btn', (e) => {
+    console.warn('event fbkey', eventFirebaseKey);
     e.stopImmediatePropagation();
-    console.warn(e.currentTarget.id);
+    console.warn(e);
     console.warn($('#category').val());
+    if ($('#category').val() === 'food') {
+      $('#eventStaff').html('');
+      $('#eventShows').html('');
+      $('#eventSouvenirs').html('');
+      // eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
+      //   let foodTotal = 0;
+      //   foodArray.forEach((food) => {
+      //     foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
+      //       $('#foodLineItems').append(
+      //         `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
+      //       );
+      //       foodTotal += parseInt(foodObject.price, 10);
+      //       $('#foodTotalCost').html(`${foodTotal}`);
+      //     });
+      //   });
+      // });
+    }
   });
   // const domSrting = `
   //       <div class="dropdown" id="filter-dropdown">
