@@ -107,13 +107,7 @@ const eventDetailsView = (eventFirebaseKey) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
-    eventFood.getEventFood(eventFirebaseKey).then((response) => {
-      response.forEach((item) => {
-        if (firebaseKey === item.firebaseKey) {
-          eventFood.deleteFoodOfEvent(item.firebaseKey);
-        }
-      });
-    });
+    eventFood.deleteFoodOfEvent(firebaseKey);
   });
 };
 
