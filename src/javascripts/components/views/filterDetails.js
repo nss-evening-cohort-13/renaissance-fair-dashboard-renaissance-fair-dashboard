@@ -18,6 +18,12 @@ const filterDropdown = () => {
                 <button id="filter-btn" type="button" class="btn btn-warning dropdown-btn">Filter</button>
             </div>
         </div>`);
+
+  $('body').on('click', '#filter-btn', (e) => {
+    e.stopImmediatePropagation();
+    console.warn(e.currentTarget.id);
+    console.warn($('#category').val());
+  });
   // const domSrting = `
   //       <div class="dropdown" id="filter-dropdown">
   //           <h2>Filter Event Details</h2>
