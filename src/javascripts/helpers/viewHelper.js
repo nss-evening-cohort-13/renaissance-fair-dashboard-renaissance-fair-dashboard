@@ -13,11 +13,8 @@ import updateStaffView from '../components/views/updateStaffView';
 import updateFoodView from '../components/views/updateFoodView';
 import addEventsView from '../components/views/addEventsView';
 import eventDetailsView from '../components/views/eventDetailsView';
-<<<<<<< HEAD
 import filterDropdown from '../components/views/filterDetails';
-=======
 import updateEventView from '../components/views/updateEventView';
->>>>>>> development
 
 const viewHelper = (id, arg) => {
   $('#app').html('');
