@@ -7,6 +7,7 @@ import showData from '../../helpers/data/showsData';
 import foodData from '../../helpers/data/foodData';
 import souvenirsData from '../../helpers/data/souvenirsData';
 import staffData from '../../helpers/data/staffData';
+import filterDropdown from './filterDetails';
 
 const eventDetailsView = (eventFirebaseKey) => {
   eventData.getSingleEvent(eventFirebaseKey).then((response) => {
@@ -14,6 +15,7 @@ const eventDetailsView = (eventFirebaseKey) => {
       $('#app').html(`<div id="event-details-view">
                         <h2>${response.name} Details</h2>
                         <p>${response.date}</p>
+                        <div id="dropdownContainer"></div>
                         <div id="eventFood" class="event-category-details">
                           <h4 class="event-category-title">Food</h4>
                           <div id="foodLineItems"></div>
@@ -37,6 +39,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="eventChart"></div>
                       </div>
       `);
+      filterDropdown.filterDropdown();
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         let foodTotal = 0;
         foodArray.forEach((food) => {
