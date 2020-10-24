@@ -1,6 +1,3 @@
-// import eventFood from '../../helpers/data/event_food';
-// import foodData from '../../helpers/data/foodData';
-
 const filterByCategory = () => {
   $('#dropdownContainer').html(`
         <div class="dropdown" id="filter-dropdown">
@@ -84,10 +81,10 @@ const filterByPrice = () => {
             </div>
         </div>`);
   $('body').on('click', '#filterByPricebtn', (e) => {
-    console.warn('clicked');
     e.stopImmediatePropagation();
-    // if ($('#priceRange').val() === '5') {
-    // }
+    if ($('#priceRange').val() === '5') {
+      console.warn('clicked');
+    }
   });
 };
 
