@@ -1,4 +1,5 @@
 import foodData from '../../helpers/data/foodData';
+import foodView from '../views/foodView';
 
 const updateFoodForm = (foodObject) => {
   $('#update-food-form').html(`
@@ -34,13 +35,20 @@ const updateFoodForm = (foodObject) => {
       );
     } else {
       $('#error-message').html('');
-      foodData.updateFood(foodObject.firebaseKey, data)
+      foodData
+        .updateFood(foodObject.firebaseKey, data)
         .then(() => {
           $('#success-message').html(
             '<div class="alert alert-success" role="alert">Your Food Was Updated!</div>'
           );
           setTimeout(() => {
             $('#success-message').html('');
+          }, 3000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            foodView.foodView();
           }, 3000);
         })
         .catch((error) => console.warn(error));

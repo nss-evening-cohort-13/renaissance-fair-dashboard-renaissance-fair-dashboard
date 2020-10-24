@@ -1,4 +1,5 @@
 import souvenirData from '../../helpers/data/souvenirsData';
+import souvenirView from '../views/souvenirsView';
 
 const souvenirForm = () => {
   $('#souvenir-form').html(`
@@ -12,7 +13,7 @@ const souvenirForm = () => {
     </div>
     <div class="form-group">
       <label for="price">Price</label>
-      <input type="text" class="form-control" id="price" placeholder="Example: $100">
+      <input type="number" class="form-control" id="price" placeholder="Example: 100">
     </div>
     <div class="form-group">
       <label for="image">Image URL</label>
@@ -38,14 +39,23 @@ const souvenirForm = () => {
     } else {
       $('#error-message').html('');
 
-      souvenirData.addSouvenir(data).then(() => {
-        $('#success-message').html(
-          '<div class="alert alert-success" role="alert">Your Souvenir Was Added!</div>'
-        );
-        setTimeout(() => {
-          $('#success-message').html('');
-        }, 2000);
-      }).catch((error) => console.warn(error));
+      souvenirData
+        .addSouvenir(data)
+        .then(() => {
+          $('#success-message').html(
+            '<div class="alert alert-success" role="alert">Your Souvenir Was Added!</div>'
+          );
+          setTimeout(() => {
+            $('#success-message').html('');
+          }, 2000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            souvenirView.souvenirView();
+          }, 3000);
+        })
+        .catch((error) => console.warn(error));
       $('#price').val('');
       $('#image').val('');
       $('#name').val('');

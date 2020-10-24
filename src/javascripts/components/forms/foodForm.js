@@ -1,4 +1,5 @@
 import foodData from '../../helpers/data/foodData';
+import foodview from '../views/foodView';
 
 const foodForm = () => {
   $('#food-form').html(
@@ -8,15 +9,16 @@ const foodForm = () => {
             <div id="error-message"></div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Example: Hog tossing">
+              <input type="text" class="form-control" id="name" placeholder="Example: Turkey Leg">
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" placeholder="Example: $1">
+              <input type="number" min="1" class="form-control" id="price" placeholder="10" required>
             </div>
             <div class="form-group">
               <label for="image">Image Link</label>
               <input type="text" class="form-control" id="image" placeholder="https://">
+
             </div>
             <button id="add-food-btn" type="submit" class="add-btn btn btn-info"><i class="fas fa-plus-circle"></i> Add food</button>
           </form>
@@ -29,10 +31,9 @@ const foodForm = () => {
       price: $('#price').val() || false,
       image: $('#image').val() || false,
     };
-
     if (Object.values(data).includes(false)) {
       $('#error-message').html(
-        '<div class="alert alert-danger" role="alert">Please complete all fields</div>'
+        '<div class="alert alert-danger" role="alert">Please complete all fields using</div>'
       );
     } else {
       $('#error-message').html('');
@@ -44,8 +45,15 @@ const foodForm = () => {
           );
           setTimeout(() => {
             $('#sucess-message').html('');
-          }, 100);
-        }).catch((error) => console.warn(error));
+          }, 3000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            foodview.foodView();
+          }, 3000);
+        })
+        .catch((error) => console.warn(error));
       $('#name').val('');
       $('#price').val('');
       $('#image').val('');

@@ -1,4 +1,7 @@
 import staffData from '../../helpers/data/staffData';
+import staffView from '../views/staffView';
+
+const staffPriceRandomizer = () => Math.floor(Math.random() * 150) + 50;
 
 const staffForm = () => {
   $('#staff-form').html(
@@ -28,6 +31,7 @@ const staffForm = () => {
       name: $('#name').val() || false,
       role: $('#role').val() || false,
       image: $('#image').val() || false,
+      price: staffPriceRandomizer(),
     };
 
     if (Object.values(data).includes(false)) {
@@ -42,6 +46,12 @@ const staffForm = () => {
           $('#success-message').html(
             '<div class="alert alert-success" role="alert">Your Staff Was Added!</div>'
           );
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            staffView.staffView();
+          }, 3000);
         })
         .catch((error) => console.warn(error));
       setTimeout(() => {

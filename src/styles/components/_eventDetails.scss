@@ -1,0 +1,10 @@
+@import '../variables/index.scss';
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-total {
+  font-weight: bold;
+}

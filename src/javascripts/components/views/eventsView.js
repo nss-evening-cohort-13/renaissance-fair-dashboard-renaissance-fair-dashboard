@@ -1,11 +1,22 @@
+import eventData from '../../helpers/data/eventData';
+import card from '../cards/eventCard';
+
 const eventsView = () => {
+  $('#app').html('');
   $('#add-button').html(
     `<div id="add-event">
-       <a href='#'
-       class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
+       <a href='#' class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
     </div>`
   );
-  $('#app').html('<h2>Hello Events View Linked</h2>');
+  eventData.getAllEvents().then((response) => {
+    if (response.length) {
+      response.forEach((event) => {
+        $('#app').append(card.buildEventCard(event));
+      });
+    } else {
+      $('#app').html('<div>NO EVENTS</div>');
+    }
+  });
 };
 
 export default { eventsView };
