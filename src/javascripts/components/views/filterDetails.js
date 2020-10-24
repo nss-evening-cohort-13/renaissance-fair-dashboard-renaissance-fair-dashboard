@@ -72,11 +72,11 @@ const filterByPrice = () => {
                     <label for="board">Price Range</label>
                     <select class="form-control" id="priceRange">
                         <option value="">Select a Price Range</option>
-                        <option value="5">$5-$25</option>
-                        <option value="25">$26-$50</option>
-                        <option value="51">$51-$75</option>
-                        <option value="76">$76-$100</option>
-                        <option value="100">$100+</option>
+                        <option value="5">$5-$50</option>
+                        <option value="51">$51-$100</option>
+                        <option value="101">$101-$150</option>
+                        <option value="151">$151-$200</option>
+                        <option value="201">$201+</option>
                         <option value="all">Show All price Ranges</option>
                     </select>
                 </div>
@@ -86,6 +86,8 @@ const filterByPrice = () => {
   $('body').on('click', '#filterByPricebtn', (e) => {
     console.warn('clicked');
     e.stopImmediatePropagation();
+    // if ($('#priceRange').val() === '5') {
+    // }
   });
 };
 
