@@ -46,7 +46,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
             $('#foodLineItems').append(
               `<div class="line-item" id="${food.firebaseKey}">
-                <div>${foodObject.name}<button id="${food.firebaseKey}" class="btn btn-outline delete-food icon-btn"><i id="food-icon" class="fas fa-times"></i></button></div>
+                <div>${foodObject.name}<button id="${food.firebaseKey}" class="btn btn-outline delete-event-food icon-btn"><i id="food-icon" class="fas fa-times"></i></button></div>
                 <div>${foodObject.price}</div>
               </div>`
             );
@@ -61,7 +61,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           showData.getSingleShow(show.showUid).then((showObject) => {
             $('#showLineItems').append(
               `<div class="line-item" id="${show.firebaseKey}">
-                <div>${showObject.name}<button id="${show.firebaseKey}" class="btn btn-outline delete-show icon-btn"><i id="show-icon" class="fas fa-times"></i></button></div>
+                <div>${showObject.name}<button id="${show.firebaseKey}" class="btn btn-outline delete-event-show icon-btn"><i id="show-icon" class="fas fa-times"></i></button></div>
                 <div>${showObject.price}</div>
               </div>`
             );
@@ -77,7 +77,7 @@ const eventDetailsView = (eventFirebaseKey) => {
             console.warn('souvenir.firebaseKey works!!!!', souvenir.firebaseKey);
             $('#souvenirLineItems').append(
               `<div class="line-item" id="${souvenir.firebaseKey}">
-                <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
+                <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-event-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
                 <div>${souvenirsObject.price}</div>
               </div>`
             );
@@ -92,7 +92,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           staffData.getSingleStaff(staff.staffUid).then((staffObject) => {
             $('#staffLineItems').append(`
               <div class="line-item" id="${staff.firebaseKey}">
-                <div>${staffObject.name}<button id="${staff.firebaseKey}" class="btn btn-outline delete-staff icon-btn"><i id="staff-icon" class="fas fa-times"></i></button></div>
+                <div>${staffObject.name}<button id="${staff.firebaseKey}" class="btn btn-outline delete-event-staff icon-btn"><i id="staff-icon" class="fas fa-times"></i></button></div>
                 <div>${staffObject.price}</div>
               </div>`);
             staffTotal += parseInt(staffObject.price, 10);
@@ -104,19 +104,19 @@ const eventDetailsView = (eventFirebaseKey) => {
       $('#app').html('<h2>NO EVENT DETAILS</h2>');
     }
   });
-  $('body').on('click', '.delete-food', (e) => {
+  $('body').on('click', '.delete-event-food', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventFood.deleteFoodOfEvent(firebaseKey);
   });
-  $('body').on('click', '.delete-show', (e) => {
+  $('body').on('click', '.delete-event-show', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventShows.deleteShowsOfEvent(firebaseKey);
   });
-  $('body').on('click', '.delete-souvenir', (e) => {
+  $('body').on('click', '.delete-event-souvenir', (e) => {
     e.stopImmediatePropagation();
     console.warn(e.currentTarget.id);
     const firebaseKey = e.currentTarget.id;
@@ -124,7 +124,7 @@ const eventDetailsView = (eventFirebaseKey) => {
     $(`.line-item#${firebaseKey}`).remove();
     eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey);
   });
-  $('body').on('click', '.delete-staff', (e) => {
+  $('body').on('click', '.delete-event-staff', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
