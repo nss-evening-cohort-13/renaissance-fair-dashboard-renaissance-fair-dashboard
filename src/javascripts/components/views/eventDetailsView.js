@@ -74,7 +74,6 @@ const eventDetailsView = (eventFirebaseKey) => {
         let souvenirsTotal = 0;
         souvenirsArray.forEach((souvenir) => {
           souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
-            console.warn('souvenir.firebaseKey works!!!!', souvenir.firebaseKey);
             $('#souvenirLineItems').append(
               `<div class="line-item" id="${souvenir.firebaseKey}">
                 <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-event-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
@@ -118,9 +117,7 @@ const eventDetailsView = (eventFirebaseKey) => {
   });
   $('body').on('click', '.delete-event-souvenir', (e) => {
     e.stopImmediatePropagation();
-    console.warn(e.currentTarget.id);
     const firebaseKey = e.currentTarget.id;
-    console.warn(firebaseKey);
     $(`.line-item#${firebaseKey}`).remove();
     eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey);
   });
