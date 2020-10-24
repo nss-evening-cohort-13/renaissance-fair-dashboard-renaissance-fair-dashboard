@@ -60,8 +60,8 @@ const eventDetailsView = (eventFirebaseKey) => {
         showsArray.forEach((show) => {
           showData.getSingleShow(show.showUid).then((showObject) => {
             $('#showLineItems').append(
-              `<div class="line-item">
-                <div>${showObject.name}<button id="${showObject.uid}" class="btn btn-outline delete-show icon-btn"><i id="show-icon" class="fas fa-times"></i></button></div>
+              `<div class="line-item" id="${show.firebaseKey}">
+                <div>${showObject.name}<button id="${show.firebaseKey}" class="btn btn-outline delete-show icon-btn"><i id="show-icon" class="fas fa-times"></i></button></div>
                 <div>${showObject.price}</div>
               </div>`
             );
@@ -74,9 +74,10 @@ const eventDetailsView = (eventFirebaseKey) => {
         let souvenirsTotal = 0;
         souvenirsArray.forEach((souvenir) => {
           souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
+            console.warn('souvenir.firebaseKey works!!!!', souvenir.firebaseKey);
             $('#souvenirLineItems').append(
-              `<div class="line-item">
-                <div>${souvenirsObject.name}<button id="${souvenirsObject.uid}" class="btn btn-outline delete-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
+              `<div class="line-item" id="${souvenir.firebaseKey}">
+                <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
                 <div>${souvenirsObject.price}</div>
               </div>`
             );
@@ -90,8 +91,8 @@ const eventDetailsView = (eventFirebaseKey) => {
         staffArray.forEach((staff) => {
           staffData.getSingleStaff(staff.staffUid).then((staffObject) => {
             $('#staffLineItems').append(`
-              <div class="line-item">
-                <div>${staffObject.name}<button id="${staffObject.uid}" class="btn btn-outline delete-staff icon-btn"><i id="staff-icon" class="fas fa-times"></i></button></div>
+              <div class="line-item" id="${staff.firebaseKey}">
+                <div>${staffObject.name}<button id="${staff.firebaseKey}" class="btn btn-outline delete-staff icon-btn"><i id="staff-icon" class="fas fa-times"></i></button></div>
                 <div>${staffObject.price}</div>
               </div>`);
             staffTotal += parseInt(staffObject.price, 10);
@@ -108,6 +109,26 @@ const eventDetailsView = (eventFirebaseKey) => {
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventFood.deleteFoodOfEvent(firebaseKey);
+  });
+  $('body').on('click', '.delete-show', (e) => {
+    e.stopImmediatePropagation();
+    const firebaseKey = e.currentTarget.id;
+    $(`.line-item#${firebaseKey}`).remove();
+    eventShows.deleteShowsOfEvent(firebaseKey);
+  });
+  $('body').on('click', '.delete-souvenir', (e) => {
+    e.stopImmediatePropagation();
+    console.warn(e.currentTarget.id);
+    const firebaseKey = e.currentTarget.id;
+    console.warn(firebaseKey);
+    $(`.line-item#${firebaseKey}`).remove();
+    eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey);
+  });
+  $('body').on('click', '.delete-staff', (e) => {
+    e.stopImmediatePropagation();
+    const firebaseKey = e.currentTarget.id;
+    $(`.line-item#${firebaseKey}`).remove();
+    eventStaff.deleteStaffOfEvent(firebaseKey);
   });
 };
 
