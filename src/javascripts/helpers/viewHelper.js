@@ -13,6 +13,7 @@ import updateStaffView from '../components/views/updateStaffView';
 import updateFoodView from '../components/views/updateFoodView';
 import addEventsView from '../components/views/addEventsView';
 import eventDetailsView from '../components/views/eventDetailsView';
+import filterDropdown from '../components/views/filterDetails';
 
 const viewHelper = (id, arg) => {
   $('#app').html('');
@@ -89,6 +90,7 @@ const viewListener = (view) => {
   });
   $('body').on('click', '.event-details', (e) => {
     viewHelper('event-details-link', e.currentTarget.id);
+    filterDropdown.filterDropdown();
   });
 };
 
