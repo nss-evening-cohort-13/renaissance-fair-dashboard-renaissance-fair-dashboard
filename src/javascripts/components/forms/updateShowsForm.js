@@ -1,4 +1,5 @@
 import showData from '../../helpers/data/showsData';
+import showView from '../views/showsView';
 
 const updateShowForm = (showObject) => {
   $('#update-show-form').html(`
@@ -40,6 +41,12 @@ const updateShowForm = (showObject) => {
           $('#success-message').html(
             '<div class="alert alert-success" role="alert">Your Show Was Updated!</div>'
           );
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            showView.showsView();
+          }, 3000);
         })
         .catch((error) => console.warn(error));
       setTimeout(() => {

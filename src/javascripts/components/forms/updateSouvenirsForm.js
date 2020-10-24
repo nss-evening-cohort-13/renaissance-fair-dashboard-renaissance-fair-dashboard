@@ -1,4 +1,5 @@
 import souvenirsData from '../../helpers/data/souvenirsData';
+import souvenirView from '../views/souvenirsView';
 
 const updateSouvenirsForm = (souvenirObject) => {
   $('#update-souvenir-form').html(`
@@ -37,14 +38,23 @@ const updateSouvenirsForm = (souvenirObject) => {
     } else {
       $('#error-message').html('');
 
-      souvenirsData.updateSouvenir(souvenirObject.firebaseKey, data).then(() => {
-        $('#success-message').html(
-          '<div class="alert alert-success" role="alert">Your Souvenir Was Updated!</div>'
-        );
-        setTimeout(() => {
-          $('#success-message').html('');
-        }, 2000);
-      }).catch((error) => console.warn(error));
+      souvenirsData
+        .updateSouvenir(souvenirObject.firebaseKey, data)
+        .then(() => {
+          $('#success-message').html(
+            '<div class="alert alert-success" role="alert">Your Souvenir Was Updated!</div>'
+          );
+          setTimeout(() => {
+            $('#success-message').html('');
+          }, 2000);
+        })
+        .then(() => {
+          setTimeout(() => {
+            $('#app').html('');
+            souvenirView.souvenirView();
+          }, 3000);
+        })
+        .catch((error) => console.warn(error));
     }
   });
 };

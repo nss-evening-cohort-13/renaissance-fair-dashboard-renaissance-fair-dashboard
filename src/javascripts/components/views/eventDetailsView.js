@@ -43,7 +43,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           foodArray.forEach((food) => {
             foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
               $('#foodLineItems').append(`<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`);
-              foodTotal += 100;
+              foodTotal += parseInt(foodObject.price, 10);
               $('#foodTotalCost').html(`${foodTotal}`);
             });
           });
@@ -51,11 +51,10 @@ const eventDetailsView = (eventFirebaseKey) => {
       eventShows.getEventShows(eventFirebaseKey)
         .then((showsArray) => {
           let showsTotal = 0;
-          const showPrice = 100;
           showsArray.forEach((show) => {
             showData.getSingleShow(show.showUid).then((showObject) => {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showPrice}</div></div>`);
-              showsTotal += 100;
+              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
+              showsTotal += parseInt(showObject.price, 10);
               $('#showTotalCost').html(`${showsTotal}`);
             });
           });
@@ -66,7 +65,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           souvenirsArray.forEach((souvenir) => {
             souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
               $('#souvenirLineItems').append(`<div class="line-item"><div>${souvenirsObject.name}</div><div>${souvenirsObject.price}</div></div>`);
-              souvenirsTotal += 100;
+              souvenirsTotal += parseInt(souvenirsObject.price, 10);
               $('#souvenirTotalCost').html(`${souvenirsTotal}`);
             });
           });
@@ -74,11 +73,10 @@ const eventDetailsView = (eventFirebaseKey) => {
       eventStaff.getEventStaff(eventFirebaseKey)
         .then((staffArray) => {
           let staffTotal = 0;
-          const staffPrice = 50;
           staffArray.forEach((staff) => {
             staffData.getSingleStaff(staff.staffUid).then((staffObject) => {
-              $('#staffLineItems').append(`<div class="line-item"><div>${staffObject.name}</div><div>${staffPrice}</div></div>`);
-              staffTotal += 50;
+              $('#staffLineItems').append(`<div class="line-item"><div>${staffObject.name}</div><div>${staffObject.price}</div></div>`);
+              staffTotal += parseInt(staffObject.price, 10);
               $('#staffTotalCost').html(`${staffTotal}`);
             });
           });

@@ -31,16 +31,6 @@ const foodForm = () => {
       price: $('#price').val() || false,
       image: $('#image').val() || false,
     };
-    const isNormalInteger = (str) => {
-      const n = Math.floor(Number(str));
-      return n !== Infinity && String(n) === str && n >= 0;
-    };
-    if (isNormalInteger(data.price) === false) {
-      $('#error-message').html(
-        '<div class="alert alert-danger" role="alert">Please enter a numeric value for the price</div>'
-      );
-      data.price = false;
-    }
     if (Object.values(data).includes(false)) {
       $('#error-message').html(
         '<div class="alert alert-danger" role="alert">Please complete all fields using</div>'
