@@ -11,7 +11,7 @@ import staffData from '../../helpers/data/staffData';
 const eventDetailsView = (eventFirebaseKey) => {
   eventData.getSingleEvent(eventFirebaseKey).then((response) => {
     if (response) {
-      $('#app').html(`<div id="event-details-view" class="event-details">
+      $('#app').html(`<div id="event-details-view">
                         <h2>${response.name} Details</h2>
                         <p>${response.date}</p>
                         <div id="eventFood" class="event-category-details">
@@ -42,7 +42,7 @@ const eventDetailsView = (eventFirebaseKey) => {
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
             $('#foodLineItems').append(
-              `<div class="line-item">
+              `<div class="line-item" id="${food.firebaseKey}">
                 <div>${foodObject.name}<button id="${food.firebaseKey}" class="btn btn-outline delete-food icon-btn"><i id="food-icon" class="fas fa-times"></i></button></div>
                 <div>${foodObject.price}</div>
               </div>`
@@ -103,12 +103,12 @@ const eventDetailsView = (eventFirebaseKey) => {
   $('body').on('click', '.delete-food', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
-    console.warn('clicked firebase key', firebaseKey);
-    $(`.event-details#${firebaseKey}`).remove();
-    eventFood.getEventFood(firebaseKey).then((response) => {
-      console.warn('geteventfood', response);
+    $(`.line-item#${firebaseKey}`).remove();
+    eventFood.getEventFood(eventFirebaseKey).then((response) => {
       response.forEach((item) => {
-        eventFood.deleteFoodOfEvent(item.firebaseKey);
+        if (firebaseKey === item.firebaseKey) {
+          eventFood.deleteFoodOfEvent(item.firebaseKey);
+        }
       });
     });
   });
