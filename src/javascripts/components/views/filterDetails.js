@@ -1,7 +1,7 @@
 // import eventFood from '../../helpers/data/event_food';
 // import foodData from '../../helpers/data/foodData';
 
-const filterDropdown = () => {
+const filterByCategory = () => {
   $('#dropdownContainer').html(`
         <div class="dropdown" id="filter-dropdown">
             <h2>Filter Event Details</h2>
@@ -19,11 +19,11 @@ const filterDropdown = () => {
                         <option value="all">Show All</option>
                     </select>
                 </div>
-                <button id="filter-btn" type="button" class="btn btn-warning dropdown-btn">Filter</button>
+                <button id="filterByCategoryBtn" type="button" class="btn btn-warning filter-btn">Filter</button>
             </div>
         </div>`);
 
-  $('body').on('click', '#filter-btn', (e) => {
+  $('body').on('click', '#filterByCategoryBtn', (e) => {
     e.stopImmediatePropagation();
     if ($('#category').val() === 'food') {
       $('#error-message').html('');
@@ -63,4 +63,30 @@ const filterDropdown = () => {
   });
 };
 
-export default { filterDropdown };
+const filterByPrice = () => {
+  $('#filterByPrice').html(`
+        <div class="dropdown" id="filterByPriceDropdown">
+            <div id="error-message"></>
+            <div>
+                <div class="form-group row">
+                    <label for="board">Price Range</label>
+                    <select class="form-control" id="priceRange">
+                        <option value="">Select a Price Range</option>
+                        <option value="5">$5-$25</option>
+                        <option value="25">$26-$50</option>
+                        <option value="51">$51-$75</option>
+                        <option value="76">$76-$100</option>
+                        <option value="100">$100+</option>
+                        <option value="all">Show All price Ranges</option>
+                    </select>
+                </div>
+                <button id="filterByPricebtn" type="button" class="btn btn-warning filter-btn">Filter</button>
+            </div>
+        </div>`);
+  $('body').on('click', '#filterByPricebtn', (e) => {
+    console.warn('clicked');
+    e.stopImmediatePropagation();
+  });
+};
+
+export default { filterByCategory, filterByPrice };
