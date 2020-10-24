@@ -39,11 +39,14 @@ const addEvent = (data) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const updateEvent = (firebaseKey, eventObject) => axios.patch(`${baseUrl}/events/${firebaseKey}.json`, eventObject);
+
 const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
 
 export default {
   addEvent,
   getAllEvents,
   getSingleEvent,
+  updateEvent,
   deleteEvent
 };
