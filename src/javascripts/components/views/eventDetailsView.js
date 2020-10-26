@@ -36,10 +36,12 @@ const eventDetailsView = (eventFirebaseKey) => {
                           <div id="staffLineItems"></div>
                           <div class="line-item category-total"><div>Total</div><div id="staffTotalCost"></div></div>
                         </div>
+                        <div id="eventTotal"></div>
                         <div id="eventChart"></div>
                       </div>
       `);
       filterDropdown.filterDropdown();
+      const eventTotal = [];
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         let foodTotal = 0;
         foodArray.forEach((food) => {
@@ -51,6 +53,7 @@ const eventDetailsView = (eventFirebaseKey) => {
               </div>`
             );
             foodTotal += parseInt(foodObject.price, 10);
+            eventTotal.push(parseInt(foodObject.price, 10));
             $('#foodTotalCost').html(`${foodTotal}`);
           });
         });
@@ -66,25 +69,31 @@ const eventDetailsView = (eventFirebaseKey) => {
               </div>`
             );
             showsTotal += parseInt(showObject.price, 10);
+            eventTotal.push(parseInt(showObject.price, 10));
             $('#showTotalCost').html(`${showsTotal}`);
           });
         });
       });
-      eventSouvenirs.getEventSouvenirs(eventFirebaseKey).then((souvenirsArray) => {
-        let souvenirsTotal = 0;
-        souvenirsArray.forEach((souvenir) => {
-          souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
-            $('#souvenirLineItems').append(
-              `<div class="line-item" id="${souvenir.firebaseKey}">
+      eventSouvenirs
+        .getEventSouvenirs(eventFirebaseKey)
+        .then((souvenirsArray) => {
+          let souvenirsTotal = 0;
+          souvenirsArray.forEach((souvenir) => {
+            souvenirsData
+              .getSingleSouvenir(souvenir.souvenirUid)
+              .then((souvenirsObject) => {
+                $('#souvenirLineItems').append(
+                  `<div class="line-item" id="${souvenir.firebaseKey}">
                 <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-event-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
                 <div>${souvenirsObject.price}</div>
               </div>`
-            );
-            souvenirsTotal += parseInt(souvenirsObject.price, 10);
-            $('#souvenirTotalCost').html(`${souvenirsTotal}`);
+                );
+                souvenirsTotal += parseInt(souvenirsObject.price, 10);
+                eventTotal.push(parseInt(souvenirsObject.price, 10));
+                $('#souvenirTotalCost').html(`${souvenirsTotal}`);
+              });
           });
         });
-      });
       eventStaff.getEventStaff(eventFirebaseKey).then((staffArray) => {
         let staffTotal = 0;
         staffArray.forEach((staff) => {
@@ -95,10 +104,18 @@ const eventDetailsView = (eventFirebaseKey) => {
                 <div>${staffObject.price}</div>
               </div>`);
             staffTotal += parseInt(staffObject.price, 10);
+            eventTotal.push(parseInt(staffObject.price, 10));
             $('#staffTotalCost').html(`${staffTotal}`);
           });
         });
       });
+
+      setTimeout(() => {
+        const eventTotalReducer = eventTotal.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotalReducer}</h2>`
+        );
+      }, 1000);
     } else {
       $('#app').html('<h2>NO EVENT DETAILS</h2>');
     }
