@@ -1,13 +1,5 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
-import eventFood from './event_food';
-import eventShows from './event_shows';
-import eventSouvenirs from './event_souvenirs';
-import eventStaff from './event_staff';
-import showData from './showsData';
-import foodData from './foodData';
-import souvenirsData from './souvenirsData';
-import staffData from './staffData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -51,61 +43,10 @@ const updateEvent = (firebaseKey, eventObject) => axios.patch(`${baseUrl}/events
 
 const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
 
-const foodTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  let foodTotal = 0;
-  eventFood.getEventFood(eventFirebaseKey)
-    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
-    .then((foodObjects) => foodObjects.forEach((food) => {
-      foodTotal += parseInt(food.price, 10);
-    }))
-    .then(() => resolve(foodTotal))
-    .catch((error) => reject(error));
-});
-
-const showsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  let showsTotal = 0;
-  eventShows.getEventShows(eventFirebaseKey)
-    .then((showsArray) => Promise.all(showsArray.map((shows) => showData.getSingleShow(shows.showUid))))
-    .then((showsObjects) => showsObjects.forEach((show) => {
-      showsTotal += parseInt(show.price, 10);
-    }))
-    .then(() => resolve(showsTotal))
-    .catch((error) => reject(error));
-});
-
-const souvenirsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  let souvenirsTotal = 0;
-  eventSouvenirs.getEventSouvenirs(eventFirebaseKey)
-    // execute getSinglesouvenirs for all elements in the array and resolve when all are resolved
-    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirUid))))
-    // Add up the the prices to variable
-    .then((souvenirsObjects) => souvenirsObjects.forEach((souvenir) => {
-      souvenirsTotal += parseInt(souvenir.price, 10);
-    }))
-    // resolve the promise with the final total
-    .then(() => resolve(souvenirsTotal))
-    .catch((error) => reject(error));
-});
-
-const staffTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  let staffTotal = 0;
-  eventStaff.getEventStaff(eventFirebaseKey)
-    .then((staffArray) => Promise.all(staffArray.map((staff) => staffData.getSingleStaff(staff.staffUid))))
-    .then((staffObjects) => staffObjects.forEach((staffMember) => {
-      staffTotal += parseInt(staffMember.price, 10);
-    }))
-    .then(() => resolve(staffTotal))
-    .catch((error) => reject(error));
-});
-
 export default {
   addEvent,
   getAllEvents,
   getSingleEvent,
   updateEvent,
   deleteEvent,
-  staffTotalPrices,
-  foodTotalPrices,
-  souvenirsTotalPrices,
-  showsTotalPrices
 };
