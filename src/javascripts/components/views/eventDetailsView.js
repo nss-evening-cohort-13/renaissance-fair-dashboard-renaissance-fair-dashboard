@@ -41,7 +41,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                       </div>
       `);
       filterDropdown.filterDropdown();
-      const eventTotal = [];
+
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         let foodTotal = 0;
         foodArray.forEach((food) => {
@@ -53,7 +53,6 @@ const eventDetailsView = (eventFirebaseKey) => {
               </div>`
             );
             foodTotal += parseInt(foodObject.price, 10);
-            eventTotal.push(parseInt(foodObject.price, 10));
             $('#foodTotalCost').html(`${foodTotal}`);
           });
         });
@@ -69,7 +68,7 @@ const eventDetailsView = (eventFirebaseKey) => {
               </div>`
             );
             showsTotal += parseInt(showObject.price, 10);
-            eventTotal.push(parseInt(showObject.price, 10));
+
             $('#showTotalCost').html(`${showsTotal}`);
           });
         });
@@ -89,7 +88,6 @@ const eventDetailsView = (eventFirebaseKey) => {
               </div>`
                 );
                 souvenirsTotal += parseInt(souvenirsObject.price, 10);
-                eventTotal.push(parseInt(souvenirsObject.price, 10));
                 $('#souvenirTotalCost').html(`${souvenirsTotal}`);
               });
           });
@@ -104,18 +102,22 @@ const eventDetailsView = (eventFirebaseKey) => {
                 <div>${staffObject.price}</div>
               </div>`);
             staffTotal += parseInt(staffObject.price, 10);
-            eventTotal.push(parseInt(staffObject.price, 10));
             $('#staffTotalCost').html(`${staffTotal}`);
           });
         });
       });
 
-      setTimeout(() => {
-        const eventTotalReducer = eventTotal.reduce((a, b) => a + b);
+      Promise.all([
+        eventData.foodTotalPrices(eventFirebaseKey),
+        eventData.showsTotalPrices(eventFirebaseKey),
+        eventData.souvenirsTotalPrices(eventFirebaseKey),
+        eventData.staffTotalPrices(eventFirebaseKey),
+      ]).then((values) => {
+        const eventTotal = values.reduce((a, b) => a + b);
         $('#eventTotal').html(
-          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotalReducer}</h2>`
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
-      }, 1000);
+      });
     } else {
       $('#app').html('<h2>NO EVENT DETAILS</h2>');
     }
