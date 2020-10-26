@@ -18,6 +18,12 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getEventFoodObjects = () => new Promise((resolve, reject) => {
+  
+})
+
+const getEventObjects = 
+
 const deleteFoodOfEvent = (firebaseKey) => {
   axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`);
 };
