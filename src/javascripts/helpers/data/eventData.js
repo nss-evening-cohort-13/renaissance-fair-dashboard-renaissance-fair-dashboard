@@ -88,20 +88,14 @@ const souvenirsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject)
 });
 
 const staffTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
-  eventStaff.getEventStaff(eventFirebaseKey).then((staffArray) => {
-    let staffTotal = 0; let resolveCounter = 0;
-    staffArray.forEach((staff) => {
-      staffData.getSingleStaff(staff.staffUid)
-        .then((staffObject) => {
-          staffTotal += parseInt(staffObject.price, 10);
-          // eslint-disable-next-line no-plusplus
-          if (++resolveCounter === staffArray.length) {
-            resolve(staffTotal);
-          }
-        })
-        .catch((e) => reject(e));
-    });
-  }).catch((error) => reject(error));
+  let staffTotal = 0;
+  eventStaff.getEventStaff(eventFirebaseKey)
+    .then((staffArray) => Promise.all(staffArray.map((staff) => staffData.getSingleStaff(staff.staffUid))))
+    .then((staffObjects) => staffObjects.forEach((staffMember) => {
+      staffTotal += parseInt(staffMember.price, 10);
+    }))
+    .then(() => resolve(staffTotal))
+    .catch((error) => reject(error));
 });
 
 export default {
