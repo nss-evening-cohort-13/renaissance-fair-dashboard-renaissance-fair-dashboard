@@ -17,6 +17,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <p>${response.date}</p>
                         <div id="dropdownContainer"></div>
                         <div id="filterByPrice"></div>
+                        <div id="filteredItems"></div>
                         <div id="eventFood" class="event-category-details">
                           <h4 class="event-category-title">Food</h4>
                           <div id="foodLineItems"></div>
@@ -44,16 +45,6 @@ const eventDetailsView = (eventFirebaseKey) => {
       filterDropdown.filterByCategory();
       filterDropdown.filterByPrice(eventFirebaseKey);
       eventData.getAllEventObjects(eventFirebaseKey);
-      // eventFood.getEventFood(eventFirebaseKey)
-      //   .then((foodArray) => {
-      //     let foodTotal = 0;
-      //     foodArray.forEach((food) => {
-      //       foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
-      //         $('#foodLineItems').append(`<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`);
-      //         foodTotal += parseInt(foodObject.price, 10);
-      //         $('#foodTotalCost').html(`${foodTotal}`);
-      //       });
-
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {

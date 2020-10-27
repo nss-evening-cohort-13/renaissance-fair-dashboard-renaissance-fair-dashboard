@@ -1,7 +1,4 @@
-import foodData from '../../helpers/data/foodData';
-import eventFood from '../../helpers/data/event_food';
-import showData from '../../helpers/data/showsData';
-import eventShows from '../../helpers/data/event_shows';
+import eventData from '../../helpers/data/eventData';
 
 const filterByCategory = () => {
   $('#dropdownContainer').html(`
@@ -27,6 +24,7 @@ const filterByCategory = () => {
 
   $('body').on('click', '#filterByCategoryBtn', (e) => {
     e.stopImmediatePropagation();
+    $('#filteredItems').html('');
     if ($('#category').val() === 'food') {
       $('#error-message').html('');
       $('#eventFood').css({ display: 'block' });
@@ -66,6 +64,7 @@ const filterByCategory = () => {
 };
 
 const filterByPrice = (eventFirebaseKey) => {
+  console.warn('fbkey', eventFirebaseKey);
   $('#filterByPrice').html(`
         <div class="dropdown" id="filterByPriceDropdown">
             <div id="error-message"></>
@@ -89,136 +88,61 @@ const filterByPrice = (eventFirebaseKey) => {
   // button click to filter items by price
   $('body').on('click', '#filterByPricebtn', (e) => {
     // clear HTML to reprint items in conditional
-    $('#foodLineItems').html('');
-    $('#foodTotalCost').html('');
-    $('#showLineItems').html('');
-    $('#showTotalCost').html('');
+    $('#filteredItems').html('');
+    // display none for event detail divs while filtering by price
+    $('#eventFood').css({ display: 'none' });
+    $('#eventShows').css({ display: 'none' });
+    $('#eventStaff').css({ display: 'none' });
+    $('#eventSouvenirs').css({ display: 'none' });
+    $('#eventTotalBanner').css({ display: 'none' });
     e.stopImmediatePropagation();
-    // get event food to target event food array
-    eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
-      let foodTotal = 0;
-      // run for each loop through food array to determine if food price fits the conditional
-      foodArray.forEach((food) => {
-        foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
-          if ($('#priceRange').val() === '5' && foodObject.price < 51) {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else if ($('#priceRange').val() === '51' && foodObject.price > 50 && foodObject.price < 101) {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else if ($('#priceRange').val() === '101' && foodObject.price > 100 && foodObject.price < 151) {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else if ($('#priceRange').val() === '151' && foodObject.price > 150 && foodObject.price < 201) {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else if ($('#priceRange').val() === '201' && foodObject.price > 200) {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else if ($('#priceRange').val() === 'all') {
-            $('#foodLineItems').append(
-              `<div class="line-item"><div>${foodObject.name}</div><div>${foodObject.price}</div></div>`
-            );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
-          } else {
-            foodTotal = 0;
-            $('#foodTotalCost').html(`${foodTotal}`);
-          }
-        });
+    eventData.getAllEventObjects(eventFirebaseKey).then((objectArray) => {
+      let objectTotal = 0;
+      objectArray.forEach((object) => {
+        if ($('#priceRange').val() === '5' && object.price < 51) {
+          $('#filteredItems').append(
+            `<div class="line-item"><div>${object.name}</div><div>${object.price}</div></div>`
+          );
+          objectTotal += (object.price);
+          $('#foodTotalCost').html(`${objectTotal}`);
+        } else if ($('#priceRange').val() === '51' && object.price > 50 && object.price < 101) {
+          $('#filteredItems').append(
+            `<div class="line-item"><div>${object.name}</div><div>${object.price}</div></div>`
+          );
+          objectTotal += (object.price);
+          $('#foodTotalCost').html(`${objectTotal}`);
+        } else if ($('#priceRange').val() === '101' && object.price > 100 && object.price < 151) {
+          $('#filteredItems').append(
+            `<div class="line-item"><div>${object.name}</div><div>${object.price}</div></div>`
+          );
+          objectTotal += (object.price);
+          $('#foodTotalCost').html(`${objectTotal}`);
+        } else if ($('#priceRange').val() === '151' && object.price > 150 && object.price < 201) {
+          $('#filteredItems').append(
+            `<div class="line-item"><div>${object.name}</div><div>${object.price}</div></div>`
+          );
+          objectTotal += (object.price);
+          $('#foodTotalCost').html(`${objectTotal}`);
+        } else if ($('#priceRange').val() === '201' && object.price > 201) {
+          $('#filteredItems').append(
+            `<div class="line-item"><div>${object.name}</div><div>${object.price}</div></div>`
+          );
+          objectTotal += (object.price);
+          $('#foodTotalCost').html(`${objectTotal}`);
+        } else if ($('#priceRange').val() === 'all') {
+          $('#filteredItems').html('');
+          $('#eventFood').css({ display: 'block' });
+          $('#eventShows').css({ display: 'block' });
+          $('#eventStaff').css({ display: 'block' });
+          $('#eventSouvenirs').css({ display: 'block' });
+          $('#eventTotalBanner').css({ display: 'block' });
+        } else if ($('#priceRange').val() === '') {
+          $('#error-message').html(
+            '<div class="alert alert-danger" role="alert">Please select a price range</div>'
+          );
+        }
       });
     });
-    // get event shows to target event show array
-    eventShows.getEventShows(eventFirebaseKey)
-      .then((showsArray) => {
-        let showsTotal = 0;
-        // run for each loop through show array to determine if show price fits the conditional
-        showsArray.forEach((show) => {
-          showData.getSingleShow(show.showUid).then((showObject) => {
-            if ($('#priceRange').val() === '5' && showObject.price < 51) {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else if ($('#priceRange').val() === '51' && showObject.price > 50 && showObject.price < 101) {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else if ($('#priceRange').val() === '101' && showObject.price > 100 && showObject.price < 151) {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else if ($('#priceRange').val() === '151' && showObject.price > 150 && showObject.price < 201) {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else if ($('#priceRange').val() === '201' && showObject.price > 200) {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else if ($('#priceRange').val() === 'all') {
-              $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-              showsTotal += showObject.price;
-              $('#showTotalCost').html(`${showsTotal}`);
-            } else {
-              showsTotal = 0;
-              $('#showTotalCost').html(`${showsTotal}`);
-            }
-          });
-        });
-      });
-    // get event souvenirs to target event souvenirs array
-    // eventSouvenirs.getEventSouvenirs(eventFirebaseKey)
-    //   .then((showsArray) => {
-    //     let showsTotal = 0;
-    //     // run for each loop through show array to determine if show price fits the conditional
-    //     showsArray.forEach((show) => {
-    //       showData.getSingleShow(show.showUid).then((showObject) => {
-    //         if ($('#priceRange').val() === '5' && showObject.price < 51) {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else if ($('#priceRange').val() === '51' && showObject.price > 50 && showObject.price < 101) {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else if ($('#priceRange').val() === '101' && showObject.price > 100 && showObject.price < 151) {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else if ($('#priceRange').val() === '151' && showObject.price > 150 && showObject.price < 201) {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else if ($('#priceRange').val() === '201' && showObject.price > 200) {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else if ($('#priceRange').val() === 'all') {
-    //           $('#showLineItems').append(`<div class="line-item"><div>${showObject.name}</div><div>${showObject.price}</div></div>`);
-    //           showsTotal += parseInt(showObject.price, 10);
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         } else {
-    //           showsTotal = 0;
-    //           $('#showTotalCost').html(`${showsTotal}`);
-    //         }
-    //       });
-    //     });
-    //   });
   });
 };
 
