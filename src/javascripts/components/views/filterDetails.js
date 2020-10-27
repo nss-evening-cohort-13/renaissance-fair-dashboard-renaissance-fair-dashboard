@@ -66,7 +66,6 @@ const filterByCategory = () => {
 };
 
 const filterByPrice = (eventFirebaseKey) => {
-  console.warn('fbkey', eventFirebaseKey);
   $('#filterByPrice').html(`
         <div class="dropdown" id="filterByPriceDropdown">
             <div id="error-message"></>
