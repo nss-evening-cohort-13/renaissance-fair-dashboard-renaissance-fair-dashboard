@@ -35,10 +35,13 @@ const makeChart = (values) => {
   series.dataFields.valueY = 'cost';
   series.dataFields.categoryX = 'category';
   series.name = 'Visits';
+  series.columns.template.tooltipText = 'Category: {categoryX}\nValue: {valueY}';
 
   const columnTemplate = series.columns.template;
   columnTemplate.strokeWidth = 2;
   columnTemplate.strokeOpacity = 1;
+  columnTemplate.fill = '#46725D';
+  columnTemplate.stroke = '#46725D';
 };
 
 export default { makeChart };
