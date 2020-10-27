@@ -48,5 +48,5 @@ export default {
   getAllEvents,
   getSingleEvent,
   updateEvent,
-  deleteEvent
+  deleteEvent,
 };
