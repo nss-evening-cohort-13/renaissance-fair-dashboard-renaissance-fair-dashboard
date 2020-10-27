@@ -67,9 +67,7 @@ const showsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
 
 const souvenirsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
   eventSouvenirs.getEventSouvenirs(eventFirebaseKey)
-    .then((souvenirsArray) => {
-      console.warn(souvenirsArray),
-      Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirsUid))))};
+    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirsUid))))
     .then((souvenirsObject) => resolve(souvenirsObject))
     .catch((error) => reject(error));
 });
