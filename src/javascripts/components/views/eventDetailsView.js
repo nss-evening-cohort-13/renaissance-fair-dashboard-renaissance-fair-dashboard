@@ -8,6 +8,7 @@ import foodData from '../../helpers/data/foodData';
 import souvenirsData from '../../helpers/data/souvenirsData';
 import staffData from '../../helpers/data/staffData';
 import filterDropdown from './filterDetails';
+import eventChart from '../charts/eventChart';
 
 const eventDetailsView = (eventFirebaseKey) => {
   eventData.getSingleEvent(eventFirebaseKey).then((response) => {
@@ -37,12 +38,13 @@ const eventDetailsView = (eventFirebaseKey) => {
                           <div class="line-item category-total"><div>Total</div><div id="staffTotalCost"></div></div>
                         </div>
                         <div id="eventTotal"></div>
-                        <div id="eventChart"></div>
+                        <div id="eventChart">
+                          <div id="chartdiv" style></div>
+                        </div>
                       </div>
       `);
       eventData.getAllEventObjects(eventFirebaseKey);
       filterDropdown.filterDropdown();
-
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
@@ -104,6 +106,7 @@ const eventDetailsView = (eventFirebaseKey) => {
         $('#showTotalCost').html(`${values[1]}`);
         $('#souvenirTotalCost').html(`${values[2]}`);
         $('#staffTotalCost').html(`${values[3]}`);
+        eventChart.makeChart(values);
         const eventTotal = values.reduce((a, b) => a + b);
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
