@@ -16,6 +16,8 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <h2>${response.name} Details</h2>
                         <p>${response.date}</p>
                         <div id="dropdownContainer"></div>
+                        <div id="filterByPrice"></div>
+                        <div id="filteredItems"></div>
                         <div id="eventFood" class="event-category-details">
                           <h4 class="event-category-title">Food</h4>
                           <div id="foodLineItems"></div>
@@ -40,9 +42,9 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="eventChart"></div>
                       </div>
       `);
+      filterDropdown.filterByCategory();
+      filterDropdown.filterByPrice(eventFirebaseKey);
       eventData.getAllEventObjects(eventFirebaseKey);
-      filterDropdown.filterDropdown();
-
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
