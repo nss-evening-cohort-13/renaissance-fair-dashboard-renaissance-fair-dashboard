@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import souvenirsData from './souvenirsData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -29,4 +30,16 @@ const addSouvenirsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { getEventSouvenirs, addSouvenirsOfEvents, deleteSouvenirsOfEvent };
+const souvenirsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventSouvenirs(eventFirebaseKey)
+    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirUid))))
+    .then((souvenirsObject) => resolve(souvenirsObject))
+    .catch((error) => reject(error));
+});
+
+export default {
+  getEventSouvenirs,
+  addSouvenirsOfEvents,
+  deleteSouvenirsOfEvent,
+  souvenirsFullObject
+};

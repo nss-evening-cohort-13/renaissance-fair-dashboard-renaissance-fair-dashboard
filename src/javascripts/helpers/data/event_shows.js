@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import showData from './showsData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -29,4 +30,16 @@ const addShowsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addShowsOfEvents, getEventShows, deleteShowsOfEvent };
+const showsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventShows(eventFirebaseKey)
+    .then((showArray) => Promise.all(showArray.map((Show) => showData.getSingleShow(Show.showUid))))
+    .then((showObject) => resolve(showObject))
+    .catch((error) => reject(error));
+});
+
+export default {
+  addShowsOfEvents,
+  getEventShows,
+  deleteShowsOfEvent,
+  showsFullObject
+};

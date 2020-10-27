@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import foodData from './foodData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -29,4 +30,16 @@ const addFoodOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addFoodOfEvents, getEventFood, deleteFoodOfEvent };
+const foodFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventFood(eventFirebaseKey)
+    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
+    .then((foodObject) => resolve(foodObject))
+    .catch((error) => reject(error));
+});
+
+export default {
+  addFoodOfEvents,
+  getEventFood,
+  deleteFoodOfEvent,
+  foodFullObject
+};

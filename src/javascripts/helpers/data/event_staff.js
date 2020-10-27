@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import staffData from './staffData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -29,4 +30,16 @@ const addStaffOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addStaffOfEvents, getEventStaff, deleteStaffOfEvent };
+const staffFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventStaff(eventFirebaseKey)
+    .then((staffArray) => Promise.all(staffArray.map((staff) => staffData.getSingleStaff(staff.staffUid))))
+    .then((staffObject) => resolve(staffObject))
+    .catch((error) => reject(error));
+});
+
+export default {
+  addStaffOfEvents,
+  getEventStaff,
+  deleteStaffOfEvent,
+  staffFullObject
+};
