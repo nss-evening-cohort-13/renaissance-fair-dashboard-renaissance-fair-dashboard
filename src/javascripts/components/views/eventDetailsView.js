@@ -36,12 +36,13 @@ const eventDetailsView = (eventFirebaseKey) => {
                           <div id="staffLineItems"></div>
                           <div class="line-item category-total"><div>Total</div><div id="staffTotalCost"></div></div>
                         </div>
+                        <div id="eventTotal"></div>
                         <div id="eventChart"></div>
                       </div>
       `);
       filterDropdown.filterDropdown();
+
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
-        let foodTotal = 0;
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
             $('#foodLineItems').append(
@@ -50,13 +51,10 @@ const eventDetailsView = (eventFirebaseKey) => {
                 <div>${foodObject.price}</div>
               </div>`
             );
-            foodTotal += parseInt(foodObject.price, 10);
-            $('#foodTotalCost').html(`${foodTotal}`);
           });
         });
       });
       eventShows.getEventShows(eventFirebaseKey).then((showsArray) => {
-        let showsTotal = 0;
         showsArray.forEach((show) => {
           showData.getSingleShow(show.showUid).then((showObject) => {
             $('#showLineItems').append(
@@ -65,28 +63,26 @@ const eventDetailsView = (eventFirebaseKey) => {
                 <div>${showObject.price}</div>
               </div>`
             );
-            showsTotal += parseInt(showObject.price, 10);
-            $('#showTotalCost').html(`${showsTotal}`);
           });
         });
       });
-      eventSouvenirs.getEventSouvenirs(eventFirebaseKey).then((souvenirsArray) => {
-        let souvenirsTotal = 0;
-        souvenirsArray.forEach((souvenir) => {
-          souvenirsData.getSingleSouvenir(souvenir.souvenirUid).then((souvenirsObject) => {
-            $('#souvenirLineItems').append(
-              `<div class="line-item" id="${souvenir.firebaseKey}">
+      eventSouvenirs
+        .getEventSouvenirs(eventFirebaseKey)
+        .then((souvenirsArray) => {
+          souvenirsArray.forEach((souvenir) => {
+            souvenirsData
+              .getSingleSouvenir(souvenir.souvenirUid)
+              .then((souvenirsObject) => {
+                $('#souvenirLineItems').append(
+                  `<div class="line-item" id="${souvenir.firebaseKey}">
                 <div>${souvenirsObject.name}<button id="${souvenir.firebaseKey}" class="btn btn-outline delete-event-souvenir icon-btn"><i id="souvenir-icon" class="fas fa-times"></i></button></div>
                 <div>${souvenirsObject.price}</div>
               </div>`
-            );
-            souvenirsTotal += parseInt(souvenirsObject.price, 10);
-            $('#souvenirTotalCost').html(`${souvenirsTotal}`);
+                );
+              });
           });
         });
-      });
       eventStaff.getEventStaff(eventFirebaseKey).then((staffArray) => {
-        let staffTotal = 0;
         staffArray.forEach((staff) => {
           staffData.getSingleStaff(staff.staffUid).then((staffObject) => {
             $('#staffLineItems').append(`
@@ -94,10 +90,23 @@ const eventDetailsView = (eventFirebaseKey) => {
                 <div>${staffObject.name}<button id="${staff.firebaseKey}" class="btn btn-outline delete-event-staff icon-btn"><i id="staff-icon" class="fas fa-times"></i></button></div>
                 <div>${staffObject.price}</div>
               </div>`);
-            staffTotal += parseInt(staffObject.price, 10);
-            $('#staffTotalCost').html(`${staffTotal}`);
           });
         });
+      });
+      Promise.all([
+        eventFood.foodTotalPrices(eventFirebaseKey),
+        eventShows.showsTotalPrices(eventFirebaseKey),
+        eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
+        eventStaff.staffTotalPrices(eventFirebaseKey),
+      ]).then((values) => {
+        $('#foodTotalCost').html(`${values[0]}`);
+        $('#showTotalCost').html(`${values[1]}`);
+        $('#souvenirTotalCost').html(`${values[2]}`);
+        $('#staffTotalCost').html(`${values[3]}`);
+        const eventTotal = values.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
+        );
       });
     } else {
       $('#app').html('<h2>NO EVENT DETAILS</h2>');
