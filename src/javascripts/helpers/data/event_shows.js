@@ -37,9 +37,21 @@ const showsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const showsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  let showsTotal = 0;
+  getEventShows(eventFirebaseKey)
+    .then((showsArray) => Promise.all(showsArray.map((shows) => showData.getSingleShow(shows.showUid))))
+    .then((showsObjects) => showsObjects.forEach((show) => {
+      showsTotal += parseInt(show.price, 10);
+    }))
+    .then(() => resolve(showsTotal))
+    .catch((error) => reject(error));
+});
+
 export default {
   addShowsOfEvents,
   getEventShows,
   deleteShowsOfEvent,
-  showsFullObject
+  showsFullObject,
+  showsTotalPrices
 };

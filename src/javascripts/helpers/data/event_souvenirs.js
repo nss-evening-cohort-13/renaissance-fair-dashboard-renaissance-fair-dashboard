@@ -37,9 +37,24 @@ const souvenirsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) 
     .catch((error) => reject(error));
 });
 
+const souvenirsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  let souvenirsTotal = 0;
+  getEventSouvenirs(eventFirebaseKey)
+    // execute getSinglesouvenirs for all elements in the array and resolve when all are resolved
+    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirUid))))
+    // Add up the the prices to variable
+    .then((souvenirsObjects) => souvenirsObjects.forEach((souvenir) => {
+      souvenirsTotal += parseInt(souvenir.price, 10);
+    }))
+    // resolve the promise with the final total
+    .then(() => resolve(souvenirsTotal))
+    .catch((error) => reject(error));
+});
+
 export default {
   getEventSouvenirs,
   addSouvenirsOfEvents,
   deleteSouvenirsOfEvent,
-  souvenirsFullObject
+  souvenirsFullObject,
+  souvenirsTotalPrices
 };

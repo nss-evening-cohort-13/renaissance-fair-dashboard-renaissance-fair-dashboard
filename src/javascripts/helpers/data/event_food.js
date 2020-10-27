@@ -37,9 +37,21 @@ const foodFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const foodTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  let foodTotal = 0;
+  getEventFood(eventFirebaseKey)
+    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
+    .then((foodObjects) => foodObjects.forEach((food) => {
+      foodTotal += parseInt(food.price, 10);
+    }))
+    .then(() => resolve(foodTotal))
+    .catch((error) => reject(error));
+});
+
 export default {
   addFoodOfEvents,
   getEventFood,
   deleteFoodOfEvent,
-  foodFullObject
+  foodFullObject,
+  foodTotalPrices
 };
