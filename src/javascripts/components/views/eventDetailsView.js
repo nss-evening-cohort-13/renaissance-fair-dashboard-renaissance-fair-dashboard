@@ -117,73 +117,24 @@ const eventDetailsView = (eventFirebaseKey) => {
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventFood.deleteFoodOfEvent(firebaseKey);
-    Promise.all([
-      eventFood.foodTotalPrices(eventFirebaseKey),
-      eventShows.showsTotalPrices(eventFirebaseKey),
-      eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
-      eventStaff.staffTotalPrices(eventFirebaseKey),
-    ]).then((values) => {
-      $('#foodTotalCost').html(`${values[0]}`);
-      const eventTotal = values.reduce((a, b) => a + b);
-      $('#eventTotal').html(
-        `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
-      );
-    });
   });
   $('body').on('click', '.delete-event-show', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventShows.deleteShowsOfEvent(firebaseKey);
-    Promise.all([
-      eventFood.foodTotalPrices(eventFirebaseKey),
-      eventShows.showsTotalPrices(eventFirebaseKey),
-      eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
-      eventStaff.staffTotalPrices(eventFirebaseKey),
-    ]).then((values) => {
-      console.warn(values[1]);
-      const eventTotal = values.reduce((a, b) => a + b);
-      $('#showTotalCost').html(`${values[1]}`);
-      $('#eventTotal').html(
-        `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
-      );
-    });
   });
   $('body').on('click', '.delete-event-souvenir', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey);
-    Promise.all([
-      eventFood.foodTotalPrices(eventFirebaseKey),
-      eventShows.showsTotalPrices(eventFirebaseKey),
-      eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
-      eventStaff.staffTotalPrices(eventFirebaseKey),
-    ]).then((values) => {
-      const eventTotal = values.reduce((a, b) => a + b);
-      $('#souvenirTotalCost').html(`${values[2]}`);
-      $('#eventTotal').html(
-        `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
-      );
-    });
   });
   $('body').on('click', '.delete-event-staff', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
     eventStaff.deleteStaffOfEvent(firebaseKey);
-    Promise.all([
-      eventFood.foodTotalPrices(eventFirebaseKey),
-      eventShows.showsTotalPrices(eventFirebaseKey),
-      eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
-      eventStaff.staffTotalPrices(eventFirebaseKey),
-    ]).then((values) => {
-      const eventTotal = values.reduce((a, b) => a + b);
-      $('#staffTotalCost').html(`${values[3]}`);
-      $('#eventTotal').html(
-        `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
-      );
-    });
   });
 };
 
