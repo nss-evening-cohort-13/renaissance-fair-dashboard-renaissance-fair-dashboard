@@ -30,6 +30,13 @@ const addFoodOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
+const foodFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventFood(eventFirebaseKey)
+    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
+    .then((foodObject) => resolve(foodObject))
+    .catch((error) => reject(error));
+});
+
 const foodTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
   let foodTotal = 0;
   getEventFood(eventFirebaseKey)
@@ -45,5 +52,6 @@ export default {
   addFoodOfEvents,
   getEventFood,
   deleteFoodOfEvent,
+  foodFullObject,
   foodTotalPrices
 };

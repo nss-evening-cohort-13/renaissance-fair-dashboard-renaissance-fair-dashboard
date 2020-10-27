@@ -30,6 +30,13 @@ const addShowsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
+const showsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventShows(eventFirebaseKey)
+    .then((showArray) => Promise.all(showArray.map((Show) => showData.getSingleShow(Show.showUid))))
+    .then((showObject) => resolve(showObject))
+    .catch((error) => reject(error));
+});
+
 const showsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
   let showsTotal = 0;
   getEventShows(eventFirebaseKey)
@@ -45,5 +52,6 @@ export default {
   addShowsOfEvents,
   getEventShows,
   deleteShowsOfEvent,
+  showsFullObject,
   showsTotalPrices
 };

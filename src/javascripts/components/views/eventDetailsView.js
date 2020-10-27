@@ -43,6 +43,7 @@ const eventDetailsView = (eventFirebaseKey) => {
       `);
       filterDropdown.filterByCategory();
       filterDropdown.filterByPrice(eventFirebaseKey);
+      eventData.getAllEventObjects(eventFirebaseKey);
       // eventFood.getEventFood(eventFirebaseKey)
       //   .then((foodArray) => {
       //     let foodTotal = 0;
