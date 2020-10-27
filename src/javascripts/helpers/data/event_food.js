@@ -19,9 +19,9 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteFoodOfEvent = (firebaseKey) => {
-  axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`);
-};
+const deleteFoodOfEvent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
 
 const addFoodOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/foodOfEvent.json`, dataObject).then((response) => {
