@@ -67,7 +67,7 @@ const showsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
 
 const souvenirsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
   eventSouvenirs.getEventSouvenirs(eventFirebaseKey)
-    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirsUid))))
+    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirUid))))
     .then((souvenirsObject) => resolve(souvenirsObject))
     .catch((error) => reject(error));
 });
@@ -79,14 +79,15 @@ const staffFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getAllEventObjects = (eventFirebaseKey) => {
+const getAllEventObjects = (eventFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([foodFullObject(eventFirebaseKey),
     showsFullObject(eventFirebaseKey),
     souvenirsFullObject(eventFirebaseKey),
     staffFullObject(eventFirebaseKey)]).then((values) => {
-    console.warn(values);
-  });
-};
+    const mergedValues = [].concat(...values);
+    resolve(mergedValues);
+  }).catch((error) => reject(error));
+});
 
 export default {
   addEvent,
