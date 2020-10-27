@@ -30,6 +30,13 @@ const addStaffOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
+const staffFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventStaff(eventFirebaseKey)
+    .then((staffArray) => Promise.all(staffArray.map((staff) => staffData.getSingleStaff(staff.staffUid))))
+    .then((staffObject) => resolve(staffObject))
+    .catch((error) => reject(error));
+});
+
 const staffTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
   let staffTotal = 0;
   getEventStaff(eventFirebaseKey)
@@ -45,5 +52,6 @@ export default {
   addStaffOfEvents,
   getEventStaff,
   deleteStaffOfEvent,
+  staffFullObject,
   staffTotalPrices
 };

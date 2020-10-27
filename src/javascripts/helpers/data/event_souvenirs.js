@@ -30,6 +30,13 @@ const addSouvenirsOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
+const souvenirsFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventSouvenirs(eventFirebaseKey)
+    .then((souvenirsArray) => Promise.all(souvenirsArray.map((souvenirs) => souvenirsData.getSingleSouvenir(souvenirs.souvenirUid))))
+    .then((souvenirsObject) => resolve(souvenirsObject))
+    .catch((error) => reject(error));
+});
+
 const souvenirsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
   let souvenirsTotal = 0;
   getEventSouvenirs(eventFirebaseKey)
@@ -48,5 +55,6 @@ export default {
   getEventSouvenirs,
   addSouvenirsOfEvents,
   deleteSouvenirsOfEvent,
+  souvenirsFullObject,
   souvenirsTotalPrices
 };
