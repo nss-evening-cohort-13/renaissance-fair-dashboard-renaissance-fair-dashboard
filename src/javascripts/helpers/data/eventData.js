@@ -53,6 +53,7 @@ const getAllEventObjects = (eventFirebaseKey) => new Promise((resolve, reject) =
     eventSouvenirs.souvenirsFullObject(eventFirebaseKey),
     eventStaff.staffFullObject(eventFirebaseKey)]).then((values) => {
     const mergedValues = [].concat(...values);
+    console.warn(mergedValues);
     resolve(mergedValues);
   }).catch((error) => reject(error));
 });

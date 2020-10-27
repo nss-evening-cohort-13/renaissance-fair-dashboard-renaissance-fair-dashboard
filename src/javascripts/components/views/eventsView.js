@@ -5,7 +5,7 @@ const eventsView = () => {
   $('#app').html('');
   $('#add-button').html(
     `<div id="add-event">
-       <a href='#' class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
+        <a href='#' class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
     </div>`
   );
   eventData.getAllEvents().then((response) => {
@@ -17,6 +17,7 @@ const eventsView = () => {
       $('#app').html('<div>NO EVENTS</div>');
     }
   });
+  $('#app').html('<div id="chartdiv">CHART HERE</div>');
 };
 
 export default { eventsView };
