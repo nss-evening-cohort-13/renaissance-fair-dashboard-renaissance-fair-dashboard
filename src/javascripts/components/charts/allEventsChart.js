@@ -1,65 +1,50 @@
-import am4core from '@amcharts/amcharts4/core';
-import am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import eventData from '../../helpers/data/eventData';
 
-const chart = am4core.create('chartdiv', am4charts.XYChart);
+const getEventName = () => new Promise((resolve, reject) => {
+  eventData.getAllEvents().then((response) => {
+    const arrayOfDataObjects = [];
+    response.forEach((item) => {
+      eventData.getAllEventObjectsPrices(item.firebaseKey).then((price) => {
+        const dataObject = {
+          eventName: item.name,
+          eventPrice: price
+        };
+        arrayOfDataObjects.push(dataObject);
+      });
+    });
+    console.warn(arrayOfDataObjects);
+    // resolve(eventName);
+  }).catch((error) => reject(error));
+});
 
-chart.data = [
-  {
-    eventName: 'Event1',
-    eventPrice: 501,
-  },
-  {
-    eventName: 'Event2',
-    eventPrice: 301,
-  },
-  {
-    eventName: 'Event3',
-    eventPrice: 201,
-  },
-  {
-    eventName: 'Event4',
-    eventPrice: 165,
-  },
-  {
-    eventName: 'Event5',
-    eventPrice: 139,
-  },
-  {
-    eventName: 'Event6',
-    eventPrice: 128,
-  },
-  {
-    eventName: 'Event7',
-    eventPrice: 99,
-  },
-  {
-    eventName: 'Event8',
-    eventPrice: 60,
-  },
-  {
-    eventName: 'Event9',
-    eventPrice: 50,
-  },
-];
+const makeChart = () => {
+  getEventName();
+  const chart = am4core.create('chartdiv', am4charts.XYChart);
 
-const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-categoryAxis.dataFields.eventName = 'eventName';
-categoryAxis.title.text = 'Events';
+  chart.data = [];
 
-const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = 'Cost For Event';
+  const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = 'eventName';
+  categoryAxis.title.text = 'Events';
 
-const series = chart.series.push(new am4charts.ColumnSeries());
-series.name = 'Sales';
-series.columns.template.tooltipText = 'Series: {name}\nCategory: {categoryX}\nValue: {valueY}';
-series.columns.template.fill = am4core.color('#104547'); // fill
-series.dataFields.valueY = 'eventPrice';
-series.dataFields.categoryX = 'eventName';
+  const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  valueAxis.title.text = 'Cost For Event';
 
-chart.legend = new am4charts.Legend();
-// chart.legend.align('bottom');
+  const series = chart.series.push(new am4charts.ColumnSeries());
+  series.name = 'Cost';
+  series.dataFields.valueY = 'eventPrice';
+  series.dataFields.categoryX = 'eventName';
+  series.columns.template.tooltipText = 'Series: {name}\nCategory: {categoryX}\nValue: {valueY}';
+  series.columns.template.fill = am4core.color('#48725E'); // fill bar color
 
-chart.cursor = new am4charts.XYCursor();
+  chart.legend = new am4charts.Legend();
 
-chart.scrollbarX = new am4core.Scrollbar();
-chart.scrollbarY = new am4core.Scrollbar();
+  chart.cursor = new am4charts.XYCursor();
+
+  chart.scrollbarX = new am4core.Scrollbar();
+  chart.scrollbarY = new am4core.Scrollbar();
+};
+
+export default { makeChart };

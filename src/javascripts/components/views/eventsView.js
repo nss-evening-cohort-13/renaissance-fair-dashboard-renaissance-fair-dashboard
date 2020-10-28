@@ -1,5 +1,6 @@
 import eventData from '../../helpers/data/eventData';
 import card from '../cards/eventCard';
+import chart from '../charts/allEventsChart';
 
 const eventsView = () => {
   $('#app').html('');
@@ -18,6 +19,7 @@ const eventsView = () => {
     }
   });
   $('#app').html('<div id="chartdiv">CHART HERE</div>');
+  chart.makeChart();
 };
 
 export default { eventsView };

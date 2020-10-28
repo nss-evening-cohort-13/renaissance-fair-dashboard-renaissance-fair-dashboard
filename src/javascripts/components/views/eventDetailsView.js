@@ -40,6 +40,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="eventChart"></div>
                       </div>
       `);
+      eventData.getAllEventObjectsPrices(eventFirebaseKey);
       eventData.getAllEventObjects(eventFirebaseKey);
       filterDropdown.filterDropdown();
 

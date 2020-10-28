@@ -18,6 +18,7 @@ const getAllEvents = () => new Promise((resolve, reject) => {
           events.push(allEvents[eventId]);
         });
       }
+      console.warn('get all events', events);
       resolve(events);
     })
     .catch((error) => reject(error));
@@ -53,8 +54,17 @@ const getAllEventObjects = (eventFirebaseKey) => new Promise((resolve, reject) =
     eventSouvenirs.souvenirsFullObject(eventFirebaseKey),
     eventStaff.staffFullObject(eventFirebaseKey)]).then((values) => {
     const mergedValues = [].concat(...values);
-    console.warn(mergedValues);
     resolve(mergedValues);
+  }).catch((error) => reject(error));
+});
+
+const getAllEventObjectsPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getAllEventObjects(eventFirebaseKey).then((values) => {
+    let prices = 0;
+    values.forEach((item) => {
+      prices += parseInt(item.price, 10);
+    });
+    resolve(prices);
   }).catch((error) => reject(error));
 });
 
@@ -64,5 +74,6 @@ export default {
   getSingleEvent,
   updateEvent,
   deleteEvent,
-  getAllEventObjects
+  getAllEventObjects,
+  getAllEventObjectsPrices
 };
