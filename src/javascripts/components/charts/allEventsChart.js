@@ -2,28 +2,42 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import eventData from '../../helpers/data/eventData';
 
-const getEventName = () => new Promise((resolve, reject) => {
-  eventData.getAllEvents().then((response) => {
-    const arrayOfDataObjects = [];
-    response.forEach((item) => {
-      eventData.getAllEventObjectsPrices(item.firebaseKey).then((price) => {
-        const dataObject = {
-          eventName: item.name,
-          eventPrice: price
-        };
-        arrayOfDataObjects.push(dataObject);
-      });
-    });
-    console.warn('arrayOfDataObjects', arrayOfDataObjects);
-    // resolve(arrayOfDataObjects);
-  }).catch((error) => reject(error));
-});
+// const getEventName = () => new Promise((resolve, reject) => {
+//   eventData.getAllEvents().then((eventObjects) => {
+//     const arrayOfDataObjects = [];
+//     eventObjects.forEach((eventObject) => {
+//       const eventName = eventObject.name;
+//       const price = eventData.getAllEventObjectsPrices(eventObject.firebaseKey);
+//       Promise.all([eventName, price]).then((values) => {
+//         const dataObject = {
+//           eventName: values[0],
+//           eventPrice: values[1]
+//         };
+//         arrayOfDataObjects.push(dataObject);
+//       });
+//     });
+//     resolve(arrayOfDataObjects);
+//   }).catch((error) => reject(error));
+// });
 
 const makeChart = () => {
-  getEventName();
   const chart = am4core.create('chartdiv', am4charts.XYChart);
 
   chart.data = [];
+  console.warn(chart.data);
+  eventData.getAllEvents().then((eventObjects) => {
+    eventObjects.forEach((eventObject) => {
+      const eventName = eventObject.name;
+      const price = eventData.getAllEventObjectsPrices(eventObject.firebaseKey);
+      Promise.all([eventName, price]).then((values) => {
+        const dataObject = {
+          eventName: values[0],
+          eventPrice: values[1]
+        };
+        chart.data.push(dataObject);
+      });
+    });
+  });
 
   const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
   categoryAxis.dataFields.category = 'eventName';
