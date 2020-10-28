@@ -19,9 +19,9 @@ const getEventShows = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteShowsOfEvent = (firebaseKey) => {
-  axios.delete(`${baseUrl}/showsOfEvent/${firebaseKey}.json`);
-};
+const deleteShowsOfEvent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/showsOfEvent/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
 
 const addShowsOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/showsOfEvent.json`, dataObject).then((response) => {
