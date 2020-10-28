@@ -9,6 +9,13 @@ import souvenirsData from '../../helpers/data/souvenirsData';
 import staffData from '../../helpers/data/staffData';
 import filterDropdown from './filterDetails';
 
+const allTheTotalPromises = (eventFirebaseKey) => Promise.all([
+  eventFood.foodTotalPrices(eventFirebaseKey),
+  eventShows.showsTotalPrices(eventFirebaseKey),
+  eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
+  eventStaff.staffTotalPrices(eventFirebaseKey),
+]);
+
 const eventDetailsView = (eventFirebaseKey) => {
   eventData.getSingleEvent(eventFirebaseKey).then((response) => {
     if (response) {
@@ -16,6 +23,8 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <h2>${response.name} Details</h2>
                         <p>${response.date}</p>
                         <div id="dropdownContainer"></div>
+                        <div id="filterByPrice"></div>
+                        <div id="filteredItems"></div>
                         <div id="eventFood" class="event-category-details">
                           <h4 class="event-category-title">Food</h4>
                           <div id="foodLineItems"></div>
@@ -41,9 +50,9 @@ const eventDetailsView = (eventFirebaseKey) => {
                       </div>
       `);
       eventData.getAllEventObjectsPrices(eventFirebaseKey);
+      filterDropdown.filterByCategory();
+      filterDropdown.filterByPrice(eventFirebaseKey);
       eventData.getAllEventObjects(eventFirebaseKey);
-      filterDropdown.filterDropdown();
-
       eventFood.getEventFood(eventFirebaseKey).then((foodArray) => {
         foodArray.forEach((food) => {
           foodData.getSingleFoodItem(food.foodUid).then((foodObject) => {
@@ -95,12 +104,7 @@ const eventDetailsView = (eventFirebaseKey) => {
           });
         });
       });
-      Promise.all([
-        eventFood.foodTotalPrices(eventFirebaseKey),
-        eventShows.showsTotalPrices(eventFirebaseKey),
-        eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
-        eventStaff.staffTotalPrices(eventFirebaseKey),
-      ]).then((values) => {
+      allTheTotalPromises(eventFirebaseKey).then((values) => {
         $('#foodTotalCost').html(`${values[0]}`);
         $('#showTotalCost').html(`${values[1]}`);
         $('#souvenirTotalCost').html(`${values[2]}`);
@@ -117,26 +121,58 @@ const eventDetailsView = (eventFirebaseKey) => {
   $('body').on('click', '.delete-event-food', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
-    $(`.line-item#${firebaseKey}`).remove();
-    eventFood.deleteFoodOfEvent(firebaseKey);
+    eventFood.deleteFoodOfEvent(firebaseKey).then(() => {
+      allTheTotalPromises(eventFirebaseKey).then((valuesofFood) => {
+        $('#foodTotalCost').html(`${valuesofFood[0]}`);
+        const eventTotal = valuesofFood.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
+        );
+        $(`.line-item#${firebaseKey}`).remove();
+      });
+    });
   });
   $('body').on('click', '.delete-event-show', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
-    eventShows.deleteShowsOfEvent(firebaseKey);
+    eventShows.deleteShowsOfEvent(firebaseKey).then(() => {
+      allTheTotalPromises(eventFirebaseKey).then((values) => {
+        $('#showTotalCost').html(`${values[1]}`);
+        const eventTotal = values.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
+        );
+      });
+    });
   });
   $('body').on('click', '.delete-event-souvenir', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
-    eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey);
+    eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey).then(() => {
+      allTheTotalPromises(eventFirebaseKey).then((values) => {
+        $('#souvenirTotalCost').html(`${values[2]}`);
+        const eventTotal = values.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
+        );
+      });
+    });
   });
   $('body').on('click', '.delete-event-staff', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     $(`.line-item#${firebaseKey}`).remove();
-    eventStaff.deleteStaffOfEvent(firebaseKey);
+    eventStaff.deleteStaffOfEvent(firebaseKey).then(() => {
+      allTheTotalPromises(eventFirebaseKey).then((values) => {
+        $('#staffTotalCost').html(`${values[3]}`);
+        const eventTotal = values.reduce((a, b) => a + b);
+        $('#eventTotal').html(
+          `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
+        );
+      });
+    });
   });
 };
 
