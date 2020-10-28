@@ -19,9 +19,9 @@ const getEventStaff = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteStaffOfEvent = (firebaseKey) => {
-  axios.delete(`${baseUrl}/staffOfEvent/${firebaseKey}.json`);
-};
+const deleteStaffOfEvent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/staffOfEvent/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
 
 const addStaffOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/staffOfEvent.json`, dataObject).then((response) => {
