@@ -18,7 +18,6 @@ const getAllEvents = () => new Promise((resolve, reject) => {
           events.push(allEvents[eventId]);
         });
       }
-      console.warn('get all events', events);
       resolve(events);
     })
     .catch((error) => reject(error));

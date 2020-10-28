@@ -14,8 +14,8 @@ const getEventName = () => new Promise((resolve, reject) => {
         arrayOfDataObjects.push(dataObject);
       });
     });
-    console.warn(arrayOfDataObjects);
-    // resolve(eventName);
+    console.warn('arrayOfDataObjects', arrayOfDataObjects);
+    // resolve(arrayOfDataObjects);
   }).catch((error) => reject(error));
 });
 
