@@ -19,9 +19,9 @@ const getEventSouvenirs = (eventFirebaseKey) => new Promise((resolve, reject) =>
     .catch((error) => reject(error));
 });
 
-const deleteSouvenirsOfEvent = (firebaseKey) => {
-  axios.delete(`${baseUrl}/souvenirsOfEvent/${firebaseKey}.json`);
-};
+const deleteSouvenirsOfEvent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/souvenirsOfEvent/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
 
 const addSouvenirsOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/souvenirsOfEvent.json`, dataObject).then((response) => {
