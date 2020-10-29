@@ -6,6 +6,7 @@ import showData from '../../helpers/data/showsData';
 import foodData from '../../helpers/data/foodData';
 import souvenirsData from '../../helpers/data/souvenirsData';
 import staffData from '../../helpers/data/staffData';
+import eventChart from '../charts/eventChart';
 
 const allTheTotals = (eventFirebaseKey) => Promise.all([
   eventFood.foodTotalPrices(eventFirebaseKey),
@@ -81,6 +82,7 @@ const foodModal = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
       });
     }, 2000);
   });
@@ -152,6 +154,7 @@ const staffModal = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
       });
     }, 2000);
   });
@@ -224,6 +227,7 @@ const showsModal = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
       });
     }, 2000);
   });
@@ -300,6 +304,7 @@ const souvenirsModal = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
       });
     }, 2000);
   });
