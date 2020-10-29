@@ -1,5 +1,9 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import eventFood from './event_food';
+import eventShows from './event_shows';
+import eventSouvenirs from './event_souvenirs';
+import eventStaff from './event_staff';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -39,11 +43,25 @@ const addEvent = (data) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const updateEvent = (firebaseKey, eventObject) => axios.patch(`${baseUrl}/events/${firebaseKey}.json`, eventObject);
+
 const deleteEvent = (firebaseKey) => axios.delete(`${baseUrl}/events/${firebaseKey}.json`);
+
+const getAllEventObjects = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([eventFood.foodFullObject(eventFirebaseKey),
+    eventShows.showsFullObject(eventFirebaseKey),
+    eventSouvenirs.souvenirsFullObject(eventFirebaseKey),
+    eventStaff.staffFullObject(eventFirebaseKey)]).then((values) => {
+    const mergedValues = [].concat(...values);
+    resolve(mergedValues);
+  }).catch((error) => reject(error));
+});
 
 export default {
   addEvent,
   getAllEvents,
   getSingleEvent,
-  deleteEvent
+  updateEvent,
+  deleteEvent,
+  getAllEventObjects
 };

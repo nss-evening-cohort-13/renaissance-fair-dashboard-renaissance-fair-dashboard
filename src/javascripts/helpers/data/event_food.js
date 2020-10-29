@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import foodData from './foodData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -18,9 +19,9 @@ const getEventFood = (eventFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteFoodOfEvent = (firebaseKey) => {
-  axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`);
-};
+const deleteFoodOfEvent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/foodOfEvent/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
 
 const addFoodOfEvents = (dataObject) => {
   axios.post(`${baseUrl}/foodOfEvent.json`, dataObject).then((response) => {
@@ -29,4 +30,28 @@ const addFoodOfEvents = (dataObject) => {
   }).catch((error) => console.warn(error));
 };
 
-export default { addFoodOfEvents, getEventFood, deleteFoodOfEvent };
+const foodFullObject = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  getEventFood(eventFirebaseKey)
+    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
+    .then((foodObject) => resolve(foodObject))
+    .catch((error) => reject(error));
+});
+
+const foodTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
+  let foodTotal = 0;
+  getEventFood(eventFirebaseKey)
+    .then((foodArray) => Promise.all(foodArray.map((food) => foodData.getSingleFoodItem(food.foodUid))))
+    .then((foodObjects) => foodObjects.forEach((food) => {
+      foodTotal += parseInt(food.price, 10);
+    }))
+    .then(() => resolve(foodTotal))
+    .catch((error) => reject(error));
+});
+
+export default {
+  addFoodOfEvents,
+  getEventFood,
+  deleteFoodOfEvent,
+  foodFullObject,
+  foodTotalPrices
+};
