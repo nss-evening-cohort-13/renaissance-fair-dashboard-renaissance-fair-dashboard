@@ -8,6 +8,7 @@ import foodData from '../../helpers/data/foodData';
 import souvenirsData from '../../helpers/data/souvenirsData';
 import staffData from '../../helpers/data/staffData';
 import filterDropdown from './filterDetails';
+import eventChart from '../charts/eventChart';
 
 const allTheTotalPromises = (eventFirebaseKey) => Promise.all([
   eventFood.foodTotalPrices(eventFirebaseKey),
@@ -46,7 +47,9 @@ const eventDetailsView = (eventFirebaseKey) => {
                           <div class="line-item category-total"><div>Total</div><div id="staffTotalCost"></div></div>
                         </div>
                         <div id="eventTotal"></div>
-                        <div id="eventChart"></div>
+                        <div id="eventChart">
+                          <div id="chartdiv" style></div>
+                        </div>
                       </div>
       `);
       filterDropdown.filterByCategory();
@@ -108,6 +111,7 @@ const eventDetailsView = (eventFirebaseKey) => {
         $('#showTotalCost').html(`${values[1]}`);
         $('#souvenirTotalCost').html(`${values[2]}`);
         $('#staffTotalCost').html(`${values[3]}`);
+        eventChart.makeChart(values);
         const eventTotal = values.reduce((a, b) => a + b);
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
@@ -121,12 +125,13 @@ const eventDetailsView = (eventFirebaseKey) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
     eventFood.deleteFoodOfEvent(firebaseKey).then(() => {
-      allTheTotalPromises(eventFirebaseKey).then((valuesofFood) => {
-        $('#foodTotalCost').html(`${valuesofFood[0]}`);
-        const eventTotal = valuesofFood.reduce((a, b) => a + b);
+      allTheTotalPromises(eventFirebaseKey).then((values) => {
+        $('#foodTotalCost').html(`${values[0]}`);
+        const eventTotal = values.reduce((a, b) => a + b);
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
         $(`.line-item#${firebaseKey}`).remove();
       });
     });
@@ -134,7 +139,6 @@ const eventDetailsView = (eventFirebaseKey) => {
   $('body').on('click', '.delete-event-show', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
-    $(`.line-item#${firebaseKey}`).remove();
     eventShows.deleteShowsOfEvent(firebaseKey).then(() => {
       allTheTotalPromises(eventFirebaseKey).then((values) => {
         $('#showTotalCost').html(`${values[1]}`);
@@ -142,13 +146,14 @@ const eventDetailsView = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
+        $(`.line-item#${firebaseKey}`).remove();
       });
     });
   });
   $('body').on('click', '.delete-event-souvenir', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
-    $(`.line-item#${firebaseKey}`).remove();
     eventSouvenirs.deleteSouvenirsOfEvent(firebaseKey).then(() => {
       allTheTotalPromises(eventFirebaseKey).then((values) => {
         $('#souvenirTotalCost').html(`${values[2]}`);
@@ -156,13 +161,14 @@ const eventDetailsView = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
+        $(`.line-item#${firebaseKey}`).remove();
       });
     });
   });
   $('body').on('click', '.delete-event-staff', (e) => {
     e.stopImmediatePropagation();
     const firebaseKey = e.currentTarget.id;
-    $(`.line-item#${firebaseKey}`).remove();
     eventStaff.deleteStaffOfEvent(firebaseKey).then(() => {
       allTheTotalPromises(eventFirebaseKey).then((values) => {
         $('#staffTotalCost').html(`${values[3]}`);
@@ -170,6 +176,8 @@ const eventDetailsView = (eventFirebaseKey) => {
         $('#eventTotal').html(
           `<h2 id="eventTotalBanner"> The Total Cost is ${eventTotal}</h2>`
         );
+        eventChart.makeChart(values);
+        $(`.line-item#${firebaseKey}`).remove();
       });
     });
   });
