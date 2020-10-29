@@ -17,7 +17,7 @@ const allTheTotals = (eventFirebaseKey) => Promise.all([
 const foodModal = (eventFirebaseKey) => {
   $('#event-details-view')
     .append(`<div class="modal" id="addFoodModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Food To This Event</h5>
@@ -89,7 +89,7 @@ const foodModal = (eventFirebaseKey) => {
 const staffModal = (eventFirebaseKey) => {
   $('#event-details-view')
     .append(`<div class="modal" id="addStaffModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Add Staff to this Event</h5>
@@ -160,7 +160,7 @@ const staffModal = (eventFirebaseKey) => {
 const showsModal = (eventFirebaseKey) => {
   $('#event-details-view')
     .append(`<div class="modal" id="addShowsModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Add Shows to this Event</h5>
@@ -232,7 +232,7 @@ const showsModal = (eventFirebaseKey) => {
 const souvenirsModal = (eventFirebaseKey) => {
   $('#event-details-view')
     .append(`<div class="modal" id="addSouvenirsModal" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">Add Souvenirs to this Event</h5>
