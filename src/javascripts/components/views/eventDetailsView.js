@@ -60,6 +60,8 @@ const eventDetailsView = (eventFirebaseKey) => {
       `);
       modals.foodModal(eventFirebaseKey);
       modals.staffModal(eventFirebaseKey);
+      modals.showsModal(eventFirebaseKey);
+      modals.souvenirsModal(eventFirebaseKey);
       filterDropdown.filterByCategory();
       filterDropdown.filterByPrice(eventFirebaseKey);
       eventData.getAllEventObjects(eventFirebaseKey);
