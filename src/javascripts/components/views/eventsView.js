@@ -9,7 +9,7 @@ const eventsView = () => {
         <a href='#' class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
     </div>`
   );
-  $('#app').html('<div id="chartdiv">CHART HERE</div>');
+  $('#app').html('<div id="allEventsChartDiv">CHART HERE</div>');
   chart.makeChart();
   eventData.getAllEvents().then((response) => {
     if (response.length) {

@@ -21,10 +21,10 @@ import eventData from '../../helpers/data/eventData';
 // });
 
 const makeChart = () => {
-  const chart = am4core.create('chartdiv', am4charts.XYChart);
+  const chart = am4core.create('allEventsChartDiv', am4charts.XYChart);
 
-  chart.data = [];
-  console.warn(chart.data);
+  const data = [];
+  console.warn('data', data);
   eventData.getAllEvents().then((eventObjects) => {
     eventObjects.forEach((eventObject) => {
       const eventName = eventObject.name;
@@ -34,11 +34,13 @@ const makeChart = () => {
           eventName: values[0],
           eventPrice: values[1]
         };
-        chart.data.push(dataObject);
+        data.push(dataObject);
       });
     });
   });
 
+  chart.data = data;
+  console.warn('chart data', chart.data);
   const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
   categoryAxis.dataFields.category = 'eventName';
   categoryAxis.title.text = 'Events';
@@ -52,8 +54,6 @@ const makeChart = () => {
   series.dataFields.categoryX = 'eventName';
   series.columns.template.tooltipText = 'Series: {name}\nCategory: {categoryX}\nValue: {valueY}';
   series.columns.template.fill = am4core.color('#48725E'); // fill bar color
-
-  chart.legend = new am4charts.Legend();
 
   chart.cursor = new am4charts.XYCursor();
 
