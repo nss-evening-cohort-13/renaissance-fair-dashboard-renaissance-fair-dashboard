@@ -8,3 +8,11 @@
 .category-total {
   font-weight: bold;
 }
+
+#eventItemsContainer {
+  margin: 50px 0px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  column-gap: 125px;
+  row-gap: 75px;
+}
