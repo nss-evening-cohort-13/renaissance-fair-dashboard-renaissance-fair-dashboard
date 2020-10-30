@@ -9,15 +9,17 @@ const eventsView = () => {
         <a href='#' class="add-event btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add Event</a>
     </div>`
   );
-  $('#app').html('<div id="allEventsChartDiv">CHART HERE</div>');
+  $('#app').html(`
+  <div id="eventCards"></div>
+  <div id="allEventsChartDiv"></div>`);
   chart.makeChart();
   eventData.getAllEvents().then((response) => {
     if (response.length) {
       response.forEach((event) => {
-        $('#app').append(card.buildEventCard(event));
+        $('#eventCards').append(card.buildEventCard(event));
       });
     } else {
-      $('#app').html('<div>NO EVENTS</div>');
+      $('#eventCards').html('<div>NO EVENTS</div>');
     }
   });
 };

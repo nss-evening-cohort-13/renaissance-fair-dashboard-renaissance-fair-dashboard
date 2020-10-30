@@ -2,29 +2,8 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import eventData from '../../helpers/data/eventData';
 
-// const getEventName = () => new Promise((resolve, reject) => {
-//   eventData.getAllEvents().then((eventObjects) => {
-//     const arrayOfDataObjects = [];
-//     eventObjects.forEach((eventObject) => {
-//       const eventName = eventObject.name;
-//       const price = eventData.getAllEventObjectsPrices(eventObject.firebaseKey);
-//       Promise.all([eventName, price]).then((values) => {
-//         const dataObject = {
-//           eventName: values[0],
-//           eventPrice: values[1]
-//         };
-//         arrayOfDataObjects.push(dataObject);
-//       });
-//     });
-//     resolve(arrayOfDataObjects);
-//   }).catch((error) => reject(error));
-// });
-
-const makeChart = () => {
-  const chart = am4core.create('allEventsChartDiv', am4charts.XYChart);
-
-  const data = [];
-  console.warn('data', data);
+const getDataArray = () => new Promise((resolve, reject) => {
+  const dataArray = [];
   eventData.getAllEvents().then((eventObjects) => {
     eventObjects.forEach((eventObject) => {
       const eventName = eventObject.name;
@@ -34,13 +13,24 @@ const makeChart = () => {
           eventName: values[0],
           eventPrice: values[1]
         };
-        data.push(dataObject);
+        dataArray.push(dataObject);
       });
     });
+    resolve(dataArray);
+  }).catch((error) => reject(error));
+});
+
+const makeChart = () => {
+  const chart = am4core.create('allEventsChartDiv', am4charts.XYChart);
+
+  const allTheStuff = getDataArray();
+  Promise.all([allTheStuff]).then((values) => {
+    const theData = values[0];
+    setTimeout(() => {
+      chart.data = theData;
+    }, 3000);
   });
 
-  chart.data = data;
-  console.warn('chart data', chart.data);
   const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
   categoryAxis.dataFields.category = 'eventName';
   categoryAxis.title.text = 'Events';
