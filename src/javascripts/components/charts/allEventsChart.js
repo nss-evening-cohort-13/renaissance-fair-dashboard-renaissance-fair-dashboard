@@ -24,8 +24,8 @@ const makeChart = () => {
   const chart = am4core.create('allEventsChartDiv', am4charts.XYChart);
 
   const allTheStuff = getDataArray();
-  Promise.all([allTheStuff]).then((values) => {
-    const theData = values[0];
+  allTheStuff.then((values) => {
+    const theData = values;
     setTimeout(() => {
       chart.data = theData;
     }, 3000);
