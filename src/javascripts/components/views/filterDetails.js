@@ -18,7 +18,7 @@ const filterByCategory = () => {
                         <option value="all">Show All</option>
                     </select>
                 </div>
-                <button id="filterByCategoryBtn" type="button" class="btn btn-warning filter-btn">Filter</button>
+                <button id="filterByCategoryBtn" type="button" class="btn filter-btn">Filter Category</button>
             </div>
         </div>`);
 
@@ -70,7 +70,7 @@ const filterByPrice = (eventFirebaseKey) => {
                         <option value="all">Show All price Ranges</option>
                     </select>
                 </div>
-                <button id="filterByPricebtn" type="button" class="btn btn-warning filter-btn">Filter</button>
+                <button id="filterByPricebtn" type="button" class="btn filter-btn">Filter Price</button>
             </div>
         </div>`);
 

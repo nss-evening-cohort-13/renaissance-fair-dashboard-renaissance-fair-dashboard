@@ -8,18 +8,18 @@ const updateEventForm = (eventObject) => {
     <div id="error-message"></div>
     <div id="input-group-event">
       <div class="form-group">
-        <label for="eventName">Event Name</label>
+        <label class="eventFormTitles" for="eventName">Event Name</label>
         <input type="text" class="form-control" id="eventName" value="${eventObject.name}" placeholder="Event Name">
       </div>
       <div class="form-group">
-        <label for="eventDate">Event Date</label>
+        <label class="eventFormTitles" for="eventDate">Event Date</label>
         <input type="text" class="form-control" id="eventDate" value="${eventObject.date}" placeholder="mm/dd/yyyy">
       </div>
       <div class="form-group">
-        <label for="eventImage">Event Image</label>
+        <label class="eventFormTitles" for="eventImage">Event Image</label>
         <input type="text" class="form-control" id="eventImage" value="${eventObject.image}" placeholder="https://">
       </div>
-      <button id="updateEventBtn" type="button" class="btn btn-success"></i>Update Event</button>
+      <button id="updateEventBtn" type="button" class="btn"></i>Update Event</button>
     </div>
   <div>`);
   $('#updateEventBtn').on('click', (e) => {

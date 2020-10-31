@@ -38,24 +38,28 @@ $border-radius-size: 5px;
 .update-btn {
   background-color: $freelancer-green;
   color: $freelancer-gold;
+  border: 1px solid $freelancer-green;
 }
 
 .update-btn {
   &:hover {
     background-color: $freelancer-green;
     color: $freelancer-gold;
+    border: 1px solid $freelancer-gold;
   }
 }
 
 .delete-btn {
   background-color: $freelancer-orange;
   color: $freelancer-gold;
+  border: 1px solid $freelancer-orange;
 }
 
 .delete-btn {
   &:hover {
     background-color: $freelancer-orange;
     color: $freelancer-gold;
+    border: 1px solid $freelancer-gold;
   }
 }
 .card .btn {
