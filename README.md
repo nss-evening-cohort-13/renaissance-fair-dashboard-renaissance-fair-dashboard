@@ -6,6 +6,9 @@
 ##### Week 2-3
 ![screencapture-localhost-8080-2020-10-31-09_46_16](https://user-images.githubusercontent.com/66916708/97782174-08983280-1b5e-11eb-9b8c-36b7666bbdb0.png)
 
+![screencapture-localhost-8080-2020-10-31-09_58_18](https://user-images.githubusercontent.com/66916708/97782470-b0fac680-1b5f-11eb-80fe-85b19e7ed35c.png)
+
+
 
 ## ERD
 ##### Week 1
