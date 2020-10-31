@@ -17,11 +17,12 @@
    color: $freelancer-gold;
 }
 
-.filter-btn {
+.filter-btn, #updateEventBtn, #submitEventBtn {
   background-color: $freelancer-green;
   color: $freelancer-gold;
+  border: 1px solid $freelancer-green;
 }
 
-.filter-btn:hover {
+.filter-btn:hover, #updateEventBtn, #submitEventBtn, #add-souvenir-btn {
     color: $freelancer-gold;
 }
