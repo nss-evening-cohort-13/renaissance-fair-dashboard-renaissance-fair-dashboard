@@ -49,6 +49,8 @@ const makeChart = () => {
 
   chart.scrollbarX = new am4core.Scrollbar();
   chart.scrollbarY = new am4core.Scrollbar();
+
+  am4core.options.autoDispose = true;
 };
 
 export default { makeChart };
