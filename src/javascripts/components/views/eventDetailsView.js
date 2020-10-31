@@ -61,6 +61,7 @@ const eventDetailsView = (eventFirebaseKey) => {
                         </div>
                       </div>
       `);
+      eventData.getAllEventObjectsPrices(eventFirebaseKey);
       modals.foodModal(eventFirebaseKey);
       modals.staffModal(eventFirebaseKey);
       modals.showsModal(eventFirebaseKey);
