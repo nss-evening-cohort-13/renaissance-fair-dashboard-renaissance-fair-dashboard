@@ -1,0 +1,17 @@
+
+.alert-success, .alert {
+  padding: 5px;
+  color: $freelancer-gold;
+  border-radius: 6px;
+  width: 250px;
+  margin-bottom: 15px;
+  margin: auto;
+}
+
+.alert {
+  background-color: $freelancer-orange;
+}
+
+.alert-success {
+  background-color: $freelancer-green;
+}

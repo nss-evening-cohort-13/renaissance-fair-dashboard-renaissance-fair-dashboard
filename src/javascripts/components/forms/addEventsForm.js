@@ -11,46 +11,46 @@ import staffOfEvent from '../../helpers/data/event_staff';
 
 const addEventForm = () => {
   $('#events-form').html(`<div id="add-event-form">
-    <h2 class="form-title">Add Event</h2>
+    <h2 class="form-title" id="eventFormTitle" >Add Event</h2>
     <div id="success-message2"></div>
     <div id="error-message"></div>
     <div id="input-group-event">
       <div class="form-group">
-        <label for="eventName">Event Name</label>
+        <label for="eventName" class="eventFormTitles">Event Name</label>
         <input type="text" class="form-control" id="eventName" placeholder="Event Name">
       </div>
       <div class="form-group">
-        <label for="eventName">Event Date</label>
+        <label for="eventName" class="eventFormTitles">Event Date</label>
         <input type="text" class="form-control" id="eventDate" placeholder="mm/dd/yyyy">
       </div>
       <div class="form-group">
-        <label for="eventName">Event Image</label>
+        <label class="eventFormTitles" for="eventName">Event Image</label>
         <input type="text" class="form-control" id="eventImage" placeholder="https://">
       </div>
       <div class="selector-group">
       <div class="form-group eventSelector">
-        <label for="foodSelection">Select Food</label>
+        <label for="foodSelection" class="eventFormTitles" >Select Food</label>
         <select multiple class="form-control" id="foodSelection">
         </select>
       </div>
       <div class="form-group eventSelector">
-        <label for="showSelection">Select Shows</label>
+        <label for="showSelection" class="eventFormTitles" >Select Shows</label>
         <select multiple class="form-control" id="showSelection">
         </select>
       </div>
       <div class="form-group eventSelector">
-        <label for="staffSelection">Select Staff</label>
+        <label for="staffSelection" class="eventFormTitles">Select Staff</label>
         <select multiple class="form-control" id="staffSelection">
         </select>
       </div>
       <div class="form-group eventSelector">
-        <label for="souvenirSelection">Select Souvenirs</label>
+        <label for="souvenirSelection" class="eventFormTitles">Select Souvenirs</label>
         <select multiple class="form-control" id="souvenirSelection">
         </select>
       </div>
       </div>
 
-      <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
+      <button id="submitEventBtn" type="button" class="btn"></i>Add Event</button>
     </div>
   <div>`);
 
