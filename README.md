@@ -119,13 +119,13 @@ const allTheTotalPromises = (eventFirebaseKey) => Promise.all([
 ```
 # The Teams
 ##### Week 1
-[Ryan Mcnair](https://github.com/ryanmcnair)
-[Summer Duke](https://github.com/esrduke95)
-[Jonathan Joyner](https://github.com/Jonathon22)
-[Sam Mudick](https://github.com/smudick)
+* [Ryan Mcnair](https://github.com/ryanmcnair)
+* [Summer Duke](https://github.com/esrduke95)
+* [Jonathan Joyner](https://github.com/Jonathon22)
+* [Sam Mudick](https://github.com/smudick)
 
 ##### Week 2-3
-[Chris LoJacono](https://github.com/chrislojacono)
-[Kaitlyin Vanhook](https://github.com/kaitvan)
-[Liz Barnes](https://github.com/liz-barnes)
-[Joseph Martin](https://github.com/josephtmartin)
+* [Chris LoJacono](https://github.com/chrislojacono)
+* [Kaitlyin Vanhook](https://github.com/kaitvan)
+* [Liz Barnes](https://github.com/liz-barnes)
+* [Joseph Martin](https://github.com/josephtmartin)
