@@ -34,8 +34,8 @@ const foodModal = (eventFirebaseKey) => {
       </div>
         </div>
         <div class="modal-footer">
-          <button id="submitFood" type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="submitFood" type="button" class="btn save-modal-btn">Save changes</button>
+          <button type="button" class="btn close-modal-btn" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

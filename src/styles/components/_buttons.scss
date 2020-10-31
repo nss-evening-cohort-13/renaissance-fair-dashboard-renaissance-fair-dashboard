@@ -17,7 +17,7 @@
    color: $freelancer-gold;
 }
 
-.filter-btn, #updateEventBtn, #submitEventBtn {
+.filter-btn, #updateEventBtn, #submitEventBtn, .save-modal-btn {
   background-color: $freelancer-green;
   color: $freelancer-gold;
   border: 1px solid $freelancer-green;
@@ -25,4 +25,14 @@
 
 .filter-btn:hover, #updateEventBtn, #submitEventBtn, #add-souvenir-btn {
     color: $freelancer-gold;
+}
+
+.save-modal-btn:hover, .close-modal-btn:hover {
+  color: $freelancer-gold;
+  border: 1px solid $freelancer-gold;
+}
+
+.close-modal-btn {
+  background-color: $freelancer-orange;
+  color: $freelancer-gold;
 }

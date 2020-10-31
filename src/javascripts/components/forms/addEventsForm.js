@@ -50,7 +50,7 @@ const addEventForm = () => {
       </div>
       </div>
 
-      <button id="submitEventBtn" type="button" class="btn btn-success"></i>Add Event</button>
+      <button id="submitEventBtn" type="button" class="btn"></i>Add Event</button>
     </div>
   <div>`);
 
