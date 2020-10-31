@@ -25,38 +25,26 @@ const filterByCategory = () => {
   $('body').on('click', '#filterByCategoryBtn', (e) => {
     e.stopImmediatePropagation();
     $('#filteredItems').html('');
-    $('#eventTotalBanner').css({ display: 'none' });
+    $('#chartdiv, #eventTotalBanner').css({ display: 'none' });
     if ($('#category').val() === 'food') {
       $('#error-message').html('');
       $('#eventFood').css({ display: 'block' });
-      $('#eventStaff').css({ display: 'none' });
-      $('#eventShows').css({ display: 'none' });
-      $('#eventSouvenirs').css({ display: 'none' });
+      $('#eventStaff, #eventShows, #eventSouvenirs').css({ display: 'none' });
     } else if ($('#category').val() === 'show') {
       $('#error-message').html('');
-      $('#eventFood').css({ display: 'none' });
-      $('#eventStaff').css({ display: 'none' });
       $('#eventShows').css({ display: 'block' });
-      $('#eventSouvenirs').css({ display: 'none' });
+      $('#eventFood, #eventStaff, #eventSouvenirs').css({ display: 'none' });
     } else if ($('#category').val() === 'souvenir') {
       $('#error-message').html('');
-      $('#eventFood').css({ display: 'none' });
-      $('#eventStaff').css({ display: 'none' });
-      $('#eventShows').css({ display: 'none' });
       $('#eventSouvenirs').css({ display: 'block' });
+      $('#eventFood, #eventStaff, #eventShows').css({ display: 'none' });
     } else if ($('#category').val() === 'staff') {
       $('#error-message').html('');
-      $('#eventFood').css({ display: 'none' });
       $('#eventStaff').css({ display: 'block' });
-      $('#eventShows').css({ display: 'none' });
-      $('#eventSouvenirs').css({ display: 'none' });
+      $('#eventFood, #eventShows, #eventSouvenirs').css({ display: 'none' });
     } else if ($('#category').val() === 'all') {
       $('#error-message').html('');
-      $('#eventFood').css({ display: 'block' });
-      $('#eventStaff').css({ display: 'block' });
-      $('#eventShows').css({ display: 'block' });
-      $('#eventSouvenirs').css({ display: 'block' });
-      $('#eventTotalBanner').css({ display: 'block' });
+      $('#chartdiv, #eventFood, #eventStaff, #eventShows, #eventSouvenirs, #eventTotalBanner').css({ display: 'block' });
     } else if ($('#category').val() === '') {
       $('#error-message').html(
         '<div class="alert alert-danger" role="alert">Please select a category</div>'
@@ -90,12 +78,10 @@ const filterByPrice = (eventFirebaseKey) => {
   $('body').on('click', '#filterByPricebtn', (e) => {
     // clear HTML to reprint items in conditional
     $('#filteredItems').html('');
+    // clear chart
+    $('#chartdiv').css({ display: 'none' });
     // display none for event detail divs while filtering by price
-    $('#eventFood').css({ display: 'none' });
-    $('#eventShows').css({ display: 'none' });
-    $('#eventStaff').css({ display: 'none' });
-    $('#eventSouvenirs').css({ display: 'none' });
-    $('#eventTotalBanner').css({ display: 'none' });
+    $('#eventFood, #eventShows, #eventStaff, #eventSouvenirs, #eventTotalBanner').css({ display: 'none' });
     e.stopImmediatePropagation();
     eventData.getAllEventObjects(eventFirebaseKey).then((objectArray) => {
       objectArray.forEach((object) => {
@@ -121,11 +107,7 @@ const filterByPrice = (eventFirebaseKey) => {
           );
         } else if ($('#priceRange').val() === 'all') {
           $('#filteredItems').html('');
-          $('#eventFood').css({ display: 'block' });
-          $('#eventShows').css({ display: 'block' });
-          $('#eventStaff').css({ display: 'block' });
-          $('#eventSouvenirs').css({ display: 'block' });
-          $('#eventTotalBanner').css({ display: 'block' });
+          $('#chartdiv, #eventFood, #eventShows, #eventStaff, #eventSouvenirs, #eventTotalBanner').css({ display: 'block' });
         } else if ($('#priceRange').val() === '') {
           $('#error-message').html(
             '<div class="alert alert-danger" role="alert">Please select a price range</div>'
