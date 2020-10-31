@@ -1,7 +1,27 @@
+// .add-item-btn {
+//   border: 1px solid $freelancer-green;
+// }
+
+// .plus-item-btn {
+//     background-color: white;
+// }
+@import '../variables/index.scss';
+
 .add-item-btn {
-  border: 1px solid $freelancer-green;
+  background-color: $freelancer-green;
+  border: none;
+  color: $freelancer-gold;
 }
 
-.plus-item-btn {
-    background-color: white;
+.add-item-btn:hover {
+   color: $freelancer-gold;
+}
+
+.filter-btn {
+  background-color: $freelancer-green;
+  color: $freelancer-gold;
+}
+
+.filter-btn:hover {
+    color: $freelancer-gold;
 }

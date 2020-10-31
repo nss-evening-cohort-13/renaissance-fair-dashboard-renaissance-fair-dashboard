@@ -29,29 +29,29 @@ const eventDetailsView = (eventFirebaseKey) => {
                         <div id="filteredItems"></div>
                         <div id="eventItemsContainer">
                           <div id="eventFood" class="event-category-details">
-                            <h4 class="event-category-title">Food</h4><button type="button" class="btn btn-outline-info add-item-btn" data-toggle="modal" id="foodModal1" data-target="#addFoodModal">
-                            <i class="fas fa-plus-circle plus-item-btn"></i>
+                            <h4 class="event-category-title">Food</h4><button type="button" class="btn add-item-btn" data-toggle="modal" id="foodModal1" data-target="#addFoodModal">
+                            <i class="fas fa-plus-circle"></i>
                           </button>
                             <div id="foodLineItems"></div>
                             <div class="line-item category-total"><div>Total</div><div id="foodTotalCost"></div></div>
                           </div>
                           <div id="eventShows" class="event-category-details">
-                            <h4 "event-category-title">Shows</h4><button type="button" class="btn btn-outline-info" data-toggle="modal" id="showsModal1" data-target="#addShowsModal">
-                            <i class="fas fa-plus-square"></i>
+                            <h4 "event-category-title">Shows</h4><button type="button" class="btn add-item-btn" data-toggle="modal" id="showsModal1" data-target="#addShowsModal">
+                            <i class="fas fa-plus-circle"></i>
                           </button>
                             <div id="showLineItems"></div>
                             <div class="line-item category-total"><div>Total</div><div id="showTotalCost"></div></div>
                           </div>
                           <div id="eventSouvenirs" class="event-category-details">
-                            <h4 "event-category-title">Souvenirs</h4><button type="button" class="btn btn-outline-info" data-toggle="modal" id="souvenirsModal1" data-target="#addSouvenirsModal">
-                            <i class="fas fa-plus-square"></i>
+                            <h4 "event-category-title">Souvenirs</h4><button type="button" class="btn add-item-btn" data-toggle="modal" id="souvenirsModal1" data-target="#addSouvenirsModal">
+                            <i class="fas fa-plus-circle"></i>
                           </button>
                             <div id="souvenirLineItems"></div>
                             <div class="line-item category-total"><div>Total</div><div id="souvenirTotalCost"></div></div>
                           </div>
                           <div id="eventStaff" class="event-category-details">
-                            <h4 "event-category-title">Staff</h4><button type="button" class="btn btn-outline-info" data-toggle="modal" id="staffModal1" data-target="#addStaffModal">
-                            <i class="fas fa-plus-square"></i>
+                            <h4 "event-category-title">Staff</h4><button type="button" class="btn add-item-btn" data-toggle="modal" id="staffModal1" data-target="#addStaffModal">
+                            <i class="fas fa-plus-circle"></i>
                           </button>
                             <div id="staffLineItems"></div>
                             <div class="line-item category-total"><div>Total</div><div id="staffTotalCost"></div></div>
