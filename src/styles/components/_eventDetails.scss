@@ -16,4 +16,9 @@
   grid-template-columns: 2fr 2fr;
   column-gap: 125px;
   row-gap: 75px;
+  justify-self: center;
+}
+
+.event-category-details {
+  min-width: 350px;
 }
