@@ -4,6 +4,7 @@
 
 ![Authorized view](./READMEimages/screenshot2.png)
 ##### Week 2-3
+![screencapture-localhost-8080-2020-10-31-09_46_16](https://user-images.githubusercontent.com/66916708/97782174-08983280-1b5e-11eb-9b8c-36b7666bbdb0.png)
 
 
 ## ERD
@@ -22,10 +23,10 @@ https://www.figma.com/file/dVczHuXR4uxTSJ9eqCel4l/Freelancer-Wireframe?node-id=0
 
 ## Link to the project
 ##### Week 1
-[Link](https://freelancers-7ae52.web.app/)
+[View Deployed Site Here](https://freelancers-7ae52.web.app/)
 
 ##### Week 2-3
-[Link] (https://freelancer-f77ce.web.app/)
+[View Deployed Site Here](https://freelancer-f77ce.web.app/)
 
 # Nutshell - FreeLancers
 ##### Week 1
@@ -60,9 +61,10 @@ The user is now able to add Events that include Food, Souvenirs, Staff, and Show
 
 ## Code Snippet
 
-Below is a snippet of code that adds the authorized user functionalities to the page. When the auth state of the user changes, it writes new buttons to the cards on each module. Buttons are only present and data is only able to be edited if user is logged in. This is the sample from our food module.
+
 
 ##### Week 1
+Below is a snippet of code that adds the authorized user functionalities to the page. When the auth state of the user changes, it writes new buttons to the cards on each module. Buttons are only present and data is only able to be edited if user is logged in. This is the sample from our food module.
 
 ```
 const addButtonsIfUserIsLoggedIn = (foodObject) => {
@@ -91,6 +93,8 @@ const addButtonsIfUserIsLoggedIn = (foodObject) => {
 
 ```
 ##### Week 2-3
+Here is an example of how we used Promise.all in various places to wait on all promises to be resolved for the total prices of each section to be displayed.
+
 ```
 const showsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => {
   let showsTotal = 0;
@@ -102,16 +106,23 @@ const showsTotalPrices = (eventFirebaseKey) => new Promise((resolve, reject) => 
     .then(() => resolve(showsTotal))
     .catch((error) => reject(error));
 });
+
+const allTheTotalPromises = (eventFirebaseKey) => Promise.all([
+  eventFood.foodTotalPrices(eventFirebaseKey),
+  eventShows.showsTotalPrices(eventFirebaseKey),
+  eventSouvenirs.souvenirsTotalPrices(eventFirebaseKey),
+  eventStaff.staffTotalPrices(eventFirebaseKey),
+]);
 ```
 # The Teams
 ##### Week 1
-Ryan Mcnair[https://github.com/ryanmcnair]
-Summer Duke[https://github.com/esrduke95]
-Jonathan Joyner[https://github.com/Jonathon22]
-Sam Mudick[https://github.com/smudick]
+[Ryan Mcnair](https://github.com/ryanmcnair)
+[Summer Duke](https://github.com/esrduke95)
+[Jonathan Joyner](https://github.com/Jonathon22)
+[Sam Mudick](https://github.com/smudick)
 
 ##### Week 2-3
-Chris LoJacono[https://github.com/chrislojacono]
-Kaitlyin Vanhook[https://github.com/kaitvan]
-Liz Barnes[https://github.com/liz-barnes]
-Joseph Martin[https://github.com/josephtmartin]
+[Chris LoJacono](https://github.com/chrislojacono)
+[Kaitlyin Vanhook](https://github.com/kaitvan)
+[Liz Barnes](https://github.com/liz-barnes)
+[Joseph Martin](https://github.com/josephtmartin)
